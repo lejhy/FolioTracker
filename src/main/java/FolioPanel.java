@@ -52,6 +52,7 @@ public class FolioPanel extends JPanel {
                 "Price per Share",
                 "Value of Holding"};
 
+        // Just sample data
         Object[][] data = {
                 {"Kathy", "Smith",
                         "Snowboarding", new Integer(5), new Boolean(false)},

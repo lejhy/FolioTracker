@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class MainFrame extends JFrame implements IView {
+public class MainFrame extends JFrame implements FolioView {
 
     JMenuBar menuBar;
     JMenu fileMenu, editMenu;
