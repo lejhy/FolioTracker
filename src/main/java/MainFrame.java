@@ -57,4 +57,19 @@ public class MainFrame extends JFrame implements IView {
         setVisible(true);
     }
 
+    public boolean addFolioTab(JPanel folioTab) {
+        if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
+        tabbedPane.addTab(folioTab.getName(), folioTab);
+        return true;
+    }
+
+    public boolean removeFolioTab(JPanel folioTab) {
+        int folioTabIndex = tabbedPane.indexOfComponent(folioTab);
+        if (folioTabIndex >= 0) tabbedPane.removeTabAt(folioTabIndex);
+
+        if (tabbedPane.getTabCount() == 0) tabbedPane.addTab("Empty", defaultTab);
+
+        return true;
+    }
+
 }
