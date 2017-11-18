@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class FolioPanel extends JPanel {
 
@@ -14,6 +15,8 @@ public class FolioPanel extends JPanel {
 
     JTable stockTable;
 
+    DefaultTableModel stockTableModel;
+
     JPanel footerPanel;
 
     JButton closeFolioButton;
@@ -27,10 +30,10 @@ public class FolioPanel extends JPanel {
         headerPanel = new JPanel();
 
         tickerSymbolLabel = new JLabel("Ticker Symbol");
-        tickerSymbolTextField = new JTextField();
+        tickerSymbolTextField = new JTextField(20);
 
         numberOfSharesLabel = new JLabel("Number of Shares");
-        numberOfSharesTextField = new JTextField();
+        numberOfSharesTextField = new JTextField(20);
 
         addNewTickerButton = new JButton("Add");
 
@@ -42,9 +45,30 @@ public class FolioPanel extends JPanel {
 
         add(headerPanel);
 
-        stockTable = new JTable();
+        String[] stockTableColumnNames = {
+                "Ticker Symbol",
+                "Stock Name",
+                "Number of Shares",
+                "Price per Share",
+                "Value of Holding"};
 
-        add(stockTable);
+        Object[][] data = {
+                {"Kathy", "Smith",
+                        "Snowboarding", new Integer(5), new Boolean(false)},
+                {"John", "Doe",
+                        "Rowing", new Integer(3), new Boolean(true)},
+                {"Sue", "Black",
+                        "Knitting", new Integer(2), new Boolean(false)},
+                {"Jane", "White",
+                        "Speed reading", new Integer(20), new Boolean(true)},
+                {"Joe", "Brown",
+                        "Pool", new Integer(10), new Boolean(false)}
+        };
+
+        stockTableModel = new DefaultTableModel(data, stockTableColumnNames);
+
+        stockTable = new JTable(stockTableModel);
+        add(new JScrollPane(stockTable));
 
         footerPanel = new JPanel();
 
