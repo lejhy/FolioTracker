@@ -1,3 +1,5 @@
+package main.java;
+
 import javax.swing.*;
 
 public class MainFrame extends JFrame implements FolioView {
@@ -47,6 +49,9 @@ public class MainFrame extends JFrame implements FolioView {
 
         createPortfolioButton = new JButton("Create Portfolio");
         openPortfolioButton = new JButton("Open Portfolio");
+
+        createPortfolioButton.addActionListener(new ButtonListener("create"));
+        openPortfolioButton.addActionListener(new ButtonListener("open"));
 
         defaultTab.add(createPortfolioButton);
         defaultTab.add(openPortfolioButton);

@@ -1,3 +1,5 @@
+package main.java;
+
 public class Stock {
     String symbol;
     String name;
