@@ -8,6 +8,5 @@ public class Driver {
         mainFrame.addFolioTab(new FolioPanel("Folio 2"));
         mainFrame.addFolioTab(new FolioPanel("Folio 3"));
 
-        new MainFrame();
     }
 }

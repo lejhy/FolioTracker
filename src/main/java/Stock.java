@@ -1,4 +1,4 @@
-public class Stock {
+public class Stock implements IStock {
     String symbol;
     String name;
     int number;
@@ -9,6 +9,21 @@ public class Stock {
         this.name = name;
         this.number = number;
         this.price = price;
+    }
+
+    @Override
+    public String getSymbol() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public int getAmount() {
+        return 0;
     }
 
     public double getValue() {

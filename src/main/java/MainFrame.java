@@ -1,6 +1,8 @@
 import javax.swing.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainFrame extends JFrame implements FolioView {
+public class MainFrame extends JFrame implements IMainFrame,Observer {
 
     JMenuBar menuBar;
     JMenu fileMenu, editMenu;
@@ -10,8 +12,13 @@ public class MainFrame extends JFrame implements FolioView {
     JPanel defaultTab;
     JButton createPortfolioButton;
     JButton openPortfolioButton;
+    IUpdater updater;
 
     public MainFrame() {
+
+        updater = new Updater();
+        updater.addObserver(this);
+
         setTitle("Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -72,4 +79,8 @@ public class MainFrame extends JFrame implements FolioView {
         return true;
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        updater.getFolios();
+    }
 }
