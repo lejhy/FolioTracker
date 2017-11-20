@@ -1,4 +1,3 @@
-package main.java;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +40,7 @@ public class GetUserInput extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            System.out.println(nameField.getText());
         }
 
     }
