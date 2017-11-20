@@ -17,7 +17,7 @@ public class Controller {
     }
 
     private void setupListeners() {
-        ActionListener actionListener =  {
+        ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
 
