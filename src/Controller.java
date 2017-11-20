@@ -40,7 +40,13 @@ public class Controller {
             JButton btn = new JButton("Enter");
             frame.add(btn);
             btn.setVisible(true);
-            btn.addActionListener(e -> mainFrame.addFolioTab(new FolioPanel(nameField.getText())));
+            btn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    mainFrame.addFolioTab(new FolioPanel(nameField.getText()));
+                    frame.dispose();
+                }
+            });
 
         }
 
@@ -50,7 +56,7 @@ public class Controller {
     public static class DeleteFolio {
 
         DeleteFolio() {
-            mainFrame.deleteCurrentFolio();
+            mainFrame.removeFolioTab();
         }
     }
 }

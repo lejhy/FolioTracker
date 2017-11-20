@@ -76,6 +76,9 @@ public class FolioPanel extends JPanel {
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
 
+        deleteFolioButton.addActionListener(new ButtonListener("delete"));
+        closeFolioButton.addActionListener(new ButtonListener("close"));
+
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
 

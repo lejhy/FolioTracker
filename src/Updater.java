@@ -28,6 +28,11 @@ public class Updater extends Observable implements IUpdater {
         return null;
     }
 
+    @Override
+    public void addFolio(String name) {
+
+    }
+
     private String findStockValue(IStock s) {
         try {
             return StrathQuoteServer.getLastValue(s.getSymbol());

@@ -5,4 +5,6 @@ public interface IMainFrame {
 
 
     void deleteCurrentFolio();
+
+    boolean removeFolioTab();
 }

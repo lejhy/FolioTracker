@@ -1,10 +1,5 @@
 import javax.swing.*;
-<<<<<<< HEAD:src/main/java/MainFrame.java
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-=======
 import java.awt.*;
->>>>>>> eb0fc5ab3fa71384949ee9df08c15a182fe19009:src/MainFrame.java
 import java.util.Observable;
 import java.util.Observer;
 
@@ -64,6 +59,9 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         createPortfolioButton = new JButton("Create Portfolio");
         openPortfolioButton = new JButton("Open Portfolio");
 
+        createPortfolioButton.addActionListener(new ButtonListener("create"));
+        openPortfolioButton.addActionListener(new ButtonListener("open"));
+
         buttonPanel= new JPanel();
         buttonPanel.add(createPortfolioButton);
         buttonPanel.add(openPortfolioButton);
@@ -94,11 +92,12 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     public boolean addFolioTab(JPanel folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
+        updater.addFolio(folioTab.getName());
         return true;
     }
 
-    public boolean removeFolioTab(JPanel folioTab) {
-        int folioTabIndex = tabbedPane.indexOfComponent(folioTab);
+    public boolean removeFolioTab() {
+        int folioTabIndex = tabbedPane.indexOfComponent(tabbedPane.getSelectedComponent());
         if (folioTabIndex >= 0) tabbedPane.removeTabAt(folioTabIndex);
 
         if (tabbedPane.getTabCount() == 0) tabbedPane.addTab("Empty", defaultTab);

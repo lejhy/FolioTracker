@@ -6,4 +6,6 @@ public interface IUpdater {
     void addObserver(Observer o);
 
     List<IFolio> getFolios();
+
+    void addFolio(String name);
 }
