@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -6,15 +8,19 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
 
     JMenuBar menuBar;
     JMenu fileMenu, editMenu;
-    JMenuItem createMenuItem, openMenuItem, saveMenuItem, exitMenuItem, refreshMenuItem;
+    JMenuItem saveMenuItem, exitMenuItem, refreshMenuItem;
     JCheckBoxMenuItem autoRefreshCheckbox;
     JTabbedPane tabbedPane;
     JPanel defaultTab;
     JButton createPortfolioButton;
     JButton openPortfolioButton;
+
+
     IUpdater updater;
+    private boolean autoRefresh;
 
     public MainFrame() {
+        autoRefresh=false;
 
         updater = new Updater();
         updater.addObserver(this);
@@ -31,18 +37,17 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
 
-        createMenuItem = new JMenuItem("Create...");
-        openMenuItem = new JMenuItem("Open...");
         saveMenuItem = new JMenuItem("Save");
         exitMenuItem = new JMenuItem("Exit");
+        exitMenuItem.addActionListener(e -> System.exit(0));
 
-        fileMenu.add(createMenuItem);
-        fileMenu.add(openMenuItem);
         fileMenu.add(saveMenuItem);
         fileMenu.add(exitMenuItem);
 
         refreshMenuItem = new JMenuItem("Refresh");
+        refreshMenuItem.addActionListener(e -> refresh());
         autoRefreshCheckbox = new JCheckBoxMenuItem("Auto Refresh");
+        autoRefreshCheckbox.addActionListener(e-> autoRefresh=!autoRefresh);
 
         editMenu.add(refreshMenuItem);
         editMenu.add(autoRefreshCheckbox);
@@ -88,4 +93,17 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     public void update(Observable o, Object arg) {
         updater.getFolios();
     }
+
+
+    public void refresh() {
+
+    }
+
+    public void deleteCurrentFolio() {
+        tabbedPane.remove(tabbedPane.getSelectedIndex());
+        repaint();
+
+    }
+
 }
+

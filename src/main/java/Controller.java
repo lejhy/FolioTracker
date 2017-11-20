@@ -5,34 +5,21 @@ import java.awt.event.ActionListener;
 
 public class Controller {
 
-    private IMainFrame mainFrame;
+    private static IMainFrame mainFrame;
 
 
 
     public Controller(IMainFrame frame) {
         this.mainFrame = frame;
-        setupListeners();
-
 
     }
 
-    private void setupListeners() {
-        ActionListener actionListener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
 
 
-            }
-
-        };
-    }
-
-
-
-    public class GetUserInput extends JPanel {
-
+    public static class CreateFolio extends JPanel {
         private JTextField nameField;
 
-        GetUserInput(){
+        CreateFolio(){
             JFrame frame = new JFrame("Test");
 
             frame.setVisible(true);
@@ -53,27 +40,17 @@ public class Controller {
             JButton btn = new JButton("Enter");
             frame.add(btn);
             btn.setVisible(true);
-            btn.addActionListener(new BtnListener());
+            btn.addActionListener(e -> mainFrame.addFolioTab(new FolioPanel(nameField.getText())));
+
+        }
 
         }
 
 
+    public static class DeleteFolio {
 
-        private class BtnListener implements ActionListener {
-
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mainFrame.addFolioTab(new FolioPanel(nameField.getText()));
-
-
-            }
-
-
-            }
-
+        DeleteFolio() {
+            mainFrame.deleteCurrentFolio();
         }
-
-
-
+    }
 }

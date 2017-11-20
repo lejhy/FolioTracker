@@ -11,18 +11,33 @@ public class ButtonListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch(buttonPressed) {
+            case "create": createPortfolio();
+                           break;
+            case "open" : openPortfolio();
+                          break;
+            case "delete" : deletePortfolio();
+                           break;
+        }
         if(buttonPressed.equals("create"))
-            createPotfolio();
+            createPortfolio();
         else if(buttonPressed.equals("open"))
             openPortfolio();
         else
             inputGiven(buttonPressed);
     }
 
-    private void createPotfolio() {
-        System.out.println("create portfolio");
-        GetUserInput in = new GetUserInput();
+    private void deletePortfolio() {
+        System.out.println("Delete");
+        Controller.DeleteFolio out = new Controller.DeleteFolio();
     }
+
+    private void createPortfolio() {
+        System.out.println("create portfolio");
+        Controller.CreateFolio in = new Controller.CreateFolio();
+    }
+
+
 
     private void openPortfolio(){
         System.out.println("open portfolio");
