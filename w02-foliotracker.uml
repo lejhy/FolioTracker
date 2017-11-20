@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_Yj3TMM31Eee6RPStXFV1tw" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_Yj6WgM31Eee6RPStXFV1tw" source="codegen">
         <details xmi:id="_Yj6Wgc31Eee6RPStXFV1tw" key="codegenDirectory" value="/w02-foliotracker/src/main/java"/>
-        <details xmi:id="_ZdVR0M31Eee6RPStXFV1tw" key="AssociatedSourceCode" value="/w02-foliotracker/src/main/java/Controller.java;2187280551/1;/w02-foliotracker/src/main/java/Driver.java;3370649962/1;/w02-foliotracker/src/main/java/Folio.java;4054396416/1;/w02-foliotracker/src/main/java/FolioPanel.java;2582325848/1;/w02-foliotracker/src/main/java/FolioTracker.java;1997457103/1;/w02-foliotracker/src/main/java/IFolio.java;1861812895/1;/w02-foliotracker/src/main/java/IMainFrame.java;419790167/1;/w02-foliotracker/src/main/java/IStock.java;1203321531/1;/w02-foliotracker/src/main/java/IUpdater.java;2109416777/1;/w02-foliotracker/src/main/java/Listener.java;3376622993/1;/w02-foliotracker/src/main/java/MainFrame.java;3153249809/1;/w02-foliotracker/src/main/java/Stock.java;3808977591/1;/w02-foliotracker/src/main/java/StrathQuoteServer.java;2263934728/1;/w02-foliotracker/src/main/java/Updater.java;3803365122/1;"/>
+        <details xmi:id="_ZdVR0M31Eee6RPStXFV1tw" key="AssociatedSourceCode" value="/w02-foliotracker/src/main/java/Controller.java;2187280551/1;/w02-foliotracker/src/main/java/Driver.java;2459075222/1;/w02-foliotracker/src/main/java/Folio.java;4054396416/1;/w02-foliotracker/src/main/java/FolioPanel.java;2582325848/1;/w02-foliotracker/src/main/java/IFolio.java;1861812895/1;/w02-foliotracker/src/main/java/IMainFrame.java;419790167/1;/w02-foliotracker/src/main/java/IStock.java;1203321531/1;/w02-foliotracker/src/main/java/IUpdater.java;2109416777/1;/w02-foliotracker/src/main/java/Listener.java;3376622993/1;/w02-foliotracker/src/main/java/MainFrame.java;1882526809/1;/w02-foliotracker/src/main/java/Stock.java;3808977591/1;/w02-foliotracker/src/main/java/StrathQuoteServer.java;2263934728/1;/w02-foliotracker/src/main/java/Updater.java;3803365122/1;"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_Y79DEM31Eee6RPStXFV1tw">
@@ -118,9 +118,9 @@
         <language>java</language>
         <body>MainFrame mainFrame = new MainFrame();
 
-     mainFrame.addFolioTab(new FolioPanel(&quot;Folio 1&quot;));
-     mainFrame.addFolioTab(new FolioPanel(&quot;Folio 2&quot;));
-     mainFrame.addFolioTab(new FolioPanel(&quot;Folio 3&quot;));
+//        mainFrame.addFolioTab(new FolioPanel(&quot;Folio 1&quot;));
+//        mainFrame.addFolioTab(new FolioPanel(&quot;Folio 2&quot;));
+//        mainFrame.addFolioTab(new FolioPanel(&quot;Folio 3&quot;));
 
  </body>
       </ownedBehavior>
@@ -273,7 +273,6 @@
         <ownedParameter xmi:id="_Y8ZH8M31Eee6RPStXFV1tw" type="_Y8VdkM31Eee6RPStXFV1tw" direction="return"/>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Interface" xmi:id="_Y8engM31Eee6RPStXFV1tw" name="FolioTracker"/>
     <packagedElement xmi:type="uml:Interface" xmi:id="_Y8f1oM31Eee6RPStXFV1tw" name="IFolio">
       <ownedAttribute xmi:id="_Y8gcsM31Eee6RPStXFV1tw" name="stock" visibility="package" type="_Y8i48M31Eee6RPStXFV1tw" isOrdered="true" association="_ZCRGcM31Eee6RPStXFV1tw">
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZCYbMM31Eee6RPStXFV1tw" value="*"/>
@@ -330,7 +329,9 @@
       <interfaceRealization xmi:id="_ZA50gc31Eee6RPStXFV1tw" client="_Y8o_kM31Eee6RPStXFV1tw" supplier="_Y8iR4M31Eee6RPStXFV1tw" contract="_Y8iR4M31Eee6RPStXFV1tw"/>
       <interfaceRealization xmi:id="_ZBUEMc31Eee6RPStXFV1tw" client="_Y8o_kM31Eee6RPStXFV1tw" supplier="_ZA2xMM31Eee6RPStXFV1tw" contract="_ZA2xMM31Eee6RPStXFV1tw"/>
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ZCK_0M31Eee6RPStXFV1tw" name="MainFrame" specification="_Y8rb0M31Eee6RPStXFV1tw">
-        <ownedParameter xmi:id="_ZCK_0c31Eee6RPStXFV1tw" type="_Y8o_kM31Eee6RPStXFV1tw" direction="return"/>
+        <ownedParameter xmi:id="_ZCK_0c31Eee6RPStXFV1tw" type="_Y8o_kM31Eee6RPStXFV1tw" direction="return">
+          <name xsi:nil="true"/>
+        </ownedParameter>
         <language>java</language>
         <body>updater = new Updater();
      updater.addObserver(this);
@@ -370,6 +371,10 @@
 
      createPortfolioButton = new JButton(&quot;Create Portfolio&quot;);
      openPortfolioButton = new JButton(&quot;Open Portfolio&quot;);
+     
+     createPortfolioButton.addActionListener(new ButtonListener(&quot;create&quot;));
+     openPortfolioButton.addActionListener(new ButtonListener(&quot;open&quot;));
+
 
      defaultTab.add(createPortfolioButton);
      defaultTab.add(openPortfolioButton);
@@ -383,6 +388,7 @@
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ZCK_0s31Eee6RPStXFV1tw" name="addFolioTab" specification="_ZBZjwM31Eee6RPStXFV1tw">
         <ownedParameter xmi:id="_ZCK_0831Eee6RPStXFV1tw" name="folioTab" type="_ZBIeAM31Eee6RPStXFV1tw"/>
         <ownedParameter xmi:id="_ZCK_1M31Eee6RPStXFV1tw" direction="return">
+          <name xsi:nil="true"/>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
         </ownedParameter>
         <language>java</language>
@@ -394,6 +400,7 @@
       <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_ZCK_1c31Eee6RPStXFV1tw" name="removeFolioTab" specification="_ZBZjw831Eee6RPStXFV1tw">
         <ownedParameter xmi:id="_ZCK_1s31Eee6RPStXFV1tw" name="folioTab" type="_ZBIeAM31Eee6RPStXFV1tw"/>
         <ownedParameter xmi:id="_ZCK_1831Eee6RPStXFV1tw" direction="return">
+          <name xsi:nil="true"/>
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
         </ownedParameter>
         <language>java</language>
@@ -867,6 +874,7 @@ York Stock Exchange (NYSE) or NASDAQ.</body>
       <ownedEnd xmi:id="_ZCz5As31Eee6RPStXFV1tw" name="" type="_Y8o_kM31Eee6RPStXFV1tw" association="_ZCz5Ac31Eee6RPStXFV1tw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Usage" xmi:id="_2xWlgM31Eee6RPStXFV1tw" client="_Y8o_kM31Eee6RPStXFV1tw" supplier="_Y8VdkM31Eee6RPStXFV1tw"/>
+    <packagedElement xmi:type="uml:Usage" xmi:id="_Dm2RQM32Eee6RPStXFV1tw" client="_Y9HgsM31Eee6RPStXFV1tw" supplier="_Y88hkM31Eee6RPStXFV1tw"/>
     <profileApplication xmi:id="_Yj8LsM31Eee6RPStXFV1tw">
       <eAnnotations xmi:id="_Yj_2EM31Eee6RPStXFV1tw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>

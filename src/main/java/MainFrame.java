@@ -54,6 +54,10 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
 
         createPortfolioButton = new JButton("Create Portfolio");
         openPortfolioButton = new JButton("Open Portfolio");
+        
+        createPortfolioButton.addActionListener(new ButtonListener("create"));
+        openPortfolioButton.addActionListener(new ButtonListener("open"));
+
 
         defaultTab.add(createPortfolioButton);
         defaultTab.add(openPortfolioButton);
@@ -67,6 +71,7 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     public boolean addFolioTab(JPanel folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
+        tabbedPane.repaint();
         return true;
     }
 
