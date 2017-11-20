@@ -1,6 +1,10 @@
 import javax.swing.*;
+<<<<<<< HEAD:src/main/java/MainFrame.java
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+=======
+import java.awt.*;
+>>>>>>> eb0fc5ab3fa71384949ee9df08c15a182fe19009:src/MainFrame.java
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,7 +15,7 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     JMenuItem saveMenuItem, exitMenuItem, refreshMenuItem;
     JCheckBoxMenuItem autoRefreshCheckbox;
     JTabbedPane tabbedPane;
-    JPanel defaultTab;
+    JPanel defaultTab,  buttonPanel, panel;
     JButton createPortfolioButton;
     JButton openPortfolioButton;
 
@@ -52,31 +56,44 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         editMenu.add(refreshMenuItem);
         editMenu.add(autoRefreshCheckbox);
 
-        tabbedPane = new JTabbedPane();
-        add(tabbedPane);
 
-        defaultTab = new JPanel();
+
+
+
 
         createPortfolioButton = new JButton("Create Portfolio");
         openPortfolioButton = new JButton("Open Portfolio");
-        
-        createPortfolioButton.addActionListener(new ButtonListener("create"));
-        openPortfolioButton.addActionListener(new ButtonListener("open"));
 
+        buttonPanel= new JPanel();
+        buttonPanel.add(createPortfolioButton);
+        buttonPanel.add(openPortfolioButton);
+        GridLayout buttonsLay = new GridLayout(2,1);
 
-        defaultTab.add(createPortfolioButton);
-        defaultTab.add(openPortfolioButton);
+        buttonPanel.setVisible(true);
+        buttonPanel.setLayout(buttonsLay);
 
+        tabbedPane = new JTabbedPane();
+        panel = new JPanel();
+//        add(tabbedPane);
+        defaultTab = new JPanel();
+        defaultTab.setSize(1000,500);
+        tabbedPane.add(defaultTab);
+        defaultTab.setVisible(true);
+        tabbedPane.setVisible(true);
+        panel.add(tabbedPane);
+        panel.setVisible(true);
+        panel.add(buttonPanel);
+        add(panel);
+        buttonPanel.setAlignmentX(LEFT_ALIGNMENT);
         tabbedPane.addTab("Empty", defaultTab);
-
-        setSize(800, 600);
+        defaultTab.setPreferredSize(new Dimension(800, 600));
+        setSize(1000, 600);
         setVisible(true);
     }
 
     public boolean addFolioTab(JPanel folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
-        tabbedPane.repaint();
         return true;
     }
 

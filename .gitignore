@@ -2,3 +2,9 @@
 out/
 *.iml
 /bin/
+.classpath
+.project
+w02-foliotracker.iml
+w02-foliotracker.uml
+w02-foliotracker.umlcd
+main/main.iml
