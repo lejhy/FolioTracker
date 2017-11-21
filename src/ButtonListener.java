@@ -19,12 +19,7 @@ public class ButtonListener implements ActionListener {
             case "delete" : deletePortfolio();
                            break;
         }
-        if(buttonPressed.equals("create"))
-            createPortfolio();
-        else if(buttonPressed.equals("open"))
-            openPortfolio();
-        else
-            inputGiven(buttonPressed);
+
     }
 
     private void deletePortfolio() {
@@ -43,7 +38,4 @@ public class ButtonListener implements ActionListener {
         System.out.println("open portfolio");
     }
 
-    private void inputGiven(String input){
-        Folio f = new Folio(input);
-    }
 }
