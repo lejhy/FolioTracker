@@ -1,10 +1,14 @@
 import java.util.List;
+import java.util.Observer;
 import java.util.Vector;
 
 public interface IFolio {
 
-    List<IStock> getStocks();
+    public List<IStock> getStocks();
 
-    String getName();
+    public String getName();
 
+    public void addStock(String ticker, int number);
+
+    public void addObserver(Observer o);
 }

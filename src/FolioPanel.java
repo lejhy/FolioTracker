@@ -9,10 +9,12 @@ public class FolioPanel extends JPanel implements Observer {
 
     private DefaultTableModel stockTableModel;
     private IFolio folio;
-    private JButton closeFolioButton, deleteFolioButton;
+    private JButton addNewTickerButton, closeFolioButton, deleteFolioButton;
+    private JTextField tickerSymbolTextField, numberOfSharesTextField;
 
     FolioPanel(IFolio folio) {
         this.folio = folio;
+        folio.addObserver(this);
 
         setName(folio.getName());
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -20,12 +22,12 @@ public class FolioPanel extends JPanel implements Observer {
         JPanel headerPanel = new JPanel();
 
         JLabel tickerSymbolLabel = new JLabel("Ticker Symbol");
-        JTextField tickerSymbolTextField = new JTextField(20);
+        tickerSymbolTextField = new JTextField(20);
 
         JLabel numberOfSharesLabel = new JLabel("Number of Shares");
-        JTextField numberOfSharesTextField = new JTextField(20);
+        numberOfSharesTextField = new JTextField(20);
 
-        JButton addNewTickerButton = new JButton("Add");
+        addNewTickerButton = new JButton("Add");
 
         headerPanel.add(tickerSymbolLabel);
         headerPanel.add(tickerSymbolTextField);
@@ -78,15 +80,29 @@ public class FolioPanel extends JPanel implements Observer {
 
         for (int i = 0; i < stockTableModel.getRowCount(); i++){
             IStock stock = stocks.get(i);
-            stockTableModel.setValueAt(stock.getSymbol(), 0, i);
-            stockTableModel.setValueAt(stock.getName(), 1, i);
-            stockTableModel.setValueAt(stock.getNumber(), 2, i);
-            stockTableModel.setValueAt(stock.getPrice(), 3, i);
-            stockTableModel.setValueAt(stock.getValue(), 4, i);
+            stockTableModel.setValueAt(stock.getSymbol(), i, 0);
+            stockTableModel.setValueAt(stock.getName(), i, 1);
+            stockTableModel.setValueAt(stock.getNumber(), i, 2);
+            stockTableModel.setValueAt(stock.getPrice(), i, 3);
+            stockTableModel.setValueAt(stock.getValue(), i, 4);
         }
     }
+
+    public void addAddNewTickerListener(ActionListener a) { addNewTickerButton.addActionListener(a); }
 
     public void addDeleteFolioListener(ActionListener a) { deleteFolioButton.addActionListener(a); }
 
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
+
+    public IFolio getFolio() {
+        return folio;
+    }
+
+    public String getTickerSymbolInput() {
+        return tickerSymbolTextField.getText();
+    }
+
+    public String getNumberOfSharesInput() {
+        return numberOfSharesTextField.getText();
+    }
 }

@@ -13,12 +13,12 @@ public class Stock implements IStock {
 
     @Override
     public String getSymbol() {
-        return null;
+        return symbol;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override

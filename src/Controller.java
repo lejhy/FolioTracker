@@ -1,8 +1,3 @@
-import javax.management.OperationsException;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public class Controller {
@@ -14,9 +9,9 @@ public class Controller {
     public Controller(IMainFrame frame) {
         this.mainFrame = frame;
 
-        mainFrame.addCreateFolioListener(new ButtonListener(ButtonListener.type.CREATE_FOLIO, mainFrame));
+        mainFrame.addCreateFolioListener(new MainFrameButtonListener(MainFrameButtonListener.type.CREATE_FOLIO, mainFrame));
 
-        mainFrame.addOpenFolioListener(new ButtonListener(ButtonListener.type.OPEN_FOLIO, mainFrame));
+        mainFrame.addOpenFolioListener(new MainFrameButtonListener(MainFrameButtonListener.type.OPEN_FOLIO, mainFrame));
     }
 
     public void deleteFolio() { mainFrame.removeFolioTab(); }
