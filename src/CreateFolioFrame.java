@@ -37,4 +37,6 @@ public class CreateFolioFrame extends JFrame {
     public JTextField getNameField() {
         return nameField;
     }
+
+    public void close(){dispose();}
 }

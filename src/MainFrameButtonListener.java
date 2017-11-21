@@ -52,6 +52,7 @@ public class MainFrameButtonListener implements ActionListener {
             folioPanel.addCloseFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.CLOSE_FOLIO, folioPanel) );
 
             mainFrame.addFolioTab(folioPanel);
+            createFolioFrame.close();
         });
     }
 
