@@ -44,7 +44,7 @@ public class FolioPanel extends JPanel implements Observer {
                 "Price per Share",
                 "Value of Holding"};
 
-        stockTableModel = new DefaultTableModel(new Vector<>(Arrays.asList(columns)), 0);
+        stockTableModel = new folioTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
         stockTable = new JTable(stockTableModel);
 
