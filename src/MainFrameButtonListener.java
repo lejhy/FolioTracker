@@ -59,7 +59,7 @@ public class MainFrameButtonListener implements ActionListener {
             folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
             folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
             folioPanel.addCloseFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.CLOSE_FOLIO, mainFrame) );
-            folioPanel.addTableModelListener( new folioTableListener(folio) );
+            folioPanel.addTableModelListener( new folioTableListener(folioPanel) );
 
             mainFrame.addFolioTab(folioPanel);
             createFolioFrame.close();

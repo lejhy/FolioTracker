@@ -4,10 +4,10 @@ import javax.swing.table.TableModel;
 
 public class folioTableListener implements TableModelListener {
 
-    private IFolio folio;
+    private FolioPanel folioPanel;
 
-    public folioTableListener(IFolio folio) {
-        this.folio = folio;
+    public folioTableListener(FolioPanel folioPanel) {
+        this.folioPanel = folioPanel;
     }
 
     @Override
@@ -16,18 +16,21 @@ public class folioTableListener implements TableModelListener {
         System.out.println(e.getFirstRow());
         System.out.println(e.getLastRow());
 
-        IStock stock = folio.getStocks().get(e.getFirstRow());
+        IStock stock = folioPanel.getFolio().getStocks().get(e.getFirstRow());
         TableModel tableModel = (TableModel)e.getSource();
 
         switch (e.getColumn()) {
             case 1:
-                stock.setName(tableModel.getValueAt(e.getFirstRow(), e.getColumn()).toString());
+                stock.setName(tableModel.getValueAt(e.getFirstRow(), 1).toString());
                 break;
             case 2:
-                stock.setNumber(Integer.parseInt(tableModel.getValueAt(e.getFirstRow(), e.getColumn()).toString()));
+                stock.setNumber(Integer.parseInt(tableModel.getValueAt(e.getFirstRow(), 2).toString()));
+                folioPanel.getStockTable().getModel().setValueAt(stock.getPrice(), e.getFirstRow(), 4);
                 break;
             default:
                 break;
         }
     }
+
+
 }

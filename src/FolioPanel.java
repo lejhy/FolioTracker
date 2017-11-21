@@ -100,6 +100,8 @@ public class FolioPanel extends JPanel implements Observer {
         return folio;
     }
 
+    public JTable getStockTable() { return stockTable; }
+
     public String getTickerSymbolInput() {
         return tickerSymbolTextField.getText();
     }
