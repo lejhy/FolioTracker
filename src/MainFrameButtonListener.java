@@ -1,11 +1,5 @@
-import javax.swing.*;
-import javax.swing.event.CellEditorListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 public class MainFrameButtonListener implements ActionListener {
 
@@ -55,7 +49,7 @@ public class MainFrameButtonListener implements ActionListener {
             FolioPanel folioPanel = new FolioPanel(folio);
             folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
             folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
-            folioPanel.addCloseFolioListener( new fileManipulationListener(fileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
+            folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
             folioPanel.addTableModelListener( new folioTableListener(folioPanel) );
 
             mainFrame.addFolioTab(folioPanel);
