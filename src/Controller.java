@@ -14,13 +14,10 @@ public class Controller {
     public Controller(IMainFrame frame) {
         this.mainFrame = frame;
 
-        mainFrame.addCreateFolioListener(new ButtonListener(ButtonListener.type.CREATE_FOLIO));
+        mainFrame.addCreateFolioListener(new ButtonListener(ButtonListener.type.CREATE_FOLIO, mainFrame));
 
-        mainFrame.addDeleteFolioListener(new ButtonListener(ButtonListener.type.DELETE_FOLIO));
-
-        mainFrame.addOpenFolioListener(new ButtonListener(ButtonListener.type.OPEN_FOLIO));
+        mainFrame.addOpenFolioListener(new ButtonListener(ButtonListener.type.OPEN_FOLIO, mainFrame));
     }
-
 
     public void deleteFolio() { mainFrame.removeFolioTab(); }
 
@@ -36,7 +33,6 @@ public class Controller {
     public void closeFolio() { mainFrame.closeFolio(); }
 
     public void openFolio() { mainFrame.openFolio(); }
-
 
     public void refresh() { mainFrame.refresh(); }
 }

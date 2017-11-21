@@ -20,6 +20,4 @@ public interface IMainFrame {
     void addCreateFolioListener(ActionListener a);
 
     void addOpenFolioListener(ActionListener a);
-
-    void addDeleteFolioListener(ActionListener a);
 }

@@ -7,11 +7,12 @@ public class ButtonListener implements ActionListener {
 
     enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, CLOSE_FOLIO}
 
-    ;
     private type buttonPressed;
+    private IMainFrame mainFrame;
 
-    public ButtonListener(type buttonPressed) {
+    public ButtonListener(type buttonPressed, IMainFrame mainFrame) {
         this.buttonPressed = buttonPressed;
+        this.mainFrame = mainFrame;
     }
 
     @Override
@@ -38,8 +39,17 @@ public class ButtonListener implements ActionListener {
 
     private void createPortfolio() {
         System.out.println("create portfolio");
+        CreateFolioFrame createFolioFrame = new CreateFolioFrame();
+        createFolioFrame.addConfirmationListener(a -> {
+            String folioName = "New Folio";
+            if (!createFolioFrame.getNameField().getText().isEmpty()){
+                folioName = createFolioFrame.getNameField().getText();
+            }
+            Folio folio = new Folio(folioName);
+            FolioPanel folioPanel = new FolioPanel(folio);
+            mainFrame.addFolioTab(folioPanel);
+        });
     }
-
 
     private void openPortfolio() {
         System.out.println("open portfolio");

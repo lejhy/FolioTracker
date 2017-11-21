@@ -19,7 +19,7 @@ public class Folio implements IFolio {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
 }

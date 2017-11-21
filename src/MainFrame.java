@@ -131,11 +131,6 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         openFolioButton.addActionListener(a);
     }
 
-    @Override
-    public void addDeleteFolioListener(ActionListener a) {
-        deleteFolioButton.addActionListener(a);
-    }
-
     public void modifyFolio(Vector<String> i, String name, int index) {
         updater.folioModified(i,name,index);
     }

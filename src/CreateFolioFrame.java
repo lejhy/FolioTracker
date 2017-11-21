@@ -4,8 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CreateFolioFrame extends JFrame {
-    
+
     private JTextField nameField;
+    private JButton enterButton;
 
     CreateFolioFrame(){
         setName("Create Folio");
@@ -23,12 +24,17 @@ public class CreateFolioFrame extends JFrame {
 
         add(nameField);
 
-        JButton btn = new JButton("Enter");
-        add(btn);
+        enterButton = new JButton("Enter");
+        add(enterButton);
 
         setVisible(true);
     }
 
-    public void addConfirmationListener(ActionListener a) { }
+    public void addConfirmationListener(ActionListener a) {
+        enterButton.addActionListener(a);
+    }
 
+    public JTextField getNameField() {
+        return nameField;
+    }
 }
