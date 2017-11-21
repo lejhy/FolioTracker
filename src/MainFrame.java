@@ -130,5 +130,9 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         updater.folioModified(i,name,index);
     }
 
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
+
 }
 

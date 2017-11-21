@@ -11,7 +11,7 @@ public class CreateFolioFrame extends JFrame {
     CreateFolioFrame(){
         setName("Create Folio");
 
-        setSize(300, 300);
+        setSize(300, 100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setLayout(new FlowLayout());

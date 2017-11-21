@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
@@ -20,4 +22,7 @@ public interface IMainFrame {
     void addCreateFolioListener(ActionListener a);
 
     void addOpenFolioListener(ActionListener a);
+
+    JTabbedPane getTabbedPane();
+
 }

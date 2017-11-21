@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class MainFrameButtonListener implements ActionListener {
 
-    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, CLOSE_FOLIO, SAVE}
+    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, SAVE}
 
     private type buttonPressed;
     private IMainFrame mainFrame;
@@ -30,9 +30,6 @@ public class MainFrameButtonListener implements ActionListener {
                 break;
             case DELETE_FOLIO:
                 deletePortfolio();
-                break;
-            case CLOSE_FOLIO:
-                closePortFolio();
                 break;
             case SAVE:
                 save();
@@ -58,7 +55,7 @@ public class MainFrameButtonListener implements ActionListener {
             FolioPanel folioPanel = new FolioPanel(folio);
             folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
             folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
-            folioPanel.addCloseFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.CLOSE_FOLIO, mainFrame) );
+            folioPanel.addCloseFolioListener( new fileManipulationListener(fileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
             folioPanel.addTableModelListener( new folioTableListener(folioPanel) );
 
             mainFrame.addFolioTab(folioPanel);
@@ -68,10 +65,6 @@ public class MainFrameButtonListener implements ActionListener {
 
     private void openPortfolio() {
         System.out.println("open portfolio");
-    }
-
-    private void closePortFolio() {
-        System.out.println("close portfolio");
     }
 
     private void save() { System.out.println("save"); }
