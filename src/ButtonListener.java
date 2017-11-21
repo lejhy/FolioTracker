@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 public class ButtonListener implements ActionListener {
-    String buttonPressed;
+    private String buttonPressed;
 
     public ButtonListener(String buttonPressed){
         this.buttonPressed = buttonPressed;

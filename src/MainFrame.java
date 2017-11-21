@@ -6,17 +6,11 @@ import java.util.Vector;
 
 public class MainFrame extends JFrame implements IMainFrame,Observer {
 
-    JMenuBar menuBar;
-    JMenu fileMenu, editMenu;
-    JMenuItem saveMenuItem, exitMenuItem, refreshMenuItem;
-    JCheckBoxMenuItem autoRefreshCheckbox;
-    JTabbedPane tabbedPane;
-    JPanel defaultTab,  buttonPanel, panel;
-    JButton createPortfolioButton;
-    JButton openPortfolioButton;
+    private JTabbedPane tabbedPane;
+    private JPanel defaultTab;
 
 
-    IUpdater updater;
+    private IUpdater updater;
     private boolean autoRefresh;
 
     public MainFrame() {
@@ -28,42 +22,38 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         setTitle("Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        fileMenu = new JMenu("File");
-        editMenu = new JMenu("Edit");
+        JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
 
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
 
-        saveMenuItem = new JMenuItem("Save");
-        exitMenuItem = new JMenuItem("Exit");
+        JMenuItem saveMenuItem = new JMenuItem("Save");
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.addActionListener(e -> System.exit(0));
 
         fileMenu.add(saveMenuItem);
         fileMenu.add(exitMenuItem);
 
-        refreshMenuItem = new JMenuItem("Refresh");
+        JMenuItem refreshMenuItem = new JMenuItem("Refresh");
         refreshMenuItem.addActionListener(e -> refresh());
-        autoRefreshCheckbox = new JCheckBoxMenuItem("Auto Refresh");
+        JCheckBoxMenuItem autoRefreshCheckbox = new JCheckBoxMenuItem("Auto Refresh");
         autoRefreshCheckbox.addActionListener(e-> autoRefresh=!autoRefresh);
 
         editMenu.add(refreshMenuItem);
         editMenu.add(autoRefreshCheckbox);
 
 
-
-
-
-
-        createPortfolioButton = new JButton("Create Portfolio");
-        openPortfolioButton = new JButton("Open Portfolio");
+        JButton createPortfolioButton = new JButton("Create Portfolio");
+        JButton openPortfolioButton = new JButton("Open Portfolio");
 
         createPortfolioButton.addActionListener(new ButtonListener("create"));
         openPortfolioButton.addActionListener(new ButtonListener("open"));
 
-        buttonPanel= new JPanel();
+        JPanel buttonPanel = new JPanel();
         buttonPanel.add(createPortfolioButton);
         buttonPanel.add(openPortfolioButton);
         GridLayout buttonsLay = new GridLayout(2,1);
@@ -72,7 +62,7 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         buttonPanel.setLayout(buttonsLay);
 
         tabbedPane = new JTabbedPane();
-        panel = new JPanel();
+        JPanel panel = new JPanel();
 //        add(tabbedPane);
         defaultTab = new JPanel();
         defaultTab.setSize(1000,500);
@@ -120,7 +110,7 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
 
     @Override
     public Vector<Vector<String>> getData(String name) {
-        return updater.getData();
+        return updater.getData("");
     }
 
     @Override

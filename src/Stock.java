@@ -1,8 +1,8 @@
 public class Stock implements IStock {
-    String symbol;
-    String name;
-    int number;
-    double price;
+    private String symbol;
+    private String name;
+    private int number;
+    private double price;
 
     public Stock(String symbol, String name, int number, double price) {
         this.symbol = symbol;

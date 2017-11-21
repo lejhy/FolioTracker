@@ -21,14 +21,6 @@ public class Updater extends Observable implements IUpdater {
 
 
 
-    private void updateFolios() {
-
-    }
-
-    public List<IFolio> getFolios() {
-        return null;
-    }
-
     @Override
     public void addFolio(String name) {
 
@@ -44,21 +36,24 @@ public class Updater extends Observable implements IUpdater {
 
     }
 
+    /*
+    Note: using this just now just to create test data
+     */
     @Override
-    public Vector<Vector<String>> getData() {
+    public Vector<Vector<String>> getData(String name) {
 
 
         String[][] defaultData = {
                 {"Kathy", "Smith",
-                        "Snowboarding", "5", "false"},
+                        "1", "5", "1000"},
                 {"John", "Doe",
-                        "Rowing", "3", "false"},
+                        "3", "3", "6"},
                 {"Sue", "Black",
-                        "Knitting", "2", "true"},
+                        "5", "2", "200000"},
                 {"Jane", "White",
-                        "Speed reading", "3", "true"},
+                        "100", "3", "246341"},
                 {"Joe", "Brown",
-                        "Pool", "10", "false"}
+                        "59", "10", "233333"}
                  };
 
 

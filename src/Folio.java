@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Folio implements IFolio {
 
-    String name;
-    List<IStock> stocks;
+    private String name;
+    private List<IStock> stocks;
 
     public Folio(String name) {
         this.name = name;

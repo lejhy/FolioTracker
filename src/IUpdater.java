@@ -12,7 +12,7 @@ public interface IUpdater {
 
     void manualUpdateGUI();
 
-    Vector<Vector<String>> getData();
+    Vector<Vector<String>> getData(String name);
 
     void folioModified(Vector<String> i, String name, int x);
 }

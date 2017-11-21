@@ -11,39 +11,23 @@ import java.util.Vector;
 public class FolioPanel extends JPanel implements Observer {
 
     private final Vector<String> stockTableColumnNames;
-    JPanel headerPanel;
 
-    JLabel tickerSymbolLabel;
-    JTextField tickerSymbolTextField;
-
-    JLabel numberOfSharesLabel;
-    JTextField numberOfSharesTextField;
-
-    JButton addNewTickerButton;
-
-    JTable stockTable;
-
-    DefaultTableModel stockTableModel;
-
-    JPanel footerPanel;
-
-    JButton closeFolioButton;
-    JButton deleteFolioButton;
+    private DefaultTableModel stockTableModel;
 
 
     FolioPanel(String name, Vector<Vector<String>> data) {
         setName(name);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
-        headerPanel = new JPanel();
+        JPanel headerPanel = new JPanel();
 
-        tickerSymbolLabel = new JLabel("Ticker Symbol");
-        tickerSymbolTextField = new JTextField(20);
+        JLabel tickerSymbolLabel = new JLabel("Ticker Symbol");
+        JTextField tickerSymbolTextField = new JTextField(20);
 
-        numberOfSharesLabel = new JLabel("Number of Shares");
-        numberOfSharesTextField = new JTextField(20);
+        JLabel numberOfSharesLabel = new JLabel("Number of Shares");
+        JTextField numberOfSharesTextField = new JTextField(20);
 
-        addNewTickerButton = new JButton("Add");
+        JButton addNewTickerButton = new JButton("Add");
 
         headerPanel.add(tickerSymbolLabel);
         headerPanel.add(tickerSymbolTextField);
@@ -75,15 +59,15 @@ public class FolioPanel extends JPanel implements Observer {
         });
 
 
-        stockTable = new JTable(stockTableModel);
+        JTable stockTable = new JTable(stockTableModel);
 
 
         add(new JScrollPane(stockTable));
 
-        footerPanel = new JPanel();
+        JPanel footerPanel = new JPanel();
 
-        closeFolioButton = new JButton("Close");
-        deleteFolioButton = new JButton("Delete");
+        JButton closeFolioButton = new JButton("Close");
+        JButton deleteFolioButton = new JButton("Delete");
 
         deleteFolioButton.addActionListener(new ButtonListener("delete"));
         closeFolioButton.addActionListener(new ButtonListener("close"));
