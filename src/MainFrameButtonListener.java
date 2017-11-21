@@ -35,6 +35,7 @@ public class MainFrameButtonListener implements ActionListener {
 
     private void deletePortfolio() {
         System.out.println("Delete");
+        mainFrame.removeFolioTab();
     }
 
     private void createPortfolio() {
@@ -48,8 +49,8 @@ public class MainFrameButtonListener implements ActionListener {
             Folio folio = new Folio(folioName);
             FolioPanel folioPanel = new FolioPanel(folio);
             folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
-            folioPanel.addDeleteFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.DELETE_FOLIO, folioPanel) );
-            folioPanel.addCloseFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.CLOSE_FOLIO, folioPanel) );
+            folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
+            folioPanel.addCloseFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.CLOSE_FOLIO, mainFrame) );
 
             mainFrame.addFolioTab(folioPanel);
             createFolioFrame.close();

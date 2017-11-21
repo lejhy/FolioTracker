@@ -33,4 +33,5 @@ public class FolioPanelButtonListener implements ActionListener{
             System.out.println("ticker error");
         }
     }
+
 }

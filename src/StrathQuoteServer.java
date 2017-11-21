@@ -51,9 +51,9 @@ public class StrathQuoteServer {
 
         // open the web page for reading
         try {
-            System.getProperties().put("proxySet", "true");
-            System.getProperties().put("proxyHost", "www-cache2.strath.ac.uk");
-            System.getProperties().put("proxyPort", "8080");
+//            System.getProperties().put("proxySet", "true");
+//            System.getProperties().put("proxyHost", "www-cache2.strath.ac.uk");
+//            System.getProperties().put("proxyPort", "8080");
             urlWebPage = new URL(strURLStart + tickerSymbol);
             isr = new InputStreamReader(urlWebPage.openStream());
 
