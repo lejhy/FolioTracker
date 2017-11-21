@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.List;
 import java.util.Observer;
 import java.util.Vector;
 
-public interface IFolio {
+public interface IFolio extends Serializable{
 
     public List<IStock> getStocks();
 

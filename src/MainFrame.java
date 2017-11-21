@@ -1,9 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Vector;
+import java.util.*;
+import java.util.List;
 
 public class MainFrame extends JFrame implements IMainFrame,Observer {
 

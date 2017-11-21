@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class MainFrameButtonListener implements ActionListener {
 
-    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, CLOSE_FOLIO}
+    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, CLOSE_FOLIO, SAVE}
 
     private type buttonPressed;
     private IMainFrame mainFrame;
@@ -29,6 +29,10 @@ public class MainFrameButtonListener implements ActionListener {
                 break;
             case CLOSE_FOLIO:
                 closePortFolio();
+                break;
+            case SAVE:
+                save();
+                break;
         }
 
     }
@@ -64,4 +68,6 @@ public class MainFrameButtonListener implements ActionListener {
     private void closePortFolio() {
         System.out.println("close portfolio");
     }
+
+    private void save() { System.out.println("save"); }
 }

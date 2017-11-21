@@ -1,4 +1,6 @@
-public interface IStock {
+import java.io.Serializable;
+
+public interface IStock extends Serializable {
 
     String getSymbol();
 
