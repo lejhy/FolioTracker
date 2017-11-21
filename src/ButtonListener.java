@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class ButtonListener implements ActionListener {
 
-    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO}
+    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, CLOSE_FOLIO}
 
     ;
     private type buttonPressed;
@@ -26,6 +26,8 @@ public class ButtonListener implements ActionListener {
             case DELETE_FOLIO:
                 deletePortfolio();
                 break;
+            case CLOSE_FOLIO:
+                closePortFolio();
         }
 
     }
@@ -41,5 +43,9 @@ public class ButtonListener implements ActionListener {
 
     private void openPortfolio() {
         System.out.println("open portfolio");
+    }
+
+    private void closePortFolio() {
+        System.out.println("close portfolio");
     }
 }

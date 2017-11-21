@@ -4,7 +4,9 @@ public interface IStock {
 
     String getName();
 
-    int getAmount();
+    int getNumber();
+
+    double getPrice();
 
     double getValue();
 }

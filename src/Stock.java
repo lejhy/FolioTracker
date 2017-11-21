@@ -22,10 +22,14 @@ public class Stock implements IStock {
     }
 
     @Override
-    public int getAmount() {
-        return 0;
+    public int getNumber() {
+        return number;
     }
 
+    @Override
+    public double getPrice() { return price; }
+
+    @Override
     public double getValue() {
         return price * number;
     }

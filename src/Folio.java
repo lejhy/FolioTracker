@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Folio implements IFolio {
 
@@ -12,12 +13,13 @@ public class Folio implements IFolio {
     }
 
     @Override
-    public List<IStock> getStock() {
-        return null;
+    public List<IStock> getStocks() {
+        return stocks;
     }
 
     @Override
     public String getName() {
         return null;
     }
+
 }

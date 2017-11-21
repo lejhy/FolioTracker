@@ -1,10 +1,10 @@
 import java.util.List;
+import java.util.Vector;
 
 public interface IFolio {
 
-    List<IStock> getStock();
+    List<IStock> getStocks();
 
     String getName();
-
 
 }

@@ -3,20 +3,17 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Vector;
+import java.util.*;
 
 public class FolioPanel extends JPanel implements Observer {
 
-    private final Vector<String> stockTableColumnNames;
-
     private DefaultTableModel stockTableModel;
+    private IFolio folio;
 
+    FolioPanel(IFolio folio) {
+        this.folio = folio;
 
-    FolioPanel(String name, Vector<Vector<String>> data) {
-        setName(name);
+        setName(folio.getName());
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         JPanel headerPanel = new JPanel();
@@ -44,23 +41,11 @@ public class FolioPanel extends JPanel implements Observer {
                 "Price per Share",
                 "Value of Holding"};
 
-        stockTableColumnNames = new Vector<>(Arrays.asList(columns));
-
-
-
-        stockTableModel = new DefaultTableModel(data, stockTableColumnNames);
-
-        stockTableModel.addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent e) {
-                int index = e.getFirstRow();
-                //Controller.modifyFolio((Vector<String>)stockTableModel.getDataVector().elementAt(index),FolioPanel.this.getName(),index);
-            }
-        });
-
+        stockTableModel = new DefaultTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
         JTable stockTable = new JTable(stockTableModel);
 
+        updateTable();
 
         add(new JScrollPane(stockTable));
 
@@ -69,8 +54,8 @@ public class FolioPanel extends JPanel implements Observer {
         JButton closeFolioButton = new JButton("Close");
         JButton deleteFolioButton = new JButton("Delete");
 
-        deleteFolioButton.addActionListener(new ButtonListener("delete"));
-        closeFolioButton.addActionListener(new ButtonListener("close"));
+        deleteFolioButton.addActionListener(new ButtonListener(ButtonListener.type.DELETE_FOLIO));
+        closeFolioButton.addActionListener(new ButtonListener(ButtonListener.type.CLOSE_FOLIO));
 
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
@@ -82,8 +67,25 @@ public class FolioPanel extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        stockTableModel = new DefaultTableModel(stockTableColumnNames,Controller.refreshVector(this.getName()));
+        updateTable();
+        stockTableModel.fireTableDataChanged();
     }
 
+    private void updateTable() {
+        List<IStock> stocks = folio.getStocks();
 
+        int extraColumns = stocks.size() - stockTableModel.getRowCount();
+        for (int i = 0; i < extraColumns; i++) {
+            stockTableModel.addRow(new Vector<>(stockTableModel.getColumnCount()));
+        }
+
+        for (int i = 0; i < stockTableModel.getRowCount(); i++){
+            IStock stock = stocks.get(i);
+            stockTableModel.setValueAt(stock.getSymbol(), 0, i);
+            stockTableModel.setValueAt(stock.getName(), 1, i);
+            stockTableModel.setValueAt(stock.getNumber(), 2, i);
+            stockTableModel.setValueAt(stock.getPrice(), 3, i);
+            stockTableModel.setValueAt(stock.getValue(), 4, i);
+        }
+    }
 }
