@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class alertFrame extends JFrame{
+public class AlertFrame extends JFrame{
 
-    public alertFrame(String name, String message) {
+    public AlertFrame(String name, String message) {
         setName(name);
         setSize(300, 100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

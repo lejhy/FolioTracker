@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-public class fileManipulationListener implements ActionListener{
+public class FileManipulationListener implements ActionListener{
 
     enum type {CLOSE_FOLIO}
 
@@ -12,7 +12,7 @@ public class fileManipulationListener implements ActionListener{
     private IMainFrame mainFrame;
     private FolioPanel folioPanel;
 
-    public fileManipulationListener(type actionType, IMainFrame mainFrame, FolioPanel folioPanel) {
+    public FileManipulationListener(type actionType, IMainFrame mainFrame, FolioPanel folioPanel) {
         this.actionType = actionType;
         this.mainFrame = mainFrame;
         this.folioPanel = folioPanel;
@@ -53,9 +53,9 @@ public class fileManipulationListener implements ActionListener{
                 mainFrame.removeFolioTab();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                new alertFrame("Error", "File not found");
+                new AlertFrame("Error", "File not found");
             } catch (IOException e) {
-                new alertFrame("Error", "Problem writing to the file");
+                new AlertFrame("Error", "Problem writing to the file");
                 e.printStackTrace();
             }
         }
