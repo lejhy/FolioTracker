@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
@@ -8,6 +9,7 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
 
     private JTabbedPane tabbedPane;
     private JPanel defaultTab;
+    public JButton createFolioButton, deleteFolioButton, openFolioButton;
 
 
     private IUpdater updater;
@@ -47,15 +49,12 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         editMenu.add(autoRefreshCheckbox);
 
 
-        JButton createPortfolioButton = new JButton("Create Portfolio");
-        JButton openPortfolioButton = new JButton("Open Portfolio");
-
-        createPortfolioButton.addActionListener(new ButtonListener("create"));
-        openPortfolioButton.addActionListener(new ButtonListener("open"));
+        createFolioButton = new JButton("Create Portfolio");
+        openFolioButton = new JButton("Open Portfolio");
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(createPortfolioButton);
-        buttonPanel.add(openPortfolioButton);
+        buttonPanel.add(createFolioButton);
+        buttonPanel.add(openFolioButton);
         GridLayout buttonsLay = new GridLayout(2,1);
 
         buttonPanel.setVisible(true);
@@ -122,9 +121,23 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         updater.manualUpdateGUI();
     }
 
+    @Override
+    public void addCreateFolioListener(ActionListener a) {
+        createFolioButton.addActionListener(a);
+    }
+
+    @Override
+    public void addOpenFolioListener(ActionListener a) {
+        openFolioButton.addActionListener(a);
+    }
+
+    @Override
+    public void addDeleteFolioListener(ActionListener a) {
+        deleteFolioButton.addActionListener(a);
+    }
+
     public void modifyFolio(Vector<String> i, String name, int index) {
         updater.folioModified(i,name,index);
-
     }
 
 

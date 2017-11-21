@@ -1,3 +1,4 @@
+import javax.management.OperationsException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,19 +7,22 @@ import java.util.Vector;
 
 public class Controller {
 
-    private static IMainFrame mainFrame;
+    private IMainFrame mainFrame;
 
 
 
     public Controller(IMainFrame frame) {
         this.mainFrame = frame;
 
+        mainFrame.addCreateFolioListener(new ButtonListener(ButtonListener.type.CREATE_FOLIO));
+
+        mainFrame.addDeleteFolioListener(new ButtonListener(ButtonListener.type.DELETE_FOLIO));
+
+        mainFrame.addOpenFolioListener(new ButtonListener(ButtonListener.type.OPEN_FOLIO));
     }
 
 
-
-
-    public static class CreateFolio extends JPanel {
+    public class CreateFolio extends JPanel {
         private JTextField nameField;
 
         CreateFolio(){
@@ -55,23 +59,23 @@ public class Controller {
         }
 
 
-    public static void deleteFolio() { mainFrame.removeFolioTab(); }
+    public void deleteFolio() { mainFrame.removeFolioTab(); }
 
-    public static Vector<Vector<String>> refreshVector(String name) {
+    public Vector<Vector<String>> refreshVector(String name) {
         return mainFrame.getData(name);
     }
 
-    public static void modifyFolio(Vector<String> i, String name, int index) {
+    public void modifyFolio(Vector<String> i, String name, int index) {
         mainFrame.modifyFolio(i,name,index);
 
     }
 
-    public static void closeFolio() { mainFrame.closeFolio(); }
+    public void closeFolio() { mainFrame.closeFolio(); }
 
-    public static void openFolio() { mainFrame.openFolio(); }
+    public void openFolio() { mainFrame.openFolio(); }
 
 
-    public static void refresh() { mainFrame.refresh(); }
+    public void refresh() { mainFrame.refresh(); }
 }
 
 

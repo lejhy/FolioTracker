@@ -54,7 +54,7 @@ public class FolioPanel extends JPanel implements Observer {
             @Override
             public void tableChanged(TableModelEvent e) {
                 int index = e.getFirstRow();
-                Controller.modifyFolio((Vector<String>)stockTableModel.getDataVector().elementAt(index),FolioPanel.this.getName(),index);
+                //Controller.modifyFolio((Vector<String>)stockTableModel.getDataVector().elementAt(index),FolioPanel.this.getName(),index);
             }
         });
 

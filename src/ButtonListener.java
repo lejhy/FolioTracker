@@ -4,38 +4,42 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 public class ButtonListener implements ActionListener {
-    private String buttonPressed;
 
-    public ButtonListener(String buttonPressed){
+    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO}
+
+    ;
+    private type buttonPressed;
+
+    public ButtonListener(type buttonPressed) {
         this.buttonPressed = buttonPressed;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch(buttonPressed) {
-            case "create": createPortfolio();
-                           break;
-            case "open" : openPortfolio();
-                          break;
-            case "delete" : deletePortfolio();
-                           break;
+        switch (buttonPressed) {
+            case CREATE_FOLIO:
+                createPortfolio();
+                break;
+            case OPEN_FOLIO:
+                openPortfolio();
+                break;
+            case DELETE_FOLIO:
+                deletePortfolio();
+                break;
         }
 
     }
 
     private void deletePortfolio() {
         System.out.println("Delete");
-        Controller.deleteFolio();
     }
 
     private void createPortfolio() {
         System.out.println("create portfolio");
-        Controller.CreateFolio in = new Controller.CreateFolio();
     }
 
 
-
-    private void openPortfolio(){
+    private void openPortfolio() {
         System.out.println("open portfolio");
     }
-
 }

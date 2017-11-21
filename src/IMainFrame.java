@@ -1,6 +1,8 @@
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 public interface IMainFrame {
+
     boolean addFolioTab(FolioPanel folioTab);
 
     boolean removeFolioTab();
@@ -14,4 +16,10 @@ public interface IMainFrame {
     void modifyFolio(Vector<String> i, String name, int x);
 
     void refresh();
+
+    void addCreateFolioListener(ActionListener a);
+
+    void addOpenFolioListener(ActionListener a);
+
+    void addDeleteFolioListener(ActionListener a);
 }
