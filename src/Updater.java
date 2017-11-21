@@ -1,3 +1,5 @@
+import Server.Server;
+
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,6 +22,8 @@ public class Updater extends Observable implements IUpdater {
         Thread a = new Thread();
     }
 
+
+
     private void updateFolios() {
 
     }
@@ -33,15 +37,13 @@ public class Updater extends Observable implements IUpdater {
 
     }
 
+    @Override
+    public String[][] updateGUI() {
+        return new String[0][];
+    }
+
     private String findStockValue(IStock s) {
-        try {
-            return StrathQuoteServer.getLastValue(s.getSymbol());
-        } catch (WebsiteDataException e) {
-            e.printStackTrace();
-        } catch (NoSuchTickerException e) {
-            e.printStackTrace();
-        }
-        return "Oops";
+        return Server.getLastValue(s.getSymbol());
     }
 
 

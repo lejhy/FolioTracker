@@ -1,9 +1,10 @@
+package Server;
 
 import java.net.*;
 import java.io.*;
 
 /**
- * StrathQuoteServer is a utility class that allows calling code to retrieve the
+ * Server.StrathQuoteServer is a utility class that allows calling code to retrieve the
  * latest market value of a given stock by ticker symbol. The QuoteServer
  * obtains the stock value by using the website: <a
  * href="http://www.tickertech.com"> <tt>http://www.tickertech.com</tt> </a>
@@ -36,9 +37,9 @@ public class StrathQuoteServer {
      *           with a period separating dollars and cents (eg, "120.50" for
      *           one hundred and twenty dollars and fifty cents) <BR>
      *           unless tickerSymbol is not a valid NYSE or NASDAQ symbol, when
-     *           throws NoSuchTickerException <br>
+     *           throws Server.NoSuchTickerException <br>
      *           or unless an error connecting to the website or some other
-     *           error occurs, when throws WebsiteDataException <BR>
+     *           error occurs, when throws Server.WebsiteDataException <BR>
      *           The amount returned may contain commas, for example, "2,243.87"
      *           <br>
      */

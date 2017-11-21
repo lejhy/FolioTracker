@@ -668,15 +668,15 @@
     <visualProperties xmi:id="_Dm3fYc32Eee6RPStXFV1tw"/>
     <nameVisual xmi:id="_Dm3fYs32Eee6RPStXFV1tw" text=""/>
   </edges>
-  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_dfv-YM31Eee6RPStXFV1tw" sourceConnectionVisual="_dgC5UM31Eee6RPStXFV1tw" text="StrathQuoteServer is a utility class that allows calling code to retrieve the&#xD;&#xA;latest market value of a given stock by ticker symbol. The QuoteServer&#xD;&#xA;obtains the stock value by using the website: &lt;a&#xD;&#xA;href=&quot;http://www.tickertech.com&quot;> &lt;tt>http://www.tickertech.com&lt;/tt> &lt;/a>&#xD;&#xA;&lt;Br>&#xD;&#xA;Examples of ticker symbols are &lt;tt>MSFT&lt;/tt> and &lt;tt>orcl&lt;/tt>. (Note&#xD;&#xA;that ticker symbols are not case sensitive. That is that &quot;MSFT&quot; and &quot;msft&quot;&#xD;&#xA;are functionally equivalent.)&#xD;&#xA;&lt;p>&#xD;&#xA; *&#xD;&#xA;A valid ticker symbol is one that is currently registered with either the New&#xD;&#xA;York Stock Exchange (NYSE) or NASDAQ." item="_dgEugM31Eee6RPStXFV1tw">
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_dfv-YM31Eee6RPStXFV1tw" sourceConnectionVisual="_dgC5UM31Eee6RPStXFV1tw" text="Server.StrathQuoteServer is a utility class that allows calling code to retrieve the&#xD;&#xA;latest market value of a given stock by ticker symbol. The QuoteServer&#xD;&#xA;obtains the stock value by using the website: &lt;a&#xD;&#xA;href=&quot;http://www.tickertech.com&quot;> &lt;tt>http://www.tickertech.com&lt;/tt> &lt;/a>&#xD;&#xA;&lt;Br>&#xD;&#xA;Examples of ticker symbols are &lt;tt>MSFT&lt;/tt> and &lt;tt>orcl&lt;/tt>. (Note&#xD;&#xA;that ticker symbols are not case sensitive. That is that &quot;MSFT&quot; and &quot;msft&quot;&#xD;&#xA;are functionally equivalent.)&#xD;&#xA;&lt;p>&#xD;&#xA; *&#xD;&#xA;A valid ticker symbol is one that is currently registered with either the New&#xD;&#xA;York Stock Exchange (NYSE) or NASDAQ." item="_dgEugM31Eee6RPStXFV1tw">
     <modelElement href="w02-foliotracker.uml#_ZCUw0M31Eee6RPStXFV1tw"/>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ddcRQM31Eee6RPStXFV1tw" name="NoSuchTickerException">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_ddcRQM31Eee6RPStXFV1tw" name="Server.NoSuchTickerException">
     <modelElement href="w02-foliotracker.uml#_Y9AzAM31Eee6RPStXFV1tw"/>
     <visualProperties xmi:id="_ddcRQc31Eee6RPStXFV1tw" position="711.0,801.0" size="-1.0,-1.0" visible="false"/>
     <keywords xmi:id="_ddcRQs31Eee6RPStXFV1tw" keyword="sameFile"/>
     <visibility xmi:id="_ddcRQ831Eee6RPStXFV1tw" label="~"/>
-    <operations xmi:id="_ddcRRM31Eee6RPStXFV1tw" name="NoSuchTickerException">
+    <operations xmi:id="_ddcRRM31Eee6RPStXFV1tw" name="Server.NoSuchTickerException">
       <modelElement href="w02-foliotracker.uml#_Y9BaEc31Eee6RPStXFV1tw"/>
       <keywords xmi:id="_ddcRRc31Eee6RPStXFV1tw" keyword="create"/>
       <stereotypes xmi:id="_ddcRRs31Eee6RPStXFV1tw" name="LegacyStyledElement">
@@ -686,19 +686,19 @@
       <cardinality xmi:id="_ddcRSM31Eee6RPStXFV1tw" label="1" max="1" min="1"/>
       <outParameters xmi:id="_ddcRSc31Eee6RPStXFV1tw">
         <modelElement href="w02-foliotracker.uml#_Y9CBIc31Eee6RPStXFV1tw"/>
-        <type xmi:id="_ddcRSs31Eee6RPStXFV1tw" name="NoSuchTickerException">
+        <type xmi:id="_ddcRSs31Eee6RPStXFV1tw" name="Server.NoSuchTickerException">
           <modelElement href="w02-foliotracker.uml#_Y9AzAM31Eee6RPStXFV1tw"/>
         </type>
       </outParameters>
     </operations>
-    <operations xmi:id="_ddc4UM31Eee6RPStXFV1tw" name="NoSuchTickerException">
+    <operations xmi:id="_ddc4UM31Eee6RPStXFV1tw" name="Server.NoSuchTickerException">
       <modelElement href="w02-foliotracker.uml#_Y9CoMM31Eee6RPStXFV1tw"/>
       <keywords xmi:id="_ddc4Uc31Eee6RPStXFV1tw" keyword="create"/>
       <visibility xmi:id="_ddc4Us31Eee6RPStXFV1tw" label="~"/>
       <cardinality xmi:id="_ddc4U831Eee6RPStXFV1tw" label="1" max="1" min="1"/>
       <outParameters xmi:id="_ddc4VM31Eee6RPStXFV1tw">
         <modelElement href="w02-foliotracker.uml#_Y9CoNM31Eee6RPStXFV1tw"/>
-        <type xmi:id="_ddc4Vc31Eee6RPStXFV1tw" name="NoSuchTickerException">
+        <type xmi:id="_ddc4Vc31Eee6RPStXFV1tw" name="Server.NoSuchTickerException">
           <modelElement href="w02-foliotracker.uml#_Y9AzAM31Eee6RPStXFV1tw"/>
         </type>
       </outParameters>
@@ -711,12 +711,12 @@
       </parameters>
     </operations>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_diABIM31Eee6RPStXFV1tw" name="WebsiteDataException">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_diABIM31Eee6RPStXFV1tw" name="Server.WebsiteDataException">
     <modelElement href="w02-foliotracker.uml#_Y89vsM31Eee6RPStXFV1tw"/>
     <visualProperties xmi:id="_diABIc31Eee6RPStXFV1tw" position="17.0,1100.0" size="-1.0,-1.0" visible="false"/>
     <keywords xmi:id="_diABIs31Eee6RPStXFV1tw" keyword="sameFile"/>
     <visibility xmi:id="_diABI831Eee6RPStXFV1tw" label="~"/>
-    <operations xmi:id="_diABJM31Eee6RPStXFV1tw" name="WebsiteDataException">
+    <operations xmi:id="_diABJM31Eee6RPStXFV1tw" name="Server.WebsiteDataException">
       <modelElement href="w02-foliotracker.uml#_Y8-Wws31Eee6RPStXFV1tw"/>
       <keywords xmi:id="_diABJc31Eee6RPStXFV1tw" keyword="create"/>
       <stereotypes xmi:id="_diABJs31Eee6RPStXFV1tw" name="LegacyStyledElement">
@@ -726,19 +726,19 @@
       <cardinality xmi:id="_diABKM31Eee6RPStXFV1tw" label="1" max="1" min="1"/>
       <outParameters xmi:id="_diABKc31Eee6RPStXFV1tw">
         <modelElement href="w02-foliotracker.uml#_Y8-90831Eee6RPStXFV1tw"/>
-        <type xmi:id="_diABKs31Eee6RPStXFV1tw" name="WebsiteDataException">
+        <type xmi:id="_diABKs31Eee6RPStXFV1tw" name="Server.WebsiteDataException">
           <modelElement href="w02-foliotracker.uml#_Y89vsM31Eee6RPStXFV1tw"/>
         </type>
       </outParameters>
     </operations>
-    <operations xmi:id="_diABK831Eee6RPStXFV1tw" name="WebsiteDataException">
+    <operations xmi:id="_diABK831Eee6RPStXFV1tw" name="Server.WebsiteDataException">
       <modelElement href="w02-foliotracker.uml#_Y8_k4M31Eee6RPStXFV1tw"/>
       <keywords xmi:id="_diABLM31Eee6RPStXFV1tw" keyword="create"/>
       <visibility xmi:id="_diABLc31Eee6RPStXFV1tw" label="~"/>
       <cardinality xmi:id="_diABLs31Eee6RPStXFV1tw" label="1" max="1" min="1"/>
       <outParameters xmi:id="_diABL831Eee6RPStXFV1tw">
         <modelElement href="w02-foliotracker.uml#_Y9AL8s31Eee6RPStXFV1tw"/>
-        <type xmi:id="_diABMM31Eee6RPStXFV1tw" name="WebsiteDataException">
+        <type xmi:id="_diABMM31Eee6RPStXFV1tw" name="Server.WebsiteDataException">
           <modelElement href="w02-foliotracker.uml#_Y89vsM31Eee6RPStXFV1tw"/>
         </type>
       </outParameters>
@@ -981,7 +981,7 @@
       </parameters>
     </operations>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_dgEugM31Eee6RPStXFV1tw" comments="_dfv-YM31Eee6RPStXFV1tw" targetConnectionVisual="_dgC5UM31Eee6RPStXFV1tw" supplying="_Dm3fYM32Eee6RPStXFV1tw" name="StrathQuoteServer">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_dgEugM31Eee6RPStXFV1tw" comments="_dfv-YM31Eee6RPStXFV1tw" targetConnectionVisual="_dgC5UM31Eee6RPStXFV1tw" supplying="_Dm3fYM32Eee6RPStXFV1tw" name="Server.StrathQuoteServer">
     <modelElement href="w02-foliotracker.uml#_Y88hkM31Eee6RPStXFV1tw"/>
     <visualProperties xmi:id="_dgEugc31Eee6RPStXFV1tw" position="691.0,583.0" size="-1.0,-1.0"/>
     <visibility xmi:id="_dgEugs31Eee6RPStXFV1tw" label="+"/>

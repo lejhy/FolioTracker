@@ -8,4 +8,8 @@ public interface IUpdater {
     List<IFolio> getFolios();
 
     void addFolio(String name);
+
+    String[][] updateGUI();
+
+
 }

@@ -106,20 +106,26 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     }
 
     @Override
+    public boolean openFolio() {
+        return false;
+    }
+
+    @Override
+    public boolean closeFolio() {
+        return false;
+    }
+
+    @Override
     public void update(Observable o, Object arg) {
         updater.getFolios();
     }
 
 
     public void refresh() {
-
+        updater.updateGUI();
     }
 
-    public void deleteCurrentFolio() {
-        tabbedPane.remove(tabbedPane.getSelectedIndex());
-        repaint();
 
-    }
 
 }
 

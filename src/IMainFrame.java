@@ -3,8 +3,11 @@ import javax.swing.*;
 public interface IMainFrame {
     boolean addFolioTab(JPanel folioTab);
 
-
-    void deleteCurrentFolio();
-
     boolean removeFolioTab();
+
+    boolean openFolio();
+
+    boolean closeFolio();
+
+
 }
