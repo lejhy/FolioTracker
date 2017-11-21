@@ -27,12 +27,10 @@ public class FolioPanelButtonListener implements ActionListener{
         String tickerSymbol = folioPanel.getTickerSymbolInput();
         String numberOfSharesInput = folioPanel.getNumberOfSharesInput();
         int numberOfShares = Integer.parseInt(numberOfSharesInput);
-        if (isValidTicker(tickerSymbol) && numberOfShares > 0) {
-            folioPanel.getFolio().addStock(tickerSymbol, numberOfShares);
+        if (folioPanel.getFolio().addStock(tickerSymbol, numberOfShares)) {
+            System.out.println("ticker added");
+        } else {
+            System.out.println("ticker error");
         }
-    }
-
-    private boolean isValidTicker(String tickerSymbol) {
-        return true;
     }
 }

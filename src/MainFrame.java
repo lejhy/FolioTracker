@@ -48,6 +48,15 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         editMenu.add(refreshMenuItem);
         editMenu.add(autoRefreshCheckbox);
 
+        JPanel wrapperPanel = new JPanel();
+        wrapperPanel.setLayout(new BoxLayout(wrapperPanel, BoxLayout.PAGE_AXIS));
+
+        tabbedPane = new JTabbedPane();
+        defaultTab = new JPanel();
+        defaultTab.setSize(1000,500);
+        tabbedPane.add(defaultTab);
+
+        wrapperPanel.add(tabbedPane);
 
         createFolioButton = new JButton("Create Portfolio");
         openFolioButton = new JButton("Open Portfolio");
@@ -55,24 +64,11 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(createFolioButton);
         buttonPanel.add(openFolioButton);
-        GridLayout buttonsLay = new GridLayout(2,1);
 
-        buttonPanel.setVisible(true);
-        buttonPanel.setLayout(buttonsLay);
+        wrapperPanel.add(buttonPanel);
 
-        tabbedPane = new JTabbedPane();
-        JPanel panel = new JPanel();
-//        add(tabbedPane);
-        defaultTab = new JPanel();
-        defaultTab.setSize(1000,500);
-        tabbedPane.add(defaultTab);
-        defaultTab.setVisible(true);
-        tabbedPane.setVisible(true);
-        panel.add(tabbedPane);
-        panel.setVisible(true);
-        panel.add(buttonPanel);
-        add(panel);
-        buttonPanel.setAlignmentX(LEFT_ALIGNMENT);
+        add(wrapperPanel);
+
         tabbedPane.addTab("Empty", defaultTab);
         defaultTab.setPreferredSize(new Dimension(800, 600));
         setSize(1000, 600);

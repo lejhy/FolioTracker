@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Vector;
 
 public class Folio extends Observable implements IFolio {
 
@@ -24,11 +23,20 @@ public class Folio extends Observable implements IFolio {
     }
 
     @Override
-    public void addStock(String ticker, int number) {
-        Stock stock = new Stock(ticker, ticker, number, 0.0);
-        stocks.add(stock);
-        setChanged();
-        notifyObservers();
+    public boolean addStock(String ticker, int number) {
+        try {
+            double price = Double.parseDouble(StrathQuoteServer.getLastValue(ticker));
+            Stock stock = new Stock(ticker, ticker, number, price);
+            stocks.add(stock);
+            setChanged();
+            notifyObservers();
+            return true;
+        } catch (WebsiteDataException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NoSuchTickerException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
-
 }

@@ -1,3 +1,4 @@
+
 public class Stock implements IStock {
     private String symbol;
     private String name;
@@ -32,5 +33,16 @@ public class Stock implements IStock {
     @Override
     public double getValue() {
         return price * number;
+    }
+
+    public void update() {
+        try {
+            String value = StrathQuoteServer.getLastValue(symbol);
+            price = Double.parseDouble(value);
+        } catch (WebsiteDataException e) {
+            e.printStackTrace();
+        } catch (NoSuchTickerException e) {
+            e.printStackTrace();
+        }
     }
 }

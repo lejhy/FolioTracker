@@ -8,7 +8,7 @@ public interface IFolio {
 
     public String getName();
 
-    public void addStock(String ticker, int number);
+    public boolean addStock(String ticker, int number);
 
     public void addObserver(Observer o);
 }
