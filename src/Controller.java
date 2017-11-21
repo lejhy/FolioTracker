@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 public class Controller {
 
@@ -13,6 +14,7 @@ public class Controller {
         this.mainFrame = frame;
 
     }
+
 
 
 
@@ -43,7 +45,7 @@ public class Controller {
             btn.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    mainFrame.addFolioTab(new FolioPanel(nameField.getText()));
+                    mainFrame.addFolioTab(new FolioPanel(nameField.getText(),mainFrame.getData(nameField.getText())));
                     frame.dispose();
                 }
             });
@@ -53,10 +55,23 @@ public class Controller {
         }
 
 
-    public static class DeleteFolio {
+    public static void deleteFolio() { mainFrame.removeFolioTab(); }
 
-        DeleteFolio() {
-            mainFrame.removeFolioTab();
-        }
+    public static Vector<Vector<String>> refreshVector(String name) {
+        return mainFrame.getData(name);
     }
+
+    public static void modifyFolio(Vector<String> i, String name, int index) {
+        mainFrame.modifyFolio(i,name,index);
+
+    }
+
+    public static void closeFolio() { mainFrame.closeFolio(); }
+
+    public static void openFolio() { mainFrame.openFolio(); }
+
+
+    public static void refresh() { mainFrame.refresh(); }
 }
+
+

@@ -1,15 +1,18 @@
 import java.util.List;
 import java.util.Observer;
+import java.util.Vector;
 
 public interface IUpdater {
 
     void addObserver(Observer o);
 
-    List<IFolio> getFolios();
-
     void addFolio(String name);
 
-    String[][] updateGUI();
+    void removeFolio(int name);
 
+    void manualUpdateGUI();
 
+    Vector<Vector<String>> getData();
+
+    void folioModified(Vector<String> i, String name, int x);
 }

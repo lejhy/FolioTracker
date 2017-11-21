@@ -29,7 +29,7 @@ public class ButtonListener implements ActionListener {
 
     private void deletePortfolio() {
         System.out.println("Delete");
-        Controller.DeleteFolio out = new Controller.DeleteFolio();
+        Controller.deleteFolio();
     }
 
     private void createPortfolio() {

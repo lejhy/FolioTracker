@@ -1,8 +1,16 @@
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Vector;
 
-public class FolioPanel extends JPanel {
+public class FolioPanel extends JPanel implements Observer {
 
+    private final Vector<String> stockTableColumnNames;
     JPanel headerPanel;
 
     JLabel tickerSymbolLabel;
@@ -23,7 +31,7 @@ public class FolioPanel extends JPanel {
     JButton deleteFolioButton;
 
 
-    FolioPanel(String name) {
+    FolioPanel(String name, Vector<Vector<String>> data) {
         setName(name);
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -45,30 +53,31 @@ public class FolioPanel extends JPanel {
 
         add(headerPanel);
 
-        String[] stockTableColumnNames = {
+        String[] columns = {
                 "Ticker Symbol",
                 "Stock Name",
                 "Number of Shares",
                 "Price per Share",
                 "Value of Holding"};
 
-        // Just sample data
-        Object[][] data = {
-                {"Kathy", "Smith",
-                        "Snowboarding", new Integer(5), new Boolean(false)},
-                {"John", "Doe",
-                        "Rowing", new Integer(3), new Boolean(true)},
-                {"Sue", "Black",
-                        "Knitting", new Integer(2), new Boolean(false)},
-                {"Jane", "White",
-                        "Speed reading", new Integer(20), new Boolean(true)},
-                {"Joe", "Brown",
-                        "Pool", new Integer(10), new Boolean(false)}
-        };
+        stockTableColumnNames = new Vector<>(Arrays.asList(columns));
+
+
 
         stockTableModel = new DefaultTableModel(data, stockTableColumnNames);
 
+        stockTableModel.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                int index = e.getFirstRow();
+                Controller.modifyFolio((Vector<String>)stockTableModel.getDataVector().elementAt(index),FolioPanel.this.getName(),index);
+            }
+        });
+
+
         stockTable = new JTable(stockTableModel);
+
+
         add(new JScrollPane(stockTable));
 
         footerPanel = new JPanel();
@@ -85,5 +94,12 @@ public class FolioPanel extends JPanel {
         add(footerPanel);
 
     }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        stockTableModel = new DefaultTableModel(stockTableColumnNames,Controller.refreshVector(this.getName()));
+    }
+
 
 }

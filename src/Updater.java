@@ -1,11 +1,8 @@
 import Server.Server;
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 public class Updater extends Observable implements IUpdater {
-    private List<IFolio> list;
 
     public Updater() {
         autoUpdateThread();
@@ -38,8 +35,45 @@ public class Updater extends Observable implements IUpdater {
     }
 
     @Override
-    public String[][] updateGUI() {
-        return new String[0][];
+    public void removeFolio(int name) {
+
+    }
+
+    @Override
+    public void manualUpdateGUI() {
+
+    }
+
+    @Override
+    public Vector<Vector<String>> getData() {
+
+
+        String[][] defaultData = {
+                {"Kathy", "Smith",
+                        "Snowboarding", "5", "false"},
+                {"John", "Doe",
+                        "Rowing", "3", "false"},
+                {"Sue", "Black",
+                        "Knitting", "2", "true"},
+                {"Jane", "White",
+                        "Speed reading", "3", "true"},
+                {"Joe", "Brown",
+                        "Pool", "10", "false"}
+                 };
+
+
+
+        Vector<Vector<String>> data = new Vector<>();
+        for(int i=0;i<5;i++) {
+            data.add(new Vector<>(Arrays.asList(defaultData[i])));
+        }
+
+        return data;
+    }
+
+    @Override
+    public void folioModified(Vector<String> i, String name, int x) {
+
     }
 
     private String findStockValue(IStock s) {

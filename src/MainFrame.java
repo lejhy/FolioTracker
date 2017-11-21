@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 
 public class MainFrame extends JFrame implements IMainFrame,Observer {
 
@@ -89,7 +90,8 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         setVisible(true);
     }
 
-    public boolean addFolioTab(JPanel folioTab) {
+    public boolean addFolioTab(FolioPanel folioTab) {
+        updater.addObserver(folioTab);
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
         updater.addFolio(folioTab.getName());
@@ -99,6 +101,7 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     public boolean removeFolioTab() {
         int folioTabIndex = tabbedPane.indexOfComponent(tabbedPane.getSelectedComponent());
         if (folioTabIndex >= 0) tabbedPane.removeTabAt(folioTabIndex);
+        updater.removeFolio(folioTabIndex);
 
         if (tabbedPane.getTabCount() == 0) tabbedPane.addTab("Empty", defaultTab);
 
@@ -116,13 +119,22 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        updater.getFolios();
+    public Vector<Vector<String>> getData(String name) {
+        return updater.getData();
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
 
+    }
+    @Override
     public void refresh() {
-        updater.updateGUI();
+        updater.manualUpdateGUI();
+    }
+
+    public void modifyFolio(Vector<String> i, String name, int index) {
+        updater.folioModified(i,name,index);
+
     }
 
 
