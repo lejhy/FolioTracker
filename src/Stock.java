@@ -35,6 +35,16 @@ public class Stock implements IStock {
         return price * number;
     }
 
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public void update() {
         try {
             String value = StrathQuoteServer.getLastValue(symbol);

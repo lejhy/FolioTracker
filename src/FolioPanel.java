@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
@@ -7,6 +6,7 @@ import java.util.*;
 
 public class FolioPanel extends JPanel implements Observer {
 
+    private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
     private JButton addNewTickerButton, closeFolioButton, deleteFolioButton;
@@ -46,7 +46,7 @@ public class FolioPanel extends JPanel implements Observer {
 
         stockTableModel = new DefaultTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
-        JTable stockTable = new JTable(stockTableModel);
+        stockTable = new JTable(stockTableModel);
 
         updateTable();
 
@@ -93,6 +93,8 @@ public class FolioPanel extends JPanel implements Observer {
     public void addDeleteFolioListener(ActionListener a) { deleteFolioButton.addActionListener(a); }
 
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
+
+    public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }
 
     public IFolio getFolio() {
         return folio;

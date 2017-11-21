@@ -2,13 +2,17 @@ import java.io.Serializable;
 
 public interface IStock extends Serializable {
 
-    String getSymbol();
+    public String getSymbol();
 
-    String getName();
+    public String getName();
 
-    int getNumber();
+    public int getNumber();
 
-    double getPrice();
+    public double getPrice();
 
-    double getValue();
+    public double getValue();
+
+    public void setName(String name);
+
+    public void setNumber(int number);
 }
