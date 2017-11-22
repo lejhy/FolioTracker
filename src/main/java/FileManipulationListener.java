@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,9 +45,15 @@ public class FileManipulationListener implements ActionListener{
 
     private void saveFolio() {
         JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Folio files (*.fol)", "fol");
+        fileChooser.addChoosableFileFilter(folioExtension);
+        fileChooser.setFileFilter(folioExtension);
         int response = fileChooser.showSaveDialog((Component) mainFrame);
         if (response == fileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
+            if (fileChooser.getFileFilter() == folioExtension) {
+                file = addExtension(file, "fol");
+            }
             try {
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -68,4 +75,12 @@ public class FileManipulationListener implements ActionListener{
         mainFrame.removeFolioTab();
     }
 
+    private File addExtension(File file, String extension) {
+        String withExtension = file.getAbsolutePath();
+        if( !withExtension.toLowerCase().endsWith( "." + extension ) ) {
+            withExtension += "." + extension;
+            file = new File(withExtension);
+        }
+        return file;
+    }
 }

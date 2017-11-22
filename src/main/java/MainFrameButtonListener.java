@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,21 +65,27 @@ public class MainFrameButtonListener implements ActionListener {
     private void openPortfolio() {
         System.out.println("open portfolio");
         JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Folio files (*.fol)", "fol");
+        fileChooser.addChoosableFileFilter(folioExtension);
+        fileChooser.setFileFilter(folioExtension);
         int response = fileChooser.showOpenDialog((Component) mainFrame);
         if (response == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             try {
                 FileInputStream fileInputStream = new FileInputStream(file);
-                ObjectInputStream objectInputStream = new ObjectInputStream((fileInputStream));
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 Object input = objectInputStream.readObject();
                 if (input instanceof IFolio) {
                     createFolioPanel((IFolio) input);
                 }
             } catch (FileNotFoundException e) {
+                new AlertFrame("Error", "File not found");
                 e.printStackTrace();
             } catch (IOException e) {
+                new AlertFrame("Error", "Problem reading from a file");
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
+                new AlertFrame("Error", "The file appears to be corrupt");
                 e.printStackTrace();
             }
 
