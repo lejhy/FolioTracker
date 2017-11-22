@@ -45,14 +45,6 @@ public class Stock implements IStock {
         this.number = number;
     }
 
-    public void update() {
-        try {
-            String value = StrathQuoteServer.getLastValue(symbol);
-            price = Double.parseDouble(value);
-        } catch (WebsiteDataException e) {
-            e.printStackTrace();
-        } catch (NoSuchTickerException e) {
-            e.printStackTrace();
-        }
-    }
+    @Override
+    public void setPrice(double price) { this.price = price; }
 }

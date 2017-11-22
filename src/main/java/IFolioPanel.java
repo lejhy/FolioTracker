@@ -15,11 +15,13 @@ public interface IFolioPanel {
 
     String getName();
 
-    void addAddNewTickerListener(ActionListener folioPanelButtonListener);
+    void addAddNewTickerListener(ActionListener actionListener);
 
-    void addDeleteFolioListener(ActionListener mainFrameButtonListener);
+    void addDeleteFolioListener(ActionListener actionListener);
 
-    void addCloseFolioListener(ActionListener fileManipulationListener);
+    void addCloseFolioListener(ActionListener actionListener);
 
-    void addTableModelListener(TableModelListener folioTableListener);
+    void addRefreshFolioListener(ActionListener actionListener);
+
+    void addTableModelListener(TableModelListener tableModelListener);
 }

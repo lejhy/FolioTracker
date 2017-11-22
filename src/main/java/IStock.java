@@ -15,4 +15,6 @@ public interface IStock extends Serializable {
     public void setName(String name);
 
     public void setNumber(int number);
+
+    public void setPrice(double price);
 }

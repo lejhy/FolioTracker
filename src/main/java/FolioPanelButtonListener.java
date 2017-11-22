@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 public class FolioPanelButtonListener implements ActionListener{
 
-    enum type {ADD_TICKER, CLOSE_FOLIO, DELETE_FOLIO}
+    enum type {ADD_TICKER, CLOSE_FOLIO, DELETE_FOLIO, REFRESH_FOLIO}
 
     private IFolioPanel folioPanel;
     private type buttonPressed;
@@ -20,6 +20,9 @@ public class FolioPanelButtonListener implements ActionListener{
             case ADD_TICKER:
                 addTicker();
                 break;
+            case REFRESH_FOLIO:
+                refreshFolio();
+                break;
         }
     }
 
@@ -32,6 +35,10 @@ public class FolioPanelButtonListener implements ActionListener{
         } else {
             System.out.println("ticker error");
         }
+    }
+
+    private void refreshFolio() {
+        folioPanel.getFolio().refresh();
     }
 
 }

@@ -12,9 +12,6 @@ public class folioTableListener implements TableModelListener {
 
     @Override
     public void tableChanged(TableModelEvent e) {
-        System.out.println(e.getColumn());
-        System.out.println(e.getFirstRow());
-        System.out.println(e.getLastRow());
 
         IStock stock = folioPanel.getFolio().getStocks().get(e.getFirstRow());
         TableModel tableModel = (TableModel)e.getSource();

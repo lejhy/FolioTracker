@@ -9,7 +9,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
     private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
-    private JButton addNewTickerButton, closeFolioButton, deleteFolioButton;
+    private JButton addNewTickerButton, closeFolioButton, deleteFolioButton, refreshFolioButton;
     private JTextField tickerSymbolTextField, numberOfSharesTextField;
 
     FolioPanel(IFolio folio) {
@@ -56,9 +56,11 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
+        refreshFolioButton = new JButton("Refresh");
 
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
+        footerPanel.add(refreshFolioButton);
 
         add(footerPanel);
 
@@ -96,6 +98,9 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
     @Override
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
+
+    @Override
+    public void addRefreshFolioListener(ActionListener a) { refreshFolioButton.addActionListener(a); }
 
     @Override
     public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }

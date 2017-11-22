@@ -39,4 +39,20 @@ public class Folio extends Observable implements IFolio {
             return false;
         }
     }
+
+    @Override
+    public void refresh() {
+        for(IStock stock : stocks) {
+            try {
+                double newPrice = Double.parseDouble(StrathQuoteServer.getLastValue(stock.getSymbol()));
+                stock.setPrice(newPrice);
+            } catch (WebsiteDataException e) {
+                e.printStackTrace();
+            } catch (NoSuchTickerException e) {
+                e.printStackTrace();
+            }
+        }
+        setChanged();
+        notifyObservers();
+    }
 }

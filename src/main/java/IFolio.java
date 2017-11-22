@@ -6,11 +6,13 @@ import java.util.Vector;
 
 public interface IFolio extends Serializable{
 
-    public List<IStock> getStocks();
+    List<IStock> getStocks();
 
-    public String getName();
+    String getName();
 
-    public boolean addStock(String ticker, int number);
+    boolean addStock(String ticker, int number);
 
-    public void addObserver(Observer o);
+    void addObserver(Observer o);
+
+    void refresh();
 }
