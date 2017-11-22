@@ -37,7 +37,14 @@ public class MainFrameButtonListener implements ActionListener {
 
     private void deletePortfolio() {
         System.out.println("Delete");
-        mainFrame.removeFolioTab();
+        BinaryDialogFrame binaryDialogFrame = new BinaryDialogFrame("Delete", "Are you sure you want to delete this folio?");
+        binaryDialogFrame.addYesListener(a -> {
+            binaryDialogFrame.close();
+            mainFrame.removeFolioTab();
+        });
+        binaryDialogFrame.addNoListener(a -> {
+            binaryDialogFrame.close();
+        });
     }
 
     private void createPortfolio() {

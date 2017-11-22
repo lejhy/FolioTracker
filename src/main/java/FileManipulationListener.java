@@ -31,12 +31,12 @@ public class FileManipulationListener implements ActionListener{
         String folioName = folioPanel.getFolio().getName();
         String dialogName = "Close Folio " + folioName;
         String dialogMessage = "Would you like to save your work for folio " + folioName + "?";
-        BinaryQuestionFrame closeDialog = new BinaryQuestionFrame(dialogName, dialogMessage);
-        closeDialog.addConfirmationListener(a -> {
+        BinaryDialogFrame closeDialog = new BinaryDialogFrame(dialogName, dialogMessage);
+        closeDialog.addYesListener(a -> {
             closeDialog.dispose();
             saveFolio();
         });
-        closeDialog.addCancelationListener(a -> {
+        closeDialog.addNoListener(a -> {
             closeDialog.dispose();
             deleteFolio();
         });

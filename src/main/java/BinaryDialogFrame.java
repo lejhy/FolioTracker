@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class BinaryQuestionFrame extends JFrame {
+public class BinaryDialogFrame extends JFrame {
     private JTextField nameField;
     private JButton yesButton, noButton;
 
-    BinaryQuestionFrame(String name, String message){
+    BinaryDialogFrame(String name, String message){
         setName(name);
 
         setSize(400, 100);
@@ -31,10 +31,10 @@ public class BinaryQuestionFrame extends JFrame {
         setVisible(true);
     }
 
-    public void addConfirmationListener(ActionListener a) {
+    public void addYesListener(ActionListener a) {
         yesButton.addActionListener(a);
     }
-    public void addCancelationListener(ActionListener a) {
+    public void addNoListener(ActionListener a) {
         noButton.addActionListener(a);
     }
 
