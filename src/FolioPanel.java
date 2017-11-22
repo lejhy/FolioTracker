@@ -88,12 +88,16 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         }
     }
 
+    @Override
     public void addAddNewTickerListener(ActionListener a) { addNewTickerButton.addActionListener(a); }
 
+    @Override
     public void addDeleteFolioListener(ActionListener a) { deleteFolioButton.addActionListener(a); }
 
+    @Override
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
 
+    @Override
     public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }
 
     public IFolio getFolio() {

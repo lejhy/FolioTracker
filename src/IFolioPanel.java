@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.TableModelListener;
+import java.awt.event.ActionListener;
 
 public interface IFolioPanel {
 
@@ -13,11 +15,11 @@ public interface IFolioPanel {
 
     String getName();
 
-    void addAddNewTickerListener(FolioPanelButtonListener folioPanelButtonListener);
+    void addAddNewTickerListener(ActionListener folioPanelButtonListener);
 
-    void addDeleteFolioListener(MainFrameButtonListener mainFrameButtonListener);
+    void addDeleteFolioListener(ActionListener mainFrameButtonListener);
 
-    void addCloseFolioListener(FileManipulationListener fileManipulationListener);
+    void addCloseFolioListener(ActionListener fileManipulationListener);
 
-    void addTableModelListener(folioTableListener folioTableListener);
+    void addTableModelListener(TableModelListener folioTableListener);
 }
