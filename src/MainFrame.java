@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.*;
-import java.util.List;
 
 public class MainFrame extends JFrame implements IMainFrame {
 

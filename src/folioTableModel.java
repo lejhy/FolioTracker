@@ -9,7 +9,7 @@ public class folioTableModel extends DefaultTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        if (column == 1 || column == 2) {
+        if (column == 1) {
             return true;
         } else {
             return false;
