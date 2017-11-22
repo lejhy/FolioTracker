@@ -1,3 +1,5 @@
+import java.util.Observable;
+import java.util.Observer;
 
 public class Stock implements IStock {
     private String symbol;
@@ -55,4 +57,5 @@ public class Stock implements IStock {
             e.printStackTrace();
         }
     }
+
 }

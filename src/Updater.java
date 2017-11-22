@@ -72,6 +72,7 @@ public class Updater extends Observable implements IUpdater {
     }
 
     private String findStockValue(IStock s) {
+       // notifyObservers();
         return Server.getLastValue(s.getSymbol());
     }
 

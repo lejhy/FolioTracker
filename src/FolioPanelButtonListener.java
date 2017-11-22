@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 
 public class FolioPanelButtonListener implements ActionListener{
 
-    enum type {ADD_TICKER, CLOSE_FOLIO, DELETE_FOLIO}
+    enum type {ADD_TICKER}
 
     private FolioPanel folioPanel;
     private type buttonPressed;

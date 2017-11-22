@@ -32,10 +32,10 @@ public class Folio extends Observable implements IFolio {
             notifyObservers();
             return true;
         } catch (WebsiteDataException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         } catch (NoSuchTickerException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }
