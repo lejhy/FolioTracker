@@ -2,19 +2,16 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-public class folioTableListener implements TableModelListener {
+public class FolioTableListener implements TableModelListener {
 
     private IFolioPanel folioPanel;
 
-    public folioTableListener(IFolioPanel folioPanel) {
+    public FolioTableListener(IFolioPanel folioPanel) {
         this.folioPanel = folioPanel;
     }
 
     @Override
     public void tableChanged(TableModelEvent e) {
-        System.out.println(e.getColumn());
-        System.out.println(e.getFirstRow());
-        System.out.println(e.getLastRow());
 
         IStock stock = folioPanel.getFolio().getStocks().get(e.getFirstRow());
         TableModel tableModel = (TableModel)e.getSource();

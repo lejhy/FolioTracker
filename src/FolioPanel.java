@@ -45,8 +45,10 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
                 "Price per Share",
                 "Value of Holding"};
 
-        stockTableModel = new folioTableModel(new Vector<>(Arrays.asList(columns)), 0);
+        stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
+
         stockTable = new JTable(stockTableModel);
+
         updateTable();
 
         add(new JScrollPane(stockTable));
@@ -55,6 +57,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
+        refreshFolioButton = new JButton("Refresh");
         totalValueLabel = new JLabel("Total value of folio : " + folio.getTotalStockValue());
 
         totalValueLabel.setVisible(true);
@@ -62,6 +65,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
         footerPanel.add(totalValueLabel);
+        footerPanel.add(refreshFolioButton);
 
         add(footerPanel);
 
@@ -99,6 +103,9 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
     @Override
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
+
+    @Override
+    public void addRefreshFolioListener(ActionListener a) { refreshFolioButton.addActionListener(a); }
 
     @Override
     public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }

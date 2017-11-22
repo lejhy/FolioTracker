@@ -1,9 +1,9 @@
 import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
 
-public class folioTableModel extends DefaultTableModel {
+public class FolioTableModel extends DefaultTableModel {
 
-    public folioTableModel (Vector<Object> columns, int rows) {
+    public FolioTableModel(Vector<Object> columns, int rows) {
         super(columns, rows);
     }
 
