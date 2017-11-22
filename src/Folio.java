@@ -6,6 +6,7 @@ public class Folio extends Observable implements IFolio {
 
     private String name;
     private List<IStock> stocks;
+    private double totalStockValue;
 
     public Folio(String name) {
         this.name = name;
@@ -28,6 +29,7 @@ public class Folio extends Observable implements IFolio {
             double price = Double.parseDouble(StrathQuoteServer.getLastValue(ticker));
             Stock stock = new Stock(ticker, ticker, number, price);
             stocks.add(stock);
+            totalStockValue += stock.getValue();
             setChanged();
             notifyObservers();
             return true;
@@ -38,5 +40,10 @@ public class Folio extends Observable implements IFolio {
             e.printStackTrace();
             return false;
         }
+    }
+
+
+    public double getTotalStockValue() {
+        return totalStockValue;
     }
 }

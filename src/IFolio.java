@@ -13,4 +13,6 @@ public interface IFolio extends Serializable{
     public boolean addStock(String ticker, int number);
 
     public void addObserver(Observer o);
+
+    public double getTotalStockValue();
 }
