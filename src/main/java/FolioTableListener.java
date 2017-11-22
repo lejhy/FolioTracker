@@ -2,11 +2,11 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-public class folioTableListener implements TableModelListener {
+public class FolioTableListener implements TableModelListener {
 
     private IFolioPanel folioPanel;
 
-    public folioTableListener(IFolioPanel folioPanel) {
+    public FolioTableListener(IFolioPanel folioPanel) {
         this.folioPanel = folioPanel;
     }
 
