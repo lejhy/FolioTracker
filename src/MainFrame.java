@@ -11,14 +11,10 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     public JButton createFolioButton, deleteFolioButton, openFolioButton;
 
 
-    private IUpdater updater;
     private boolean autoRefresh;
 
     public MainFrame() {
         autoRefresh=false;
-
-        updater = new Updater();
-        updater.addObserver(this);
 
         setTitle("Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,7 +36,6 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         fileMenu.add(exitMenuItem);
 
         JMenuItem refreshMenuItem = new JMenuItem("Refresh");
-        refreshMenuItem.addActionListener(e -> refresh());
         JCheckBoxMenuItem autoRefreshCheckbox = new JCheckBoxMenuItem("Auto Refresh");
         autoRefreshCheckbox.addActionListener(e-> autoRefresh=!autoRefresh);
 
@@ -79,14 +74,12 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     public boolean addFolioTab(Component folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
-        updater.addFolio(folioTab.getName());
         return true;
     }
 
     public boolean removeFolioTab() {
         int folioTabIndex = tabbedPane.indexOfComponent(tabbedPane.getSelectedComponent());
         if (folioTabIndex >= 0) tabbedPane.removeTabAt(folioTabIndex);
-        updater.removeFolio(folioTabIndex);
 
         if (tabbedPane.getTabCount() == 0) tabbedPane.addTab("Empty", defaultTab);
 
@@ -104,17 +97,8 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     }
 
     @Override
-    public Vector<Vector<String>> getData(String name) {
-        return updater.getData("");
-    }
-
-    @Override
     public void update(Observable o, Object arg) {
 
-    }
-    @Override
-    public void refresh() {
-        updater.manualUpdateGUI();
     }
 
     @Override
@@ -125,10 +109,6 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     @Override
     public void addOpenFolioListener(ActionListener a) {
         openFolioButton.addActionListener(a);
-    }
-
-    public void modifyFolio(Vector<String> i, String name, int index) {
-        updater.folioModified(i,name,index);
     }
 
     public JTabbedPane getTabbedPane() {
