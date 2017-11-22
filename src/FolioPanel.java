@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
@@ -44,7 +46,8 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
                 "Stock Name",
                 "Number of Shares",
                 "Price per Share",
-                "Value of Holding"};
+                "Value of Holding",
+                "Price Change"};
 
         stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
@@ -66,7 +69,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
         footerPanel.add(refreshFolioButton);
-        footerPanel.add(totalValueLabel);
+        footerPanel.add(totalValueLabel, BorderLayout.EAST);
 
         add(footerPanel);
 
@@ -93,6 +96,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
             stockTableModel.setValueAt(stock.getNumber(), i, 2);
             stockTableModel.setValueAt(stock.getPrice(), i, 3);
             stockTableModel.setValueAt(stock.getValue(), i, 4);
+            stockTableModel.setValueAt(stock.getDifference(),i,5);
         }
         totalValueLabel.setText("Total value of folio : " + folio.getTotalStockValue());
     }

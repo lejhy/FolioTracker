@@ -2,6 +2,8 @@ import java.io.Serializable;
 
 public interface IStock extends Serializable {
 
+    double getDifference();
+
     public String getSymbol();
 
     public String getName();
