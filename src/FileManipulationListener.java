@@ -10,9 +10,9 @@ public class FileManipulationListener implements ActionListener{
 
     private type actionType;
     private IMainFrame mainFrame;
-    private FolioPanel folioPanel;
+    private IFolioPanel folioPanel;
 
-    public FileManipulationListener(type actionType, IMainFrame mainFrame, FolioPanel folioPanel) {
+    public FileManipulationListener(type actionType, IMainFrame mainFrame, IFolioPanel folioPanel) {
         this.actionType = actionType;
         this.mainFrame = mainFrame;
         this.folioPanel = folioPanel;

@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public interface IMainFrame {
 
-    boolean addFolioTab(FolioPanel folioTab);
+    boolean addFolioTab(IFolioPanel folioTab);
 
     boolean removeFolioTab();
 

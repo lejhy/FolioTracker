@@ -4,7 +4,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-public class FolioPanel extends JPanel implements Observer {
+public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
     private JTable stockTable;
     private DefaultTableModel stockTableModel;

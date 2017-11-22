@@ -4,9 +4,9 @@ import javax.swing.table.TableModel;
 
 public class folioTableListener implements TableModelListener {
 
-    private FolioPanel folioPanel;
+    private IFolioPanel folioPanel;
 
-    public folioTableListener(FolioPanel folioPanel) {
+    public folioTableListener(IFolioPanel folioPanel) {
         this.folioPanel = folioPanel;
     }
 

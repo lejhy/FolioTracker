@@ -5,11 +5,11 @@ public class FolioPanelButtonListener implements ActionListener{
 
     enum type {ADD_TICKER, CLOSE_FOLIO, DELETE_FOLIO}
 
-    private FolioPanel folioPanel;
+    private IFolioPanel folioPanel;
     private type buttonPressed;
 
 
-    public FolioPanelButtonListener (type buttonPressed, FolioPanel folioPanel) {
+    public FolioPanelButtonListener (type buttonPressed, IFolioPanel folioPanel) {
         this.buttonPressed = buttonPressed;
         this.folioPanel = folioPanel;
     }

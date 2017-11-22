@@ -74,8 +74,9 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
         setVisible(true);
     }
 
-    public boolean addFolioTab(FolioPanel folioTab) {
-        updater.addObserver(folioTab);
+
+
+    public boolean addFolioTab(IFolioPanel folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
         updater.addFolio(folioTab.getName());
