@@ -6,6 +6,7 @@ import java.util.*;
 
 public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
+    private final JButton refreshFolioButton;
     private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
@@ -48,7 +49,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
         stockTable = new JTable(stockTableModel);
-
+        totalValueLabel = new JLabel("Total value of folio : " + folio.getTotalStockValue());
         updateTable();
 
         add(new JScrollPane(stockTable));
@@ -58,14 +59,14 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
         refreshFolioButton = new JButton("Refresh");
-        totalValueLabel = new JLabel("Total value of folio : " + folio.getTotalStockValue());
+
 
         totalValueLabel.setVisible(true);
 
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
-        footerPanel.add(totalValueLabel);
         footerPanel.add(refreshFolioButton);
+        footerPanel.add(totalValueLabel);
 
         add(footerPanel);
 
@@ -93,6 +94,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
             stockTableModel.setValueAt(stock.getPrice(), i, 3);
             stockTableModel.setValueAt(stock.getValue(), i, 4);
         }
+        totalValueLabel.setText("Total value of folio : " + folio.getTotalStockValue());
     }
 
     @Override
