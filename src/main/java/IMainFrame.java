@@ -13,9 +13,11 @@ public interface IMainFrame {
 
     boolean closeFolio();
 
-    void addCreateFolioListener(ActionListener a);
+    void addCreateListener(ActionListener a);
 
-    void addOpenFolioListener(ActionListener a);
+    void addOpenListener(ActionListener a);
+
+    void addExitListener(ActionListener a);
 
     JTabbedPane getTabbedPane();
 
