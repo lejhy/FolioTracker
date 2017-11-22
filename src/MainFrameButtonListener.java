@@ -1,5 +1,8 @@
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class MainFrameButtonListener implements ActionListener {
 
@@ -45,20 +48,43 @@ public class MainFrameButtonListener implements ActionListener {
             if (!createFolioFrame.getNameField().getText().isEmpty()){
                 folioName = createFolioFrame.getNameField().getText();
             }
-            Folio folio = new Folio(folioName);
-            FolioPanel folioPanel = new FolioPanel(folio);
-            folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
-            folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
-            folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
-            folioPanel.addTableModelListener( new folioTableListener(folioPanel) );
-
-            mainFrame.addFolioTab(folioPanel);
+            IFolio folio = new Folio(folioName);
+            createFolioPanel(folio);
             createFolioFrame.close();
         });
     }
 
     private void openPortfolio() {
         System.out.println("open portfolio");
+        JFileChooser fileChooser = new JFileChooser();
+        int response = fileChooser.showOpenDialog((Component) mainFrame);
+        if (response == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                FileInputStream fileInputStream = new FileInputStream(file);
+                ObjectInputStream objectInputStream = new ObjectInputStream((fileInputStream));
+                Object input = objectInputStream.readObject();
+                if (input instanceof IFolio) {
+                    createFolioPanel((IFolio) input);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void createFolioPanel(IFolio folio) {
+        FolioPanel folioPanel = new FolioPanel(folio);
+        folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
+        folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
+        folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
+        folioPanel.addTableModelListener( new folioTableListener(folioPanel) );
+        mainFrame.addFolioTab(folioPanel);
     }
 
     private void save() { System.out.println("save"); }
