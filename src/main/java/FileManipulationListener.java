@@ -28,7 +28,10 @@ public class FileManipulationListener implements ActionListener{
     }
 
     public void closeFolio() {
-        CloseFolioFrame closeDialog = new CloseFolioFrame(folioPanel.getFolio().getName());
+        String folioName = folioPanel.getFolio().getName();
+        String dialogName = "Close Folio " + folioName;
+        String dialogMessage = "Would you like to save your work for folio " + folioName + "?";
+        BinaryQuestionFrame closeDialog = new BinaryQuestionFrame(dialogName, dialogMessage);
         closeDialog.addConfirmationListener(a -> {
             closeDialog.dispose();
             saveFolio();

@@ -1,33 +1,32 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class CloseFolioFrame extends JFrame {
+public class BinaryQuestionFrame extends JFrame {
     private JTextField nameField;
     private JButton yesButton, noButton;
 
-    CloseFolioFrame(String folioName){
-        setName("Close Folio " + folioName);
+    BinaryQuestionFrame(String name, String message){
+        setName(name);
 
         setSize(400, 100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
 
-        JLabel label = new JLabel("Would you like to save your work for folio " + folioName + "?");
+        JLabel messageLabel = new JLabel(message);
 
-        JPanel message = new JPanel();
-        message.add(label);
-        add(message);
+        JPanel messagePanel = new JPanel();
+        messagePanel.add(messageLabel);
+        add(messagePanel);
 
-        JPanel buttons = new JPanel();
+        JPanel buttonPanel = new JPanel();
         yesButton = new JButton("Yes");
         noButton = new JButton("No");
 
-        buttons.add(yesButton);
-        buttons.add(noButton);
+        buttonPanel.add(yesButton);
+        buttonPanel.add(noButton);
 
-        add(buttons);
+        add(buttonPanel);
 
         setVisible(true);
     }
