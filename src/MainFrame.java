@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
-public class MainFrame extends JFrame implements IMainFrame,Observer {
+public class MainFrame extends JFrame implements IMainFrame {
 
     private JTabbedPane tabbedPane;
     private JPanel defaultTab;
@@ -94,11 +94,6 @@ public class MainFrame extends JFrame implements IMainFrame,Observer {
     @Override
     public boolean closeFolio() {
         return false;
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-
     }
 
     @Override
