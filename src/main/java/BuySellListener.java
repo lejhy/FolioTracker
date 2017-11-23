@@ -65,7 +65,7 @@ public class BuySellListener implements ActionListener {
     }
 
     private void buyStocks() {
-        if(folioPanel.getFolio().sameStockAdding(name, value)) frame.dispose();
+        if(folioPanel.getFolio().buyStock(name, value)) frame.dispose();
         else
             System.out.println("Shouldn't be here");
     }

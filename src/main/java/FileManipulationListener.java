@@ -7,7 +7,7 @@ import java.io.*;
 
 public class FileManipulationListener implements ActionListener{
 
-    enum type {CLOSE_FOLIO}
+    enum type {CLOSE_FOLIO, SAVE_FOLIO}
 
     private type actionType;
     private IMainFrame mainFrame;
@@ -25,6 +25,9 @@ public class FileManipulationListener implements ActionListener{
             case CLOSE_FOLIO:
                 closeFolio();
                 break;
+            case SAVE_FOLIO:
+                saveFolio();
+                break;
         }
     }
 
@@ -35,7 +38,7 @@ public class FileManipulationListener implements ActionListener{
         BinaryDialogFrame closeDialog = new BinaryDialogFrame(dialogName, dialogMessage);
         closeDialog.addYesListener(a -> {
             closeDialog.dispose();
-            saveFolio();
+            if (saveFolio()) deleteFolio();
         });
         closeDialog.addNoListener(a -> {
             closeDialog.dispose();
@@ -43,7 +46,7 @@ public class FileManipulationListener implements ActionListener{
         });
     }
 
-    private void saveFolio() {
+    private boolean saveFolio() {
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Folio files (*.fol)", "fol");
         fileChooser.addChoosableFileFilter(folioExtension);
@@ -60,19 +63,20 @@ public class FileManipulationListener implements ActionListener{
                 objectOutputStream.writeObject(folioPanel.getFolio());
                 objectOutputStream.close();
                 fileOutputStream.close();
-                mainFrame.removeFolioTab();
+                new AlertFrame("Success", "File saved successfuly");
+                return true;
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
                 new AlertFrame("Error", "File not found");
             } catch (IOException e) {
                 new AlertFrame("Error", "Problem writing to the file");
-                e.printStackTrace();
             }
         }
+        return false;
     }
 
     private void deleteFolio() {
         mainFrame.removeFolioTab();
+        folioPanel.getFolio().delete();
     }
 
     private File addExtension(File file, String extension) {

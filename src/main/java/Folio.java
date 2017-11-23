@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -6,11 +9,12 @@ public class Folio extends Observable implements IFolio {
 
     private String name;
     private List<IStock> stocks;
-    private double totalStockValue = 0.0;
+    private IAutoUpdate autoUpdate;
 
     public Folio(String name) {
         this.name = name;
         stocks = new ArrayList<>();
+        autoUpdate = new AutoUpdate(() -> refresh(), 5000);
     }
 
     @Override
@@ -33,7 +37,6 @@ public class Folio extends Observable implements IFolio {
             double price = getSharePrice(ticker);
             Stock stock = new Stock(ticker, ticker, number, price);
             stocks.add(stock);
-            totalStockValue += (number*price);
             setChanged();
             notifyObservers("Add");
             return true;
@@ -44,25 +47,32 @@ public class Folio extends Observable implements IFolio {
     }
 
     @Override
-    public boolean isStock(String ticker) {
-        try {
-            StrathQuoteServer.getLastValue(ticker);
-            return true;
-        } catch (WebsiteDataException | NoSuchTickerException e) {
-            e.printStackTrace();
-            return false;
+    public IFolio.ticker checkTicker(String ticker) {
+        if (alreadyExists(ticker)) {
+            return IFolio.ticker.EXISTS;
+        } else {
+            try {
+                StrathQuoteServer.getLastValue(ticker);
+                return IFolio.ticker.VALID;
+            } catch (NoSuchTickerException e) {
+                e.printStackTrace();
+                return IFolio.ticker.INVALID;
+            } catch (WebsiteDataException e) {
+                e.printStackTrace();
+                return IFolio.ticker.ERROR;
+            }
         }
     }
 
 
-    // TODO: Should probably be changed to use indexes instead of looping through the list
-    public boolean sameStockAdding(String ticker, int amount) {
+
+    @Override
+    public boolean buyStock(String ticker, int number) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
-                s.setNumber(s.getNumber()+amount);
-                totalStockValue+= amount*s.getValue();
+                s.setNumber( s.getNumber() + number );
                 setChanged();
-                notifyObservers("Manual");
+                notifyObservers("Buy");
                 return true;
             }
         }
@@ -78,14 +88,12 @@ public class Folio extends Observable implements IFolio {
                 else {
                     if(value==s.getNumber()) {
                         stocks.remove(s);
-                        calcTotalStockValue();
                         setChanged();
                         notifyObservers("Manual");
                         return true;
                     }
                     else {
                         s.setNumber(s.getNumber()-value);
-                        totalStockValue -= value*s.getValue();
                         setChanged();
                         notifyObservers("Manual");
                         return true;
@@ -99,7 +107,12 @@ public class Folio extends Observable implements IFolio {
     }
 
     @Override
-    public boolean alreadyOwn(String ticker) {
+    public boolean sellStock(String ticker, int number) {
+        return false;
+    }
+
+    @Override
+    public boolean alreadyExists(String ticker) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 return true;
@@ -121,23 +134,40 @@ public class Folio extends Observable implements IFolio {
             }
         }
         setChanged();
-        notifyObservers("Manual");
-    }
-
-
-    public double getTotalStockValue() {
-        return totalStockValue;
-    }
-
-    private void calcTotalStockValue() {
-        totalStockValue=0;
-        for(IStock s : stocks) {
-            totalStockValue+= s.getValue()*s.getNumber();
-        }
+        notifyObservers("Refresh");
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        refresh();
+    public double getTotalStockValue() {
+
+        double totalStockValue = 0.0;
+        for(IStock stock : stocks) {
+            totalStockValue += stock.getValue();
+        }
+        return totalStockValue;
+    }
+
+
+
+    public void autoRefreshStart() { autoUpdate.start(); }
+
+    public void autoRefreshStop() { autoUpdate.stop(); }
+
+    @Override
+    public void delete() {
+        autoUpdate.stop();
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.writeObject(name);
+        out.writeObject(stocks);
+        out.writeBoolean(autoUpdate.isRunning());
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        name = (String)in.readObject();
+        stocks = (List<IStock>) in.readObject();
+        autoUpdate = new AutoUpdate(() -> refresh(), 5000);
+        if (in.readBoolean()) autoUpdate.start();
     }
 }

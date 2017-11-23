@@ -4,6 +4,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.*;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
-    private JButton addNewTickerButton, closeFolioButton, deleteFolioButton;
+    private JButton saveFolioButton, addNewTickerButton, closeFolioButton, deleteFolioButton;
     private JToggleButton autoRefreshButton;
     private JTextField tickerSymbolTextField, numberOfSharesTextField;
     private JLabel totalValueLabel;
@@ -72,15 +73,16 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
         add(buyButton);
         add(sellButton);
+
+        saveFolioButton = new JButton("Save");
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
         refreshFolioButton = new JButton("Refresh");
         autoRefreshButton = new JToggleButton("AutoRefresh");
 
-
-
         totalValueLabel.setVisible(true);
 
+        footerPanel.add(saveFolioButton);
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
         footerPanel.add(refreshFolioButton);
@@ -93,17 +95,9 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(arg);
-        if(arg.equals("Auto"))
-        {
-            //TODO: Might wanna trigger a different a new listener, not refresh's listener. I dunno
-            refreshFolioButton.getActionListeners()[0].actionPerformed(new ActionEvent(this,ActionEvent.ACTION_PERFORMED,""));
-        }
-        else {
-            updateTable();
-            stockTableModel.fireTableDataChanged();
-        }
-
+        System.out.println("FolioPanel update " + arg.toString());
+        updateTable();
+        stockTableModel.fireTableDataChanged();
     }
 
     private void updateTable() {
@@ -137,30 +131,20 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
 
     @Override
+    public void addSaveFolioListener(ActionListener a) { saveFolioButton.addActionListener(a); }
+
+    @Override
     public void addRefreshFolioListener(ActionListener a) { refreshFolioButton.addActionListener(a); }
 
     @Override
     public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }
 
     @Override
-    public void addAutoRefreshFolioListener(ActionListener a) {
-        autoRefreshButton.addActionListener(a);
-    }
+    public void addAutoRefreshFolioListener(ItemListener i) { autoRefreshButton.addItemListener(i); }
 
     @Override
     public void createAlert(String name, String message) {
-        new AlertFrame(name,message);
-    }
-
-    @Override
-    public void newStockOrAdd(String tickerSymbol, int numberOfShares) {
-        BinaryDialogFrame binary = new BinaryDialogFrame("Already have stock", "You already have this" +
-                " in your folio, would you like to add these stocks to the ones you already have?");
-        binary.addYesListener(e -> {
-            folio.sameStockAdding(tickerSymbol, numberOfShares);
-            binary.dispose();
-        });
-        binary.addNoListener(e -> binary.dispose());
+        new AlertFrame(name, message);
     }
 
     @Override

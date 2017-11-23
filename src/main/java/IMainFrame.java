@@ -19,6 +19,4 @@ public interface IMainFrame {
     void addExitListener(ActionListener a);
 
     JTabbedPane getTabbedPane();
-
-    void flipAutoOnOff();
 }

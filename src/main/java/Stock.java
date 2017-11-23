@@ -55,5 +55,6 @@ public class Stock implements IStock {
     public void setPrice(double price) {
         if(price != this.price)
             difference = price - this.price;
-        this.price = price; }
+        this.price = price;
+    }
 }
