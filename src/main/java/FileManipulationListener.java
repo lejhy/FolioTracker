@@ -61,6 +61,7 @@ public class FileManipulationListener implements ActionListener{
                 objectOutputStream.close();
                 fileOutputStream.close();
                 mainFrame.removeFolioTab();
+                folioPanel.getFolio().delete();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 new AlertFrame("Error", "File not found");
@@ -73,6 +74,7 @@ public class FileManipulationListener implements ActionListener{
 
     private void deleteFolio() {
         mainFrame.removeFolioTab();
+        folioPanel.getFolio().delete();
     }
 
     private File addExtension(File file, String extension) {

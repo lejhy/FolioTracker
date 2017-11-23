@@ -1,11 +1,9 @@
-import java.util.Observer;
-
 public interface IAutoUpdate {
 
-    void flipIsRunning();
+    boolean start();
 
-    void addObserver(Observer o);
+    boolean stop();
 
-    void deleteObserver(Observer o);
+    boolean isRunning();
 
 }

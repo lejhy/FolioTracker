@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.Observer;
 
 public interface IFolioPanel extends Observer {
@@ -26,9 +27,8 @@ public interface IFolioPanel extends Observer {
 
     void addTableModelListener(TableModelListener tableModelListener);
 
-    void addAutoRefreshFolioListener(ActionListener actionListener);
+    void addAutoRefreshFolioListener(ItemListener itemListener);
 
     void createAlert(String name, String message);
 
-    void newStockOrAdd(String tickerSymbol, int numberOfShares);
 }

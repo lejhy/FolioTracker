@@ -8,12 +8,10 @@ public class MainFrame extends JFrame implements IMainFrame {
     private JTabbedPane tabbedPane;
     private JPanel defaultTab;
     public JMenuItem createMenuItem, openMenuItem, exitMenuItem;
-    IAutoUpdate auto;
 
 
     public MainFrame() {
 
-        auto = new AutoUpdate();
         setTitle("Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -57,14 +55,12 @@ public class MainFrame extends JFrame implements IMainFrame {
     public boolean addFolioTab(Component folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
-        auto.addObserver((Observer) folioTab);
         return true;
     }
 
     public boolean removeFolioTab() {
         int folioTabIndex = tabbedPane.indexOfComponent(tabbedPane.getSelectedComponent());
         if (folioTabIndex >= 0) {
-            auto.deleteObserver((Observer) tabbedPane.getComponentAt(folioTabIndex));
             tabbedPane.removeTabAt(folioTabIndex);
         }
 
@@ -102,10 +98,6 @@ public class MainFrame extends JFrame implements IMainFrame {
         return tabbedPane;
     }
 
-    @Override
-    public void flipAutoOnOff() {
-        auto.flipIsRunning();
-    }
 
 }
 

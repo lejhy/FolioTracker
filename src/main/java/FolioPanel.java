@@ -4,6 +4,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.*;
 import java.util.List;
 
@@ -68,6 +69,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
 
 
+
         totalValueLabel.setVisible(true);
 
         footerPanel.add(closeFolioButton);
@@ -82,17 +84,9 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(arg);
-        if(arg.equals("Auto"))
-        {
-            //TODO: Might wanna trigger a different a new listener, not refresh's listener. I dunno
-            refreshFolioButton.getActionListeners()[0].actionPerformed(new ActionEvent(this,ActionEvent.ACTION_PERFORMED,""));
-        }
-        else {
-            updateTable();
-            stockTableModel.fireTableDataChanged();
-        }
-
+        System.out.println("FolioPanel update " + arg.toString());
+        updateTable();
+        stockTableModel.fireTableDataChanged();
     }
 
     private void updateTable() {
@@ -132,24 +126,11 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }
 
     @Override
-    public void addAutoRefreshFolioListener(ActionListener a) {
-        autoRefreshButton.addActionListener(a);
-    }
+    public void addAutoRefreshFolioListener(ItemListener i) { autoRefreshButton.addItemListener(i); }
 
     @Override
     public void createAlert(String name, String message) {
-        new AlertFrame(name,message);
-    }
-
-    @Override
-    public void newStockOrAdd(String tickerSymbol, int numberOfShares) {
-        BinaryDialogFrame binary = new BinaryDialogFrame("Already have stock", "You already have this" +
-                " in your folio, would you like to add these stocks to the ones you already have?");
-        binary.addYesListener(e -> {
-            folio.sameStockAdding(tickerSymbol, numberOfShares);
-            binary.dispose();
-        });
-        binary.addNoListener(e -> binary.dispose());
+        new AlertFrame(name, message);
     }
 
     public IFolio getFolio() {

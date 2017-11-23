@@ -69,7 +69,7 @@ public class StrathQuoteServer {
             while (true) {
                 strLine = brWebPage.readLine();
                 if (strLine == null) {
-                    throw new WebsiteDataException("Parse failed!");
+                    throw new NoSuchTickerException("Parse failed!");
                 }
                 if (strLine.indexOf(_TOKEN1) != -1) {
                     System.out.println("found token");

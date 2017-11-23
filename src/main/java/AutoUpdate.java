@@ -1,58 +1,59 @@
+import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
 public class AutoUpdate extends Observable implements IAutoUpdate {
+
     private boolean isRunning;
-    Thread auto;
+    private Runnable action;
+    private int delayMilis;
 
-    public AutoUpdate() {
+    public AutoUpdate(Runnable action, int delayMilis) {
         isRunning = false;
-        resetThread();
+        this.action = action;
+        this.delayMilis = delayMilis;
     }
 
-    public void flipIsRunning() {
-        // TODO: Could be cleaner, maybe a case statement
-        if(!isRunning && auto.getState()== Thread.State.TERMINATED) {
-            System.out.println("Restarting thread");
-            resetThread();
-            isRunning=true;
-            auto.start();
+    @Override
+    public boolean start() {
+        if (isRunning == false) {
+            isRunning = true;
+            startThread();
+            return true;
+        } else {
+            return false;
         }
-        else if(!isRunning && auto.getState()== Thread.State.NEW) {
-            System.out.println("Thread is new, starting");
-            isRunning=true;
-            auto.start();
-
-        }
-        else if(isRunning && auto.getState() == Thread.State.TIMED_WAITING) {
-            System.out.println("Thread is waiting, terminating now");
-            auto.interrupt();
-            isRunning= false;
-        }
-        else if(!isRunning && auto.getState()== Thread.State.TIMED_WAITING) {
-            System.out.println("Shouldn't have happened, will have to wait");
-        }
-
     }
 
-    private void resetThread() {
-        auto = new Thread(() -> {
+    @Override
+    public boolean stop() {
+        if (isRunning == true) {
+            isRunning = false;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    private void startThread() {
+        Thread autoUpdate = new Thread(() -> {
             while (isRunning) {
                 try {
                     System.out.println("Auto Updating");
-                    setChanged();
-                    notifyObservers("Auto");
-                    Thread.sleep(5000);
-
+                    action.run();
+                    Thread.sleep(delayMilis);
                 } catch (InterruptedException e) {
-                    System.out.println("Stopping auto refresh, time to escape the loop");
                     break;
                 }
             }
         });
+        autoUpdate.start();
     }
-
-
 }
 

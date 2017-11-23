@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Vector;
 
-public interface IFolio extends Serializable,Observer{
+public interface IFolio extends Serializable{
+
+    enum ticker { EXISTS, VALID, INVALID, ERROR }
 
      List<IStock> getStocks();
 
@@ -17,10 +19,18 @@ public interface IFolio extends Serializable,Observer{
     double getTotalStockValue();
 
     void refresh();
-    
-    boolean isStock(String ticker);
 
-    boolean alreadyOwn(String tickerSymbol);
+    ticker checkTicker(String ticker);
 
-    boolean sameStockAdding(String tickerSymbol, int numberOfShares);
+    boolean alreadyExists(String tickerSymbol);
+
+    boolean buyStock(String tickerSymbol, int numberOfShares);
+
+    boolean sellStock(String tickerSymbol, int numberOfShares);
+
+    void autoRefreshStart();
+
+    void autoRefreshStop();
+
+    void delete();
 }

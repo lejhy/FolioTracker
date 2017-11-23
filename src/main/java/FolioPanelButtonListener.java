@@ -27,14 +27,13 @@ public class FolioPanelButtonListener implements ActionListener{
         }
     }
 
-    //TODO: Needs be be cleaned up
     private void addTicker() {
         String tickerSymbol = folioPanel.getTickerSymbolInput();
         String numberOfSharesInput = folioPanel.getNumberOfSharesInput();
         if (tickerSymbol.equals("")) {
             folioPanel.createAlert("Invalid Ticker", "A valid ticker symbol must be added");
         } else if (numberOfSharesInput.equals("")) {
-            folioPanel.createAlert("Invalid Ticker", "No share amount was added");
+            folioPanel.createAlert("Invalid Number", "No share amount was added");
         } else {
             Scanner scan = new Scanner(numberOfSharesInput.trim());
             if (!scan.hasNextInt()) {
@@ -44,23 +43,40 @@ public class FolioPanelButtonListener implements ActionListener{
                 if (scan.hasNext()) {
                     folioPanel.createAlert("Invalid Number", "The value entered for share amount is not a valid integer");
                 } else {
-                    if(!folioPanel.getFolio().isStock(tickerSymbol)) {
-                        folioPanel.createAlert("Incorrect Ticker", "The ticker entered does not match a real ticker");
-                    }
-                    else {
-                        if (folioPanel.getFolio().alreadyOwn(tickerSymbol)) {
-                            folioPanel.newStockOrAdd(tickerSymbol, numberOfShares);
-                        }
-                        else
-                            folioPanel.getFolio().addStock(tickerSymbol,numberOfShares);
-                    }
+                    addTicker(tickerSymbol, numberOfShares);
                 }
             }
         }
     }
 
+    private void addTicker(String tickerSymbol, int numberOfShares) {
+        switch(folioPanel.getFolio().checkTicker(tickerSymbol)) {
+            case EXISTS:
+                addExistingTicker(tickerSymbol, numberOfShares);
+                break;
+            case VALID:
+                folioPanel.getFolio().addStock(tickerSymbol, numberOfShares);
+                break;
+            case INVALID:
+                folioPanel.createAlert("Incorrect Ticker", "The ticker entered does not match a real ticker");
+                break;
+            case ERROR:
+                folioPanel.createAlert("Error", "Something has gone wrong with the request, probably connection issues.");
+                break;
+        }
+    }
+
+    private void addExistingTicker (String tickerSymbol, int numberOfShares) {
+        BinaryDialogFrame binary = new BinaryDialogFrame("Already have stock", "You already have this" +
+                " in your folio, would you like to add these stocks to the ones you already have?");
+        binary.addYesListener(e -> {
+            folioPanel.getFolio().buyStock(tickerSymbol, numberOfShares);
+            binary.dispose();
+        });
+        binary.addNoListener(e -> binary.dispose());
+    }
+
     private void refreshFolio() {
         folioPanel.getFolio().refresh();
     }
-
 }
