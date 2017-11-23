@@ -2,17 +2,19 @@ import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
-public class FolioPanel extends JPanel implements Observer,IFolioPanel {
+public class FolioPanel extends JPanel implements IFolioPanel {
 
     private final JButton refreshFolioButton;
     private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
     private JButton addNewTickerButton, closeFolioButton, deleteFolioButton;
+    private JToggleButton autoRefreshButton;
     private JTextField tickerSymbolTextField, numberOfSharesTextField;
     private JLabel totalValueLabel;
 
@@ -62,6 +64,8 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
         refreshFolioButton = new JButton("Refresh");
+        autoRefreshButton = new JToggleButton("AutoRefresh");
+
 
 
         totalValueLabel.setVisible(true);
@@ -69,6 +73,7 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
         footerPanel.add(refreshFolioButton);
+        footerPanel.add(autoRefreshButton);
         footerPanel.add(totalValueLabel, BorderLayout.EAST);
 
         add(footerPanel);
@@ -77,8 +82,17 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
     @Override
     public void update(Observable o, Object arg) {
-        updateTable();
-        stockTableModel.fireTableDataChanged();
+        System.out.println(arg);
+        if(arg.equals("Auto"))
+        {
+            // TODO: Might wanna trigger a separate listener but think this is fine
+            refreshFolioButton.getActionListeners()[0].actionPerformed(new ActionEvent(this,ActionEvent.ACTION_PERFORMED,""));
+        }
+        else {
+            updateTable();
+            stockTableModel.fireTableDataChanged();
+        }
+
     }
 
     private void updateTable() {
@@ -115,6 +129,11 @@ public class FolioPanel extends JPanel implements Observer,IFolioPanel {
 
     @Override
     public void addTableModelListener(TableModelListener t) { stockTableModel.addTableModelListener(t); }
+
+    @Override
+    public void addAutoRefreshFolioListener(ActionListener a) {
+        autoRefreshButton.addActionListener(a);
+    }
 
     public IFolio getFolio() {
         return folio;

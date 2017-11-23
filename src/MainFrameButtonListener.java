@@ -7,7 +7,7 @@ import java.io.*;
 
 public class MainFrameButtonListener implements ActionListener {
 
-    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, SAVE}
+    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, AUTO_FOLIO, SAVE}
 
     private type buttonPressed;
     private IMainFrame mainFrame;
@@ -32,8 +32,14 @@ public class MainFrameButtonListener implements ActionListener {
             case SAVE:
                 save();
                 break;
+            case AUTO_FOLIO:
+                flipAutoOnOff();
         }
 
+    }
+
+    private void flipAutoOnOff() {
+        mainFrame.flipAutoOnOff();
     }
 
     private void deletePortfolio() {
@@ -97,6 +103,8 @@ public class MainFrameButtonListener implements ActionListener {
         folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
         folioPanel.addRefreshFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.REFRESH_FOLIO, folioPanel));
         folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
+        folioPanel.addAutoRefreshFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.AUTO_FOLIO, mainFrame));
+
         folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
         folioPanel.addTableModelListener( new FolioTableListener(folioPanel) );
         mainFrame.addFolioTab((Component) folioPanel);

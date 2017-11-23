@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Vector;
 
 public interface IMainFrame {
 
@@ -21,4 +20,5 @@ public interface IMainFrame {
 
     JTabbedPane getTabbedPane();
 
+    void flipAutoOnOff();
 }

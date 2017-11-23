@@ -1,16 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Observer;
 
 public class MainFrame extends JFrame implements IMainFrame {
 
     private JTabbedPane tabbedPane;
     private JPanel defaultTab;
     public JMenuItem createMenuItem, openMenuItem, exitMenuItem;
+    IAutoUpdate auto;
 
 
     public MainFrame() {
 
+        auto = new AutoUpdate();
         setTitle("Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -54,12 +57,16 @@ public class MainFrame extends JFrame implements IMainFrame {
     public boolean addFolioTab(Component folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
+        auto.addObserver((Observer) folioTab);
         return true;
     }
 
     public boolean removeFolioTab() {
         int folioTabIndex = tabbedPane.indexOfComponent(tabbedPane.getSelectedComponent());
-        if (folioTabIndex >= 0) tabbedPane.removeTabAt(folioTabIndex);
+        if (folioTabIndex >= 0) {
+            auto.deleteObserver((Observer) tabbedPane.getComponentAt(folioTabIndex));
+            tabbedPane.removeTabAt(folioTabIndex);
+        }
 
         if (tabbedPane.getTabCount() == 0) tabbedPane.addTab("Empty", defaultTab);
 
@@ -93,6 +100,11 @@ public class MainFrame extends JFrame implements IMainFrame {
 
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
+    }
+
+    @Override
+    public void flipAutoOnOff() {
+        auto.flipIsRunning();
     }
 
 }

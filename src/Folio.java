@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 public class Folio extends Observable implements IFolio {
 
@@ -31,7 +32,7 @@ public class Folio extends Observable implements IFolio {
             stocks.add(stock);
             totalStockValue += (number*price);
             setChanged();
-            notifyObservers();
+            notifyObservers("Manual");
             return true;
         } catch (WebsiteDataException e) {
             e.printStackTrace();
@@ -55,11 +56,16 @@ public class Folio extends Observable implements IFolio {
             }
         }
         setChanged();
-        notifyObservers();
+        notifyObservers("Manual");
     }
 
 
     public double getTotalStockValue() {
         return totalStockValue;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        refresh();
     }
 }

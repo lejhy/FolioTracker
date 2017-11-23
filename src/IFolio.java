@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Observer;
 import java.util.Vector;
 
-public interface IFolio extends Serializable{
+public interface IFolio extends Serializable,Observer{
 
     public List<IStock> getStocks();
 
