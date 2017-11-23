@@ -85,7 +85,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         System.out.println(arg);
         if(arg.equals("Auto"))
         {
-            // TODO: Might wanna trigger a separate listener but think this is fine
+            //TODO: Might wanna trigger a different a new listener, not refresh's listener. I dunno
             refreshFolioButton.getActionListeners()[0].actionPerformed(new ActionEvent(this,ActionEvent.ACTION_PERFORMED,""));
         }
         else {
@@ -133,6 +133,11 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     @Override
     public void addAutoRefreshFolioListener(ActionListener a) {
         autoRefreshButton.addActionListener(a);
+    }
+
+    @Override
+    public void createAlert(String name, String message) {
+        new AlertFrame(name,message);
     }
 
     public IFolio getFolio() {

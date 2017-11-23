@@ -27,4 +27,6 @@ public interface IFolioPanel extends Observer {
     void addTableModelListener(TableModelListener tableModelListener);
 
     void addAutoRefreshFolioListener(ActionListener actionListener);
+
+    void createAlert(String name, String message);
 }

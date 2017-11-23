@@ -5,12 +5,9 @@ import java.util.Observer;
 public class AutoUpdate extends Observable implements IAutoUpdate {
     private boolean isRunning;
     Thread auto;
-    boolean threadAlive;
-
 
     public AutoUpdate() {
         isRunning = false;
-        threadAlive=false;
         resetThread();
     }
 
