@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 public class Folio extends Observable implements IFolio {
 
@@ -55,22 +54,47 @@ public class Folio extends Observable implements IFolio {
         }
     }
 
+
+    // TODO: Should probably be changed to use indexes instead of looping through the list
     public boolean sameStockAdding(String ticker, int amount) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 s.setNumber(s.getNumber()+amount);
-                try {
-                    totalStockValue+= amount*(getSharePrice(ticker));
-                } catch (NoSuchTickerException e) {
-                    e.printStackTrace();
-                } catch (WebsiteDataException e) {
-                    e.printStackTrace();
-                }
+                totalStockValue+= amount*s.getValue();
                 setChanged();
                 notifyObservers("Manual");
                 return true;
             }
         }
+        return false;
+    }
+
+    // TODO: Same as sameStockAdding
+    @Override
+    public boolean removeStocks(String ticker, int value) {
+        for(IStock s : stocks) {
+            if(s.getSymbol().equals(ticker)) {
+                if(value>s.getNumber()) return false;
+                else {
+                    if(value==s.getNumber()) {
+                        stocks.remove(s);
+                        calcTotalStockValue();
+                        setChanged();
+                        notifyObservers("Manual");
+                        return true;
+                    }
+                    else {
+                        s.setNumber(s.getNumber()-value);
+                        totalStockValue -= value*s.getValue();
+                        setChanged();
+                        notifyObservers("Manual");
+                        return true;
+                    }
+                }
+            }
+
+        }
+        System.out.println("Shouldn't be here");
         return false;
     }
 
@@ -103,6 +127,13 @@ public class Folio extends Observable implements IFolio {
 
     public double getTotalStockValue() {
         return totalStockValue;
+    }
+
+    private void calcTotalStockValue() {
+        totalStockValue=0;
+        for(IStock s : stocks) {
+            totalStockValue+= s.getValue()*s.getNumber();
+        }
     }
 
     @Override

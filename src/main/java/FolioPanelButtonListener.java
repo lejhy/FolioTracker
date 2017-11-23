@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class FolioPanelButtonListener implements ActionListener{
 
-    enum type {ADD_TICKER, CLOSE_FOLIO, DELETE_FOLIO, REFRESH_FOLIO}
+    enum type {ADD_TICKER, REFRESH_FOLIO, BUY_STOCK, SELL_STOCK }
 
     private IFolioPanel folioPanel;
     private type buttonPressed;
@@ -24,7 +24,36 @@ public class FolioPanelButtonListener implements ActionListener{
             case REFRESH_FOLIO:
                 refreshFolio();
                 break;
+            case BUY_STOCK:
+                buyStock();
+                break;
+            case SELL_STOCK:
+                sellStock();
+                break;
         }
+    }
+
+    private void sellStock() {
+        int i = folioPanel.getSelectedRow();
+        if(i==-1) {
+            sendNotSelectedAlert("sell");
+        } else {
+            new BuySellFrame("Sell", false, folioPanel, i);
+        }
+
+    }
+
+    private void buyStock() {
+        int i = folioPanel.getSelectedRow();
+        if(i==-1) {
+            sendNotSelectedAlert("buy");
+        } else {
+            new BuySellFrame("Buy", true, folioPanel, i);
+        }
+    }
+
+    private void sendNotSelectedAlert(String string) {
+        folioPanel.createAlert("No row selected", "You must select a row of the stock you wish to " + string);
     }
 
     //TODO: Needs be be cleaned up

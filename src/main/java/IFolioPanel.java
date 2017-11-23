@@ -31,4 +31,6 @@ public interface IFolioPanel extends Observer {
     void createAlert(String name, String message);
 
     void newStockOrAdd(String tickerSymbol, int numberOfShares);
+
+    int getSelectedRow();
 }

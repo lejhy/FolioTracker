@@ -33,7 +33,8 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         JLabel numberOfSharesLabel = new JLabel("Number of Shares");
         numberOfSharesTextField = new JTextField(20);
 
-        addNewTickerButton = new JButton("Add");
+        addNewTickerButton = new JButton("Add New Stock");
+
 
         headerPanel.add(tickerSymbolLabel);
         headerPanel.add(tickerSymbolTextField);
@@ -42,7 +43,6 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         headerPanel.add(addNewTickerButton);
 
         add(headerPanel);
-
         String[] columns = {
                 "Ticker Symbol",
                 "Stock Name",
@@ -61,6 +61,17 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
         JPanel footerPanel = new JPanel();
 
+
+        JButton buyButton = new JButton("Buy Existing Stock");
+        JButton sellButton = new JButton("Sell Existing Stock");
+
+        ActionListener a = new FolioPanelButtonListener(FolioPanelButtonListener.type.BUY_STOCK, this);
+        buyButton.addActionListener(a);
+        a = new FolioPanelButtonListener(FolioPanelButtonListener.type.SELL_STOCK, this);
+        sellButton.addActionListener(a);
+
+        add(buyButton);
+        add(sellButton);
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
         refreshFolioButton = new JButton("Refresh");
@@ -150,6 +161,12 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             binary.dispose();
         });
         binary.addNoListener(e -> binary.dispose());
+    }
+
+    @Override
+    public int getSelectedRow() {
+        return stockTable.getSelectedRow();
+
     }
 
     public IFolio getFolio() {

@@ -2,7 +2,6 @@
 import java.io.Serializable;
 import java.util.List;
 import java.util.Observer;
-import java.util.Vector;
 
 public interface IFolio extends Serializable,Observer{
 
@@ -23,4 +22,6 @@ public interface IFolio extends Serializable,Observer{
     boolean alreadyOwn(String tickerSymbol);
 
     boolean sameStockAdding(String tickerSymbol, int numberOfShares);
+
+    boolean removeStocks(String name, int value);
 }
