@@ -112,7 +112,8 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             stockTableModel.setValueAt(stock.getValue(), i, 4);
             stockTableModel.setValueAt(stock.getDifference(),i,5);
         }
-        totalValueLabel.setText("Total value of folio : " + folio.getTotalStockValue());
+        String totalStockValue = String.format("%.2f", folio.getTotalStockValue());
+        totalValueLabel.setText("Total value of folio : " + totalStockValue);
     }
 
     @Override
