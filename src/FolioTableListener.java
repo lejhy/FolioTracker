@@ -12,7 +12,6 @@ public class FolioTableListener implements TableModelListener {
 
     @Override
     public void tableChanged(TableModelEvent e) {
-
         IStock stock = folioPanel.getFolio().getStocks().get(e.getFirstRow());
         TableModel tableModel = (TableModel)e.getSource();
 
@@ -26,8 +25,9 @@ public class FolioTableListener implements TableModelListener {
                 break;
             default:
                 break;
+
+
         }
+
     }
-
-
 }
