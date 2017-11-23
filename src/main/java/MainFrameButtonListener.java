@@ -95,11 +95,14 @@ public class MainFrameButtonListener implements ActionListener {
     private void createFolioPanel(IFolio folio) {
         IFolioPanel folioPanel = new FolioPanel(folio);
         folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
-        folioPanel.addRefreshFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.REFRESH_FOLIO, folioPanel));
-        folioPanel.addAutoRefreshFolioListener( new FolioPanelItemListener(FolioPanelItemListener.Type.AUTO_REFRESH, folio));
+        folioPanel.addRefreshFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.REFRESH_FOLIO, folioPanel) );
+        folioPanel.addAutoRefreshFolioListener( new FolioPanelItemListener(FolioPanelItemListener.Type.AUTO_REFRESH, folio) );
+
         folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
 
+        folioPanel.addSaveFolioListener( new FileManipulationListener(FileManipulationListener.type.SAVE_FOLIO, mainFrame, folioPanel));
         folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
+
         folioPanel.addTableModelListener( new FolioTableListener(folioPanel) );
         mainFrame.addFolioTab((Component) folioPanel);
     }

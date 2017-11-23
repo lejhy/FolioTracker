@@ -23,6 +23,8 @@ public interface IFolioPanel extends Observer {
 
     void addCloseFolioListener(ActionListener actionListener);
 
+    void addSaveFolioListener(ActionListener actionListener);
+
     void addRefreshFolioListener(ActionListener actionListener);
 
     void addTableModelListener(TableModelListener tableModelListener);

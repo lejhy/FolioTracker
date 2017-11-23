@@ -14,7 +14,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
-    private JButton addNewTickerButton, closeFolioButton, deleteFolioButton;
+    private JButton saveFolioButton, addNewTickerButton, closeFolioButton, deleteFolioButton;
     private JToggleButton autoRefreshButton;
     private JTextField tickerSymbolTextField, numberOfSharesTextField;
     private JLabel totalValueLabel;
@@ -62,16 +62,15 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
         JPanel footerPanel = new JPanel();
 
+        saveFolioButton = new JButton("Save");
         closeFolioButton = new JButton("Close");
         deleteFolioButton = new JButton("Delete");
         refreshFolioButton = new JButton("Refresh");
         autoRefreshButton = new JToggleButton("AutoRefresh");
 
-
-
-
         totalValueLabel.setVisible(true);
 
+        footerPanel.add(saveFolioButton);
         footerPanel.add(closeFolioButton);
         footerPanel.add(deleteFolioButton);
         footerPanel.add(refreshFolioButton);
@@ -118,6 +117,9 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
     @Override
     public void addCloseFolioListener(ActionListener a) { closeFolioButton.addActionListener(a); }
+
+    @Override
+    public void addSaveFolioListener(ActionListener a) { saveFolioButton.addActionListener(a); }
 
     @Override
     public void addRefreshFolioListener(ActionListener a) { refreshFolioButton.addActionListener(a); }
