@@ -51,8 +51,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
                 "Number of Shares",
                 "Price per Share",
                 "Value of Holding",
-                "Price Change",
-                "Buy/Sell"};
+                "Price Change" };
 
         stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
