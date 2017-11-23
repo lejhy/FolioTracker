@@ -140,6 +140,17 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         new AlertFrame(name,message);
     }
 
+    @Override
+    public void newStockOrAdd(String tickerSymbol, int numberOfShares) {
+        BinaryDialogFrame binary = new BinaryDialogFrame("Already have stock", "You already have this" +
+                " in your folio, would you like to add these stocks to the ones you already have?");
+        binary.addYesListener(e -> {
+            folio.sameStockAdding(tickerSymbol, numberOfShares);
+            binary.dispose();
+        });
+        binary.addNoListener(e -> binary.dispose());
+    }
+
     public IFolio getFolio() {
         return folio;
     }

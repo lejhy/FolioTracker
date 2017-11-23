@@ -24,23 +24,64 @@ public class Folio extends Observable implements IFolio {
         return name;
     }
 
+    private double getSharePrice(String ticker) throws NoSuchTickerException, WebsiteDataException {
+        return Double.parseDouble(StrathQuoteServer.getLastValue(ticker));
+    }
+
     @Override
     public boolean addStock(String ticker, int number) {
         try {
-            double price = Double.parseDouble(StrathQuoteServer.getLastValue(ticker));
+            double price = getSharePrice(ticker);
             Stock stock = new Stock(ticker, ticker, number, price);
             stocks.add(stock);
             totalStockValue += (number*price);
             setChanged();
-            notifyObservers("Manual");
+            notifyObservers("Add");
             return true;
-        } catch (WebsiteDataException e) {
-            e.printStackTrace();
-            return false;
-        } catch (NoSuchTickerException e) {
+        } catch (WebsiteDataException | NoSuchTickerException e) {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public boolean isStock(String ticker) {
+        try {
+            StrathQuoteServer.getLastValue(ticker);
+            return true;
+        } catch (WebsiteDataException | NoSuchTickerException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean sameStockAdding(String ticker, int amount) {
+        for(IStock s : stocks) {
+            if(s.getSymbol().equals(ticker)) {
+                s.setNumber(s.getNumber()+amount);
+                try {
+                    totalStockValue+= amount*(getSharePrice(ticker));
+                } catch (NoSuchTickerException e) {
+                    e.printStackTrace();
+                } catch (WebsiteDataException e) {
+                    e.printStackTrace();
+                }
+                setChanged();
+                notifyObservers("Manual");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean alreadyOwn(String ticker) {
+        for(IStock s : stocks) {
+            if(s.getSymbol().equals(ticker)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

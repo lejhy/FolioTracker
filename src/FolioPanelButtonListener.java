@@ -27,6 +27,7 @@ public class FolioPanelButtonListener implements ActionListener{
         }
     }
 
+    //TODO: Needs be be cleaned up
     private void addTicker() {
         String tickerSymbol = folioPanel.getTickerSymbolInput();
         String numberOfSharesInput = folioPanel.getNumberOfSharesInput();
@@ -43,11 +44,15 @@ public class FolioPanelButtonListener implements ActionListener{
                 if (scan.hasNext()) {
                     folioPanel.createAlert("Invalid Number", "The value entered for share amount is not a valid integer");
                 } else {
-                    if (folioPanel.getFolio().addStock(tickerSymbol, numberOfShares)) {
-                        System.out.println("ticker added");
-                    } else {
-                        folioPanel.createAlert("Wrong Ticker", "The ticker symbol entered does not match any valid ticker");
-                        System.out.println("ticker error");
+                    if(!folioPanel.getFolio().isStock(tickerSymbol)) {
+                        folioPanel.createAlert("Incorrect Ticker", "The ticker entered does not match a real ticker");
+                    }
+                    else {
+                        if (folioPanel.getFolio().alreadyOwn(tickerSymbol)) {
+                            folioPanel.newStockOrAdd(tickerSymbol, numberOfShares);
+                        }
+                        else
+                            folioPanel.getFolio().addStock(tickerSymbol,numberOfShares);
                     }
                 }
             }

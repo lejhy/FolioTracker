@@ -29,4 +29,6 @@ public interface IFolioPanel extends Observer {
     void addAutoRefreshFolioListener(ActionListener actionListener);
 
     void createAlert(String name, String message);
+
+    void newStockOrAdd(String tickerSymbol, int numberOfShares);
 }

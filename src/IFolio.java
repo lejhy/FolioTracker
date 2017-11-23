@@ -6,15 +6,21 @@ import java.util.Vector;
 
 public interface IFolio extends Serializable,Observer{
 
-    public List<IStock> getStocks();
+     List<IStock> getStocks();
 
-    public String getName();
+     String getName();
 
-    public boolean addStock(String ticker, int number);
+     boolean addStock(String ticker, int number);
 
     void addObserver(Observer o);
 
-    public double getTotalStockValue();
+    double getTotalStockValue();
 
     void refresh();
+    
+    boolean isStock(String ticker);
+
+    boolean alreadyOwn(String tickerSymbol);
+
+    boolean sameStockAdding(String tickerSymbol, int numberOfShares);
 }
