@@ -73,7 +73,7 @@ public class BuySellListener implements ActionListener {
 
 
     private void sellStocks() {
-        if(folioPanel.getFolio().removeStocks(name,value)) frame.dispose();
+        if(folioPanel.getFolio().sellStocks(name,value)) frame.dispose();
         else
             folioPanel.createAlert("Too many stocks entered", "Cannot sell shares than the folio contains");
 

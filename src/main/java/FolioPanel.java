@@ -102,21 +102,26 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
     private void updateTable() {
         List<IStock> stocks = folio.getStocks();
+        System.out.println(folio.getStocks().size());
 
         int extraColumns = stocks.size() - stockTableModel.getRowCount();
+
         for (int i = 0; i < extraColumns; i++) {
             stockTableModel.addRow(new Vector<>(stockTableModel.getColumnCount()));
         }
-
-        for (int i = 0; i < stockTableModel.getRowCount(); i++){
-            IStock stock = stocks.get(i);
-            stockTableModel.setValueAt(stock.getSymbol(), i, 0);
-            stockTableModel.setValueAt(stock.getName(), i, 1);
-            stockTableModel.setValueAt(stock.getNumber(), i, 2);
-            stockTableModel.setValueAt(stock.getPrice(), i, 3);
-            stockTableModel.setValueAt(stock.getValue(), i, 4);
-            stockTableModel.setValueAt(stock.getDifference(),i,5);
+        if(extraColumns==-1) {
+            stockTableModel.removeRow(0);
         }
+        for (int i = 0; i < stocks.size(); i++) {
+                IStock stock = stocks.get(i);
+                stockTableModel.setValueAt(stock.getSymbol(), i, 0);
+                stockTableModel.setValueAt(stock.getName(), i, 1);
+                stockTableModel.setValueAt(stock.getNumber(), i, 2);
+                stockTableModel.setValueAt(stock.getPrice(), i, 3);
+                stockTableModel.setValueAt(stock.getValue(), i, 4);
+                stockTableModel.setValueAt(stock.getDifference(), i, 5);
+            }
+
         String totalStockValue = String.format("%.2f", folio.getTotalStockValue());
         totalValueLabel.setText("Total value of folio : " + totalStockValue);
     }

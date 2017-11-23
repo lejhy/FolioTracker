@@ -8,7 +8,7 @@ public class BuySellFrame extends JFrame implements IBuySellFrame {
     private JPanel panel;
 
     public BuySellFrame(String name, boolean buy, IFolioPanel folioPanel, int index) {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setName(name);
         setSize(250,150);
         this.buy = buy;
@@ -16,23 +16,21 @@ public class BuySellFrame extends JFrame implements IBuySellFrame {
         this.index = index;
         panel = new JPanel();
 //        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
-        if(this.buy)
-            setAsBuyFrame();
-        else
-            setAsSellFrame();
-
+        setup();
     }
 
 
 
-    private void setAsBuyFrame() {
-        JLabel message = new JLabel("Please enter the amount you wish to buy");
-        JLabel label = new JLabel("Amount=");
-        JTextField input = new JTextField(20);
+    private void setup() {
+        String buyOrSell = "";
+        if(buy)
+            buyOrSell= " buy";
+        else
+            buyOrSell=" sell";
+        JLabel message = new JLabel("Please enter the amount you wish to" + buyOrSell);
+        JTextField input = new JTextField(10);
         JButton enter = new JButton("Enter");
         ActionListener l = new BuySellListener(buy, input, folio, this, folio.getFolio().getStocks().get(index).getName());
-
         enter.addActionListener(l);
 
         panel.add(message);
@@ -42,9 +40,6 @@ public class BuySellFrame extends JFrame implements IBuySellFrame {
         add(panel);
 
         setVisible(true);
-    }
-
-    private void setAsSellFrame() {
     }
 
     @Override

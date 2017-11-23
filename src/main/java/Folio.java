@@ -79,9 +79,8 @@ public class Folio extends Observable implements IFolio {
         return false;
     }
 
-    // TODO: Same as sameStockAdding
     @Override
-    public boolean removeStocks(String ticker, int value) {
+    public boolean sellStocks(String ticker, int value) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 if(value>s.getNumber()) return false;

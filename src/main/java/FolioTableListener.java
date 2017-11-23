@@ -12,22 +12,26 @@ public class FolioTableListener implements TableModelListener {
 
     @Override
     public void tableChanged(TableModelEvent e) {
-        IStock stock = folioPanel.getFolio().getStocks().get(e.getFirstRow());
-        TableModel tableModel = (TableModel)e.getSource();
+        if (folioPanel.getFolio().getStocks().isEmpty()) {
+            System.out.println("Empty here");
+        } else {
+            IStock stock = folioPanel.getFolio().getStocks().get(e.getFirstRow());
+            TableModel tableModel = (TableModel) e.getSource();
 
-        switch (e.getColumn()) {
-            case 1:
-                stock.setName(tableModel.getValueAt(e.getFirstRow(), 1).toString());
-                break;
-            case 2:
-                stock.setNumber(Integer.parseInt(tableModel.getValueAt(e.getFirstRow(), 2).toString()));
-                folioPanel.getStockTable().getModel().setValueAt(stock.getValue(), e.getFirstRow(), 4);
-                break;
-            default:
-                break;
+            switch (e.getColumn()) {
+                case 1:
+                    stock.setName(tableModel.getValueAt(e.getFirstRow(), 1).toString());
+                    break;
+                case 2:
+                    stock.setNumber(Integer.parseInt(tableModel.getValueAt(e.getFirstRow(), 2).toString()));
+                    folioPanel.getStockTable().getModel().setValueAt(stock.getValue(), e.getFirstRow(), 4);
+                    break;
+                default:
+                    break;
 
+
+            }
 
         }
-
     }
 }
