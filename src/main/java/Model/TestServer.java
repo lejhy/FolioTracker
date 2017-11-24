@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Random;
 
-class TestServer {
+class TestServer implements IServer {
     private static String[] symbols = {"ABC","DEF","HIJ"};
 
     static String getLastValue(String ticker) throws NoSuchTickerException, WebsiteDataException {

@@ -18,7 +18,7 @@ import java.io.*;
  * York Model.Stock Exchange (NYSE) or NASDAQ.
  */
 
-public class StrathQuoteServer {
+public class StrathQuoteServer implements IServer{
 
     protected static final String _URL = "http://www.tickertech.com/cgi/?ticker=";
 

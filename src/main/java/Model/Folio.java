@@ -13,7 +13,6 @@ public class Folio extends Observable implements IFolio {
     private List<IStock> stocks;
     private IAutoUpdate autoUpdate;
 
-
     public Folio(String name) {
         this.name = name;
         stocks = new ArrayList<>();
@@ -31,8 +30,8 @@ public class Folio extends Observable implements IFolio {
     }
 
     private double getSharePrice(String ticker) throws NoSuchTickerException, WebsiteDataException {
-        return Double.parseDouble(TestServer.getLastValue(ticker));
-        //return Double.parseDouble(Model.StrathQuoteServer.getLastValue(ticker));
+        //return Double.parseDouble(TestServer.getLastValue(ticker));
+        return Double.parseDouble(Model.StrathQuoteServer.getLastValue(ticker));
     }
 
     @Override
@@ -89,7 +88,7 @@ public class Folio extends Observable implements IFolio {
     }
 
     @Override
-    public boolean sellStocks(String ticker, int value) {
+    public boolean sellStock(String ticker, int value) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 if(value>s.getNumber()) return false;

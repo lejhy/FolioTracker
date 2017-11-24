@@ -30,7 +30,7 @@ public interface IFolio extends Serializable{
 
     void autoRefreshStop();
 
-    boolean sellStocks(String name, int value);
+    boolean sellStock(String name, int value);
 
     void delete();
 
