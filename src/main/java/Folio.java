@@ -56,8 +56,7 @@ public class Folio extends Observable implements IFolio {
             return IFolio.ticker.EXISTS;
         } else {
             try {
-                TestServer.getLastValue(ticker);
-                //StrathQuoteServer.getLastValue(ticker);
+                getSharePrice(ticker);
                 return IFolio.ticker.VALID;
             } catch (NoSuchTickerException e) {
                 return IFolio.ticker.INVALID;
@@ -131,8 +130,7 @@ public class Folio extends Observable implements IFolio {
     public void refresh() {
         for(IStock stock : stocks) {
             try {
-                double newPrice = Double.parseDouble(TestServer.getLastValue(stock.getSymbol()));
-                //double newPrice = Double.parseDouble(StrathQuoteServer.getLastValue(stock.getSymbol()));
+                double newPrice = getSharePrice(stock.getSymbol());
                 stock.setPrice(newPrice);
             } catch (WebsiteDataException e) {
                 e.printStackTrace();

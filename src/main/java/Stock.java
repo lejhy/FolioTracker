@@ -71,7 +71,7 @@ public class Stock implements IStock {
     public void setPrice(double price) {
         if(price != this.price) {
             difference = price - this.price;
-            percentageChange = price / difference * 100;
+            percentageChange = difference / this.price * 100;
         }
         this.price = price;
         if(price > high)
