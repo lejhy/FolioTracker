@@ -39,7 +39,7 @@ public class Folio extends Observable implements IFolio {
             double price = getSharePrice(ticker);
             IStock stock = new Stock(ticker, ticker, number, price);
             stocks.add(stock);
-            stock.updateInitialSpending(0 - price*number);
+            stock.updateInitialSpending(price * number);
             setChanged();
             notifyObservers("Add");
             return true;
@@ -74,7 +74,7 @@ public class Folio extends Observable implements IFolio {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 s.setNumber( s.getNumber() + number );
-                s.updateInitialSpending(0- (s.getPrice() * number));
+                s.updateInitialSpending(s.getPrice() * number);
                 setChanged();
                 notifyObservers("Buy");
                 return true;
@@ -91,14 +91,14 @@ public class Folio extends Observable implements IFolio {
                 else {
                     if(value==s.getNumber()) {
                         stocks.remove(s);
-                        s.updateInitialSpending(s.getPrice() * value);
+                        s.updateInitialSpending(- s.getPrice() * value);
                         setChanged();
                         notifyObservers("Manual");
                         return true;
                     }
                     else {
                         s.setNumber(s.getNumber()-value);
-                        s.updateInitialSpending(s.getPrice() * value);
+                        s.updateInitialSpending(- s.getPrice() * value);
                         setChanged();
                         notifyObservers("Manual");
                         return true;

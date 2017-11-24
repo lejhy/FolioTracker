@@ -135,7 +135,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             }
             stockTableModel.setValueAt(stock.getStockHigh(), i , 6);
             stockTableModel.setValueAt(stock.getStockLow(), i , 7);
-            stockTableModel.setValueAt(stock.getInitialSpending(), i, 8);
+            stockTableModel.setValueAt(stock.getValue() - stock.getInitialSpending(), i, 8);
 
         }
 
