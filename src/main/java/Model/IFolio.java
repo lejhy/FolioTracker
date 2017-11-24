@@ -26,8 +26,6 @@ public interface IFolio extends Serializable{
 
     boolean buyStock(String tickerSymbol, int numberOfShares);
 
-    boolean sellStock(String tickerSymbol, int numberOfShares);
-
     void autoRefreshStart();
 
     void autoRefreshStop();

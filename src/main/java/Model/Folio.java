@@ -37,16 +37,20 @@ public class Folio extends Observable implements IFolio {
 
     @Override
     public boolean addStock(String ticker, int number) {
-        try {
-            double price = getSharePrice(ticker);
-            IStock stock = new Stock(ticker, ticker, number, price);
-            stocks.add(stock);
-            stock.updateInitialSpending(price * number);
-            setChanged();
-            notifyObservers("Add");
-            return true;
-        } catch (WebsiteDataException | NoSuchTickerException e) {
-            e.printStackTrace();
+        if (number > 0) {
+            try {
+                double price = getSharePrice(ticker);
+                IStock stock = new Stock(ticker, ticker, number, price);
+                stocks.add(stock);
+                stock.updateInitialSpending(price * number);
+                setChanged();
+                notifyObservers("Add");
+                return true;
+            } catch (WebsiteDataException | NoSuchTickerException e) {
+                e.printStackTrace();
+                return false;
+            }
+        } else {
             return false;
         }
     }
@@ -110,11 +114,6 @@ public class Folio extends Observable implements IFolio {
             }
         }
         System.out.println("Shouldn't be here");
-        return false;
-    }
-
-    @Override
-    public boolean sellStock(String ticker, int number) {
         return false;
     }
 

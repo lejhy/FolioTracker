@@ -42,7 +42,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         JLabel numberOfSharesLabel = new JLabel("Number of Shares");
         numberOfSharesTextField = new JTextField(20);
 
-        addNewTickerButton = new JButton("Add New Model.Stock");
+        addNewTickerButton = new JButton("Add New Stock");
 
 
         headerPanel.add(tickerSymbolLabel);
@@ -54,13 +54,13 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         add(headerPanel);
         String[] columns = {
                 "Ticker Symbol",
-                "Model.Stock Name",
+                "Stock Name",
                 "Number of Shares",
                 "Price per Share",
                 "Value of Holding",
                 "Price Change",
-                "Model.Stock High",
-                "Model.Stock Low",
+                "Stock High",
+                "Stock Low",
                 "Net profit"};
 
         stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
@@ -69,8 +69,8 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         totalValueLabel = new JLabel("Total value of folio : " + folio.getTotalStockValue());
         updateTable();
 
-        JButton buyButton = new JButton("Buy Existing Model.Stock");
-        JButton sellButton = new JButton("Sell Existing Model.Stock");
+        JButton buyButton = new JButton("Buy Existing Stock");
+        JButton sellButton = new JButton("Sell Existing Stock");
 
         ActionListener a = new FolioPanelButtonListener(FolioPanelButtonListener.Type.BUY_STOCK, this);
         buyButton.addActionListener(a);
@@ -110,7 +110,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("View.FolioPanel update " + arg.toString());
+        System.out.println("FolioPanel update " + arg.toString());
         updateTable();
         stockTableModel.fireTableDataChanged();
     }

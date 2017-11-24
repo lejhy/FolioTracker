@@ -17,8 +17,6 @@ public interface IFolioPanel extends Observer {
 
     String getNumberOfSharesInput();
 
-    JTable getStockTable();
-
     String getName();
 
     void addAddNewTickerListener(ActionListener actionListener);
