@@ -10,13 +10,13 @@ import java.util.Scanner;
 
 public class FolioPanelButtonListener implements ActionListener{
 
-    public enum type {ADD_TICKER, REFRESH_FOLIO, BUY_STOCK, SELL_STOCK }
+    public enum Type {ADD_TICKER, REFRESH_FOLIO, BUY_STOCK, SELL_STOCK }
 
     private IFolioPanel folioPanel;
-    private type buttonPressed;
+    private Type buttonPressed;
 
 
-    public FolioPanelButtonListener (type buttonPressed, IFolioPanel folioPanel) {
+    public FolioPanelButtonListener (Type buttonPressed, IFolioPanel folioPanel) {
         this.buttonPressed = buttonPressed;
         this.folioPanel = folioPanel;
     }

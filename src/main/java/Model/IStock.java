@@ -3,34 +3,32 @@ package Model;
 import java.io.Serializable;
 
 public interface IStock extends Serializable {
-
     void updateInitialSpending(double money);
 
- double getInitialSpending();
+    double getInitialSpending();
 
- double getDifference();
+    double getDifference();
 
-     double getPercentageChange();
+    double getPercentageChange();
 
-     String getSymbol();
+    String getSymbol();
 
-     String getName();
+    String getName();
 
-     int getNumber();
+    int getNumber();
 
-     double getPrice();
+    double getPrice();
 
-     double getValue();
+    double getValue();
 
-     void setName(String name);
+    void setName(String name);
 
-     void setNumber(int number);
+    void setNumber(int number);
 
-     void setPrice(double price);
+    void setPrice(double price);
 
-     double getStockHigh();
+    double getStockHigh();
 
-     double getStockLow();
-
+    double getStockLow();
 
 }

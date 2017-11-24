@@ -17,7 +17,7 @@ public class Folio extends Observable implements IFolio {
     public Folio(String name) {
         this.name = name;
         stocks = new ArrayList<>();
-        autoUpdate = new AutoUpdate(() -> refresh(), 5000);
+        autoUpdate = new AutoUpdate(this::refresh, 5000);
     }
 
     @Override
@@ -134,9 +134,7 @@ public class Folio extends Observable implements IFolio {
             try {
                 double newPrice = getSharePrice(stock.getSymbol());
                 stock.setPrice(newPrice);
-            } catch (WebsiteDataException e) {
-                e.printStackTrace();
-            } catch (NoSuchTickerException e) {
+            } catch (WebsiteDataException | NoSuchTickerException e) {
                 e.printStackTrace();
             }
         }
@@ -174,7 +172,7 @@ public class Folio extends Observable implements IFolio {
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         name = (String)in.readObject();
         stocks = (List<IStock>) in.readObject();
-        autoUpdate = new AutoUpdate(() -> refresh(), 5000);
+        autoUpdate = new AutoUpdate(this::refresh, 5000);
         if (in.readBoolean()) autoUpdate.start();
     }
 }

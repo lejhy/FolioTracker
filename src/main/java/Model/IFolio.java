@@ -8,11 +8,11 @@ public interface IFolio extends Serializable{
 
     enum ticker { EXISTS, VALID, INVALID, ERROR }
 
-     List<IStock> getStocks();
+    List<IStock> getStocks();
 
-     String getName();
+    String getName();
 
-     boolean addStock(String ticker, int number);
+    boolean addStock(String ticker, int number);
 
     void addObserver(Observer o);
 

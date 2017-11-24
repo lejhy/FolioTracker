@@ -8,7 +8,8 @@ public class MainFrame extends JFrame implements IMainFrame {
 
     private JTabbedPane tabbedPane;
     private JPanel defaultTab;
-    public JMenuItem createMenuItem, openMenuItem, exitMenuItem;
+    private JMenuItem createMenuItem;
+    private JMenuItem openMenuItem;
 
 
     public MainFrame() {
@@ -25,7 +26,7 @@ public class MainFrame extends JFrame implements IMainFrame {
 
         createMenuItem = new JMenuItem("Create");
         openMenuItem = new JMenuItem("Open");
-        exitMenuItem = new JMenuItem("Exit");
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.addActionListener(e -> System.exit(0));
 
         fileMenu.add(createMenuItem);
@@ -53,13 +54,12 @@ public class MainFrame extends JFrame implements IMainFrame {
 
 
 
-    public boolean addFolioTab(Component folioTab) {
+    public void addFolioTab(Component folioTab) {
         if (tabbedPane.getComponentAt(0) == defaultTab) tabbedPane.removeTabAt(0);
         tabbedPane.addTab(folioTab.getName(), folioTab);
-        return true;
     }
 
-    public boolean removeFolioTab() {
+    public void removeFolioTab() {
         int folioTabIndex = tabbedPane.indexOfComponent(tabbedPane.getSelectedComponent());
         if (folioTabIndex >= 0) {
             tabbedPane.removeTabAt(folioTabIndex);
@@ -67,17 +67,6 @@ public class MainFrame extends JFrame implements IMainFrame {
 
         if (tabbedPane.getTabCount() == 0) tabbedPane.addTab("Empty", defaultTab);
 
-        return true;
-    }
-
-    @Override
-    public boolean openFolio() {
-        return false;
-    }
-
-    @Override
-    public boolean closeFolio() {
-        return false;
     }
 
     @Override
@@ -89,16 +78,6 @@ public class MainFrame extends JFrame implements IMainFrame {
     public void addOpenListener(ActionListener a) {
         openMenuItem.addActionListener(a);
     }
-
-    @Override
-    public void addExitListener(ActionListener a) {
-        exitMenuItem.addActionListener(a);
-    }
-
-    public JTabbedPane getTabbedPane() {
-        return tabbedPane;
-    }
-
 
 }
 

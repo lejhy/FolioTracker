@@ -14,13 +14,13 @@ import java.io.*;
 
 public class FileManipulationListener implements ActionListener{
 
-    enum type {CLOSE_FOLIO, SAVE_FOLIO}
+    enum Type {CLOSE_FOLIO, SAVE_FOLIO}
 
-    private type actionType;
+    private Type actionType;
     private IMainFrame mainFrame;
     private IFolioPanel folioPanel;
 
-    public FileManipulationListener(type actionType, IMainFrame mainFrame, IFolioPanel folioPanel) {
+    public FileManipulationListener(Type actionType, IMainFrame mainFrame, IFolioPanel folioPanel) {
         this.actionType = actionType;
         this.mainFrame = mainFrame;
         this.folioPanel = folioPanel;

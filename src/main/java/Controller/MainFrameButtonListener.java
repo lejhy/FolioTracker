@@ -13,12 +13,12 @@ import java.io.*;
 
 public class MainFrameButtonListener implements ActionListener {
 
-    public enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, SAVE}
+    public enum Type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, SAVE}
 
-    private type buttonPressed;
+    private Type buttonPressed;
     private IMainFrame mainFrame;
 
-    public MainFrameButtonListener(type buttonPressed, IMainFrame mainFrame) {
+    public MainFrameButtonListener(Type buttonPressed, IMainFrame mainFrame) {
         this.buttonPressed = buttonPressed;
         this.mainFrame = mainFrame;
     }
@@ -100,14 +100,14 @@ public class MainFrameButtonListener implements ActionListener {
 
     private void createFolioPanel(IFolio folio) {
         IFolioPanel folioPanel = new FolioPanel(folio);
-        folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.ADD_TICKER, folioPanel) );
-        folioPanel.addRefreshFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.type.REFRESH_FOLIO, folioPanel) );
+        folioPanel.addAddNewTickerListener( new FolioPanelButtonListener(FolioPanelButtonListener.Type.ADD_TICKER, folioPanel) );
+        folioPanel.addRefreshFolioListener( new FolioPanelButtonListener(FolioPanelButtonListener.Type.REFRESH_FOLIO, folioPanel) );
         folioPanel.addAutoRefreshFolioListener( new FolioPanelItemListener(FolioPanelItemListener.Type.AUTO_REFRESH, folio) );
 
-        folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.type.DELETE_FOLIO, mainFrame) );
+        folioPanel.addDeleteFolioListener( new MainFrameButtonListener(MainFrameButtonListener.Type.DELETE_FOLIO, mainFrame) );
 
-        folioPanel.addSaveFolioListener( new FileManipulationListener(FileManipulationListener.type.SAVE_FOLIO, mainFrame, folioPanel));
-        folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.type.CLOSE_FOLIO, mainFrame, folioPanel) );
+        folioPanel.addSaveFolioListener( new FileManipulationListener(FileManipulationListener.Type.SAVE_FOLIO, mainFrame, folioPanel));
+        folioPanel.addCloseFolioListener( new FileManipulationListener(FileManipulationListener.Type.CLOSE_FOLIO, mainFrame, folioPanel) );
 
         folioPanel.addTableModelListener( new FolioTableListener(folioPanel) );
         mainFrame.addFolioTab((Component) folioPanel);

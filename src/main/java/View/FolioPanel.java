@@ -19,8 +19,10 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     private JTable stockTable;
     private DefaultTableModel stockTableModel;
     private IFolio folio;
-    private JButton saveFolioButton, addNewTickerButton, closeFolioButton, deleteFolioButton, buyButton, sellButton;
-    private JPanel buySellPanel;
+    private JButton saveFolioButton;
+    private JButton addNewTickerButton;
+    private JButton closeFolioButton;
+    private JButton deleteFolioButton;
     private JToggleButton autoRefreshButton;
     private JTextField tickerSymbolTextField, numberOfSharesTextField;
     private JLabel totalValueLabel;
@@ -67,16 +69,16 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         totalValueLabel = new JLabel("Total value of folio : " + folio.getTotalStockValue());
         updateTable();
 
-        buyButton = new JButton("Buy Existing Model.Stock");
-        sellButton = new JButton("Sell Existing Model.Stock");
+        JButton buyButton = new JButton("Buy Existing Model.Stock");
+        JButton sellButton = new JButton("Sell Existing Model.Stock");
 
-        ActionListener a = new FolioPanelButtonListener(FolioPanelButtonListener.type.BUY_STOCK, this);
+        ActionListener a = new FolioPanelButtonListener(FolioPanelButtonListener.Type.BUY_STOCK, this);
         buyButton.addActionListener(a);
-        a = new FolioPanelButtonListener(FolioPanelButtonListener.type.SELL_STOCK, this);
+        a = new FolioPanelButtonListener(FolioPanelButtonListener.Type.SELL_STOCK, this);
         sellButton.addActionListener(a);
 
 
-        buySellPanel = new JPanel();
+        JPanel buySellPanel = new JPanel();
         buySellPanel.add(buyButton);
         buySellPanel.add(sellButton);
 

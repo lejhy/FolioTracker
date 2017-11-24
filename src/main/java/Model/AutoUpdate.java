@@ -9,7 +9,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
     private int delayMilis;
     private Thread thread;
 
-    public AutoUpdate(Runnable action, int delayMilis) {
+    AutoUpdate(Runnable action, int delayMilis) {
         isRunning = false;
         this.action = action;
         this.delayMilis = delayMilis;
