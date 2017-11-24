@@ -2,12 +2,10 @@ import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.*;
 import java.util.List;
-import java.awt.color.*;
 
 public class FolioPanel extends JPanel implements IFolioPanel {
 
@@ -121,18 +119,22 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             stockTableModel.removeRow(0);
         }
         for (int i = 0; i < stocks.size(); i++) {
-                IStock stock = stocks.get(i);
-                stockTableModel.setValueAt(stock.getSymbol(), i, 0);
-                stockTableModel.setValueAt(stock.getName(), i, 1);
-                stockTableModel.setValueAt(stock.getNumber(), i, 2);
-                stockTableModel.setValueAt(stock.getPrice(), i, 3);
-                stockTableModel.setValueAt(stock.getValue(), i, 4);
-                stockTableModel.setValueAt(stock.getDifference(), i, 5);
-                stockTableModel.setValueAt(stock.getStockHigh(), i , 6);
-                stockTableModel.setValueAt(stock.getStockLow(), i , 7);
-                if(stock.getDifference()<0) {
-                    stockTableModel.setValueAt("<html><font color=\"red\">"+ stock.getDifference() + "</font></html>", i, 5);
-                }
+            IStock stock = stocks.get(i);
+            stockTableModel.setValueAt(stock.getSymbol(), i, 0);
+            stockTableModel.setValueAt(stock.getName(), i, 1);
+            stockTableModel.setValueAt(stock.getNumber(), i, 2);
+            stockTableModel.setValueAt(stock.getPrice(), i, 3);
+            stockTableModel.setValueAt(stock.getValue(), i, 4);
+            if(stock.getDifference() < 0) {
+                stockTableModel.setValueAt("<html><font color=\"red\">" + String.format("%.1f", stock.getPercentageChange()) + "%</font></html>", i, 5);
+            } else if (stock.getDifference() > 0) {
+                stockTableModel.setValueAt("<html><font color=\"green\">+" + String.format("%.1f", stock.getPercentageChange()) + "%</font></html>", i, 5);
+            } else {
+                stockTableModel.setValueAt(String.format("%.1f", stock.getPercentageChange()) + "%", i, 5);
+            }
+            stockTableModel.setValueAt(stock.getStockHigh(), i , 6);
+            stockTableModel.setValueAt(stock.getStockLow(), i , 7);
+
         }
 
         String totalStockValue = String.format("%.2f", folio.getTotalStockValue());

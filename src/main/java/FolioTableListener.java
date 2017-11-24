@@ -22,10 +22,6 @@ public class FolioTableListener implements TableModelListener {
                 case 1:
                     stock.setName(tableModel.getValueAt(e.getFirstRow(), 1).toString());
                     break;
-                case 2:
-                    stock.setNumber(Integer.parseInt(tableModel.getValueAt(e.getFirstRow(), 2).toString()));
-                    folioPanel.getStockTable().getModel().setValueAt(stock.getValue(), e.getFirstRow(), 4);
-                    break;
                 default:
                     break;
 

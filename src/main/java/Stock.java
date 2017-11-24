@@ -5,6 +5,7 @@ public class Stock implements IStock {
     private int number;
     private double price;
     private double difference;
+    private double percentageChange;
     private double high;
     private double low;
 
@@ -13,8 +14,8 @@ public class Stock implements IStock {
         this.name = name;
         this.number = number;
         this.price = price;
-        high=price;
-        low=price;
+        this.high = price;
+        this.low = price;
     }
 
     @Override
@@ -57,15 +58,20 @@ public class Stock implements IStock {
 
     @Override
     public void setPrice(double price) {
-        if(price != this.price)
+        if(price != this.price) {
             difference = price - this.price;
+            percentageChange = price / difference * 100;
+        }
         this.price = price;
-        if(price>high)
-            high=price;
-        else if(price<low)
-            low=price;
+        if(price > high)
+            high = price;
+        else if(price < low)
+            low = price;
 
     }
+
+    @Override
+    public double getPercentageChange() { return percentageChange; }
 
     @Override
     public double getStockHigh() {

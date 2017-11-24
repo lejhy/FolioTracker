@@ -55,10 +55,8 @@ public class Folio extends Observable implements IFolio {
                 TestServer.getLastValue(ticker);
                 return IFolio.ticker.VALID;
             } catch (NoSuchTickerException e) {
-                e.printStackTrace();
                 return IFolio.ticker.INVALID;
             } catch (WebsiteDataException e) {
-                e.printStackTrace();
                 return IFolio.ticker.ERROR;
             }
         }

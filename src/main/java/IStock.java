@@ -2,7 +2,9 @@ import java.io.Serializable;
 
 public interface IStock extends Serializable {
 
-    double getDifference();
+     double getDifference();
+
+     double getPercentageChange();
 
      String getSymbol();
 
