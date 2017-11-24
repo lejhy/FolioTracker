@@ -1,7 +1,6 @@
-import javax.swing.*;
-import java.awt.event.ActionListener;
+package Model;
+
 import java.util.Observable;
-import java.util.Observer;
 
 public class AutoUpdate extends Observable implements IAutoUpdate {
 

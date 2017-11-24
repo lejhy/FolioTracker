@@ -1,3 +1,9 @@
+package Controller;
+
+import Model.Folio;
+import Model.IFolio;
+import View.*;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -7,7 +13,7 @@ import java.io.*;
 
 public class MainFrameButtonListener implements ActionListener {
 
-    enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, SAVE}
+    public enum type {CREATE_FOLIO, OPEN_FOLIO, DELETE_FOLIO, SAVE}
 
     private type buttonPressed;
     private IMainFrame mainFrame;
@@ -52,7 +58,7 @@ public class MainFrameButtonListener implements ActionListener {
         System.out.println("create portfolio");
         CreateFolioFrame createFolioFrame = new CreateFolioFrame();
         createFolioFrame.addConfirmationListener(a -> {
-            String folioName = "New Folio";
+            String folioName = "New Model.Folio";
             if (!createFolioFrame.getNameField().getText().isEmpty()){
                 folioName = createFolioFrame.getNameField().getText();
             }
@@ -65,7 +71,7 @@ public class MainFrameButtonListener implements ActionListener {
     private void openPortfolio() {
         System.out.println("open portfolio");
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Folio files (*.fol)", "fol");
+        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Model.Folio files (*.fol)", "fol");
         fileChooser.addChoosableFileFilter(folioExtension);
         fileChooser.setFileFilter(folioExtension);
         int response = fileChooser.showOpenDialog((Component) mainFrame);

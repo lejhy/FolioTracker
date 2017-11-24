@@ -1,3 +1,5 @@
+package View;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -5,7 +7,7 @@ public class BinaryDialogFrame extends JFrame {
     private JTextField nameField;
     private JButton yesButton, noButton;
 
-    BinaryDialogFrame(String name, String message){
+    public BinaryDialogFrame(String name, String message){
         setName(name);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

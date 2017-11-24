@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.Serializable;
 
 public interface IStock extends Serializable {

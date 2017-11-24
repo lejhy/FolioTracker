@@ -1,3 +1,4 @@
+package Model;
 
 public class Stock implements IStock {
     private String symbol;

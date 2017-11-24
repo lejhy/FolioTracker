@@ -1,3 +1,7 @@
+package Controller;
+
+import Model.IFolio;
+
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 

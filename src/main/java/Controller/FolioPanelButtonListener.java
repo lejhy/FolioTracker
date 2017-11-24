@@ -1,10 +1,16 @@
+package Controller;
+
+import View.BinaryDialogFrame;
+import View.BuySellFrame;
+import View.IFolioPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 public class FolioPanelButtonListener implements ActionListener{
 
-    enum type {ADD_TICKER, REFRESH_FOLIO, BUY_STOCK, SELL_STOCK }
+    public enum type {ADD_TICKER, REFRESH_FOLIO, BUY_STOCK, SELL_STOCK }
 
     private IFolioPanel folioPanel;
     private type buttonPressed;

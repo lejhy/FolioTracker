@@ -1,3 +1,5 @@
+package View;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,8 +10,8 @@ public class CreateFolioFrame extends JFrame {
     private JTextField nameField;
     private JButton enterButton;
 
-    CreateFolioFrame(){
-        setName("Create Folio");
+    public CreateFolioFrame(){
+        setName("Create Model.Folio");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

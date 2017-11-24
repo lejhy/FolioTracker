@@ -1,3 +1,7 @@
+package View;
+
+import Model.IFolio;
+
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import java.awt.event.ActionListener;

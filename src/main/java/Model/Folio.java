@@ -1,3 +1,5 @@
+package Model;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,7 +32,7 @@ public class Folio extends Observable implements IFolio {
 
     private double getSharePrice(String ticker) throws NoSuchTickerException, WebsiteDataException {
         return Double.parseDouble(TestServer.getLastValue(ticker));
-        //return Double.parseDouble(StrathQuoteServer.getLastValue(ticker));
+        //return Double.parseDouble(Model.StrathQuoteServer.getLastValue(ticker));
     }
 
     @Override

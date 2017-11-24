@@ -1,3 +1,10 @@
+package Controller;
+
+import View.AlertFrame;
+import View.BinaryDialogFrame;
+import View.IFolioPanel;
+import View.IMainFrame;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -33,7 +40,7 @@ public class FileManipulationListener implements ActionListener{
 
     public void closeFolio() {
         String folioName = folioPanel.getFolio().getName();
-        String dialogName = "Close Folio " + folioName;
+        String dialogName = "Close Model.Folio " + folioName;
         String dialogMessage = "Would you like to save your work for folio " + folioName + "?";
         BinaryDialogFrame closeDialog = new BinaryDialogFrame(dialogName, dialogMessage);
         closeDialog.addYesListener(a -> {
@@ -48,7 +55,7 @@ public class FileManipulationListener implements ActionListener{
 
     private boolean saveFolio() {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Folio files (*.fol)", "fol");
+        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Model.Folio files (*.fol)", "fol");
         fileChooser.addChoosableFileFilter(folioExtension);
         fileChooser.setFileFilter(folioExtension);
         int response = fileChooser.showSaveDialog((Component) mainFrame);

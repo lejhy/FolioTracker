@@ -1,3 +1,9 @@
+package View;
+
+import Controller.FolioPanelButtonListener;
+import Model.IFolio;
+import Model.IStock;
+
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +25,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
     private JTextField tickerSymbolTextField, numberOfSharesTextField;
     private JLabel totalValueLabel;
 
-    FolioPanel(IFolio folio) {
+    public FolioPanel(IFolio folio) {
         this.folio = folio;
         folio.addObserver(this);
 
@@ -34,7 +40,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         JLabel numberOfSharesLabel = new JLabel("Number of Shares");
         numberOfSharesTextField = new JTextField(20);
 
-        addNewTickerButton = new JButton("Add New Stock");
+        addNewTickerButton = new JButton("Add New Model.Stock");
 
 
         headerPanel.add(tickerSymbolLabel);
@@ -46,13 +52,13 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         add(headerPanel);
         String[] columns = {
                 "Ticker Symbol",
-                "Stock Name",
+                "Model.Stock Name",
                 "Number of Shares",
                 "Price per Share",
                 "Value of Holding",
                 "Price Change",
-                "Stock High",
-                "Stock Low",
+                "Model.Stock High",
+                "Model.Stock Low",
                 "Net profit"};
 
         stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
@@ -61,8 +67,8 @@ public class FolioPanel extends JPanel implements IFolioPanel {
         totalValueLabel = new JLabel("Total value of folio : " + folio.getTotalStockValue());
         updateTable();
 
-        buyButton = new JButton("Buy Existing Stock");
-        sellButton = new JButton("Sell Existing Stock");
+        buyButton = new JButton("Buy Existing Model.Stock");
+        sellButton = new JButton("Sell Existing Model.Stock");
 
         ActionListener a = new FolioPanelButtonListener(FolioPanelButtonListener.type.BUY_STOCK, this);
         buyButton.addActionListener(a);
@@ -102,7 +108,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("FolioPanel update " + arg.toString());
+        System.out.println("View.FolioPanel update " + arg.toString());
         updateTable();
         stockTableModel.fireTableDataChanged();
     }

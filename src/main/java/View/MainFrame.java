@@ -1,7 +1,8 @@
+package View;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.Observer;
 
 public class MainFrame extends JFrame implements IMainFrame {
 
@@ -12,7 +13,7 @@ public class MainFrame extends JFrame implements IMainFrame {
 
     public MainFrame() {
 
-        setTitle("Folio Tracker");
+        setTitle("Model.Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JMenuBar menuBar = new JMenuBar();

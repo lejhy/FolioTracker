@@ -1,3 +1,8 @@
+package Controller;
+
+import Model.IStock;
+import View.IFolioPanel;
+
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
