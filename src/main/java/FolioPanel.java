@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.*;
 import java.util.List;
+import java.awt.color.*;
 
 public class FolioPanel extends JPanel implements IFolioPanel {
 
@@ -129,6 +130,9 @@ public class FolioPanel extends JPanel implements IFolioPanel {
                 stockTableModel.setValueAt(stock.getDifference(), i, 5);
                 stockTableModel.setValueAt(stock.getStockHigh(), i , 6);
                 stockTableModel.setValueAt(stock.getStockLow(), i , 7);
+                if(stock.getDifference()<0) {
+                    stockTableModel.setValueAt("<html><font color=\"red\">"+ stock.getDifference() + "</font></html>", i, 5);
+                }
         }
 
         String totalStockValue = String.format("%.2f", folio.getTotalStockValue());
