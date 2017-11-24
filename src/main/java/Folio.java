@@ -35,7 +35,7 @@ public class Folio extends Observable implements IFolio {
     public boolean addStock(String ticker, int number) {
         try {
             double price = getSharePrice(ticker);
-            Stock stock = new Stock(ticker, ticker, number, price);
+            IStock stock = new Stock(ticker, ticker, number, price);
             stocks.add(stock);
             setChanged();
             notifyObservers("Add");
