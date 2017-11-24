@@ -8,6 +8,7 @@ public class Stock implements IStock {
     private double percentageChange;
     private double high;
     private double low;
+    private double initialSpending;
 
     public Stock(String symbol, String name, int number, double price) {
         this.symbol = symbol;
@@ -16,6 +17,16 @@ public class Stock implements IStock {
         this.price = price;
         this.high = price;
         this.low = price;
+    }
+
+    @Override
+    public void updateInitialSpending(double money){
+        initialSpending += money;
+    }
+
+    @Override
+    public double getInitialSpending(){
+        return initialSpending;
     }
 
     @Override

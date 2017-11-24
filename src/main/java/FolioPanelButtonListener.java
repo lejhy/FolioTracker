@@ -80,6 +80,7 @@ public class FolioPanelButtonListener implements ActionListener{
     }
 
     private void addTicker(String tickerSymbol, int numberOfShares) {
+
         switch(folioPanel.getFolio().checkTicker(tickerSymbol)) {
             case EXISTS:
                 addExistingTicker(tickerSymbol, numberOfShares);

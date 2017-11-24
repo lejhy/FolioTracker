@@ -52,7 +52,8 @@ public class FolioPanel extends JPanel implements IFolioPanel {
                 "Value of Holding",
                 "Price Change",
                 "Stock High",
-                "Stock Low"   };
+                "Stock Low",
+                "Net profit"};
 
         stockTableModel = new FolioTableModel(new Vector<>(Arrays.asList(columns)), 0);
 
@@ -134,6 +135,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             }
             stockTableModel.setValueAt(stock.getStockHigh(), i , 6);
             stockTableModel.setValueAt(stock.getStockLow(), i , 7);
+            stockTableModel.setValueAt(stock.getInitialSpending(), i, 8);
 
         }
 

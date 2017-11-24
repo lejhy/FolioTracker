@@ -2,7 +2,11 @@ import java.io.Serializable;
 
 public interface IStock extends Serializable {
 
-     double getDifference();
+    void updateInitialSpending(double money);
+
+ double getInitialSpending();
+
+ double getDifference();
 
      double getPercentageChange();
 

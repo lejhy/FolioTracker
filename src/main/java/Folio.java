@@ -11,6 +11,7 @@ public class Folio extends Observable implements IFolio {
     private List<IStock> stocks;
     private IAutoUpdate autoUpdate;
 
+
     public Folio(String name) {
         this.name = name;
         stocks = new ArrayList<>();
@@ -29,6 +30,7 @@ public class Folio extends Observable implements IFolio {
 
     private double getSharePrice(String ticker) throws NoSuchTickerException, WebsiteDataException {
         return Double.parseDouble(TestServer.getLastValue(ticker));
+        //return Double.parseDouble(StrathQuoteServer.getLastValue(ticker));
     }
 
     @Override
@@ -37,6 +39,7 @@ public class Folio extends Observable implements IFolio {
             double price = getSharePrice(ticker);
             IStock stock = new Stock(ticker, ticker, number, price);
             stocks.add(stock);
+            stock.updateInitialSpending(0 - price*number);
             setChanged();
             notifyObservers("Add");
             return true;
@@ -46,6 +49,7 @@ public class Folio extends Observable implements IFolio {
         }
     }
 
+
     @Override
     public IFolio.ticker checkTicker(String ticker) {
         if (alreadyExists(ticker)) {
@@ -53,6 +57,7 @@ public class Folio extends Observable implements IFolio {
         } else {
             try {
                 TestServer.getLastValue(ticker);
+                //StrathQuoteServer.getLastValue(ticker);
                 return IFolio.ticker.VALID;
             } catch (NoSuchTickerException e) {
                 return IFolio.ticker.INVALID;
@@ -69,6 +74,7 @@ public class Folio extends Observable implements IFolio {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 s.setNumber( s.getNumber() + number );
+                s.updateInitialSpending(0- (s.getPrice() * number));
                 setChanged();
                 notifyObservers("Buy");
                 return true;
@@ -85,19 +91,22 @@ public class Folio extends Observable implements IFolio {
                 else {
                     if(value==s.getNumber()) {
                         stocks.remove(s);
+                        s.updateInitialSpending(s.getPrice() * value);
                         setChanged();
                         notifyObservers("Manual");
                         return true;
                     }
                     else {
                         s.setNumber(s.getNumber()-value);
+                        s.updateInitialSpending(s.getPrice() * value);
                         setChanged();
                         notifyObservers("Manual");
                         return true;
                     }
-                }
-            }
 
+                }
+
+            }
         }
         System.out.println("Shouldn't be here");
         return false;
@@ -123,6 +132,7 @@ public class Folio extends Observable implements IFolio {
         for(IStock stock : stocks) {
             try {
                 double newPrice = Double.parseDouble(TestServer.getLastValue(stock.getSymbol()));
+                //double newPrice = Double.parseDouble(StrathQuoteServer.getLastValue(stock.getSymbol()));
                 stock.setPrice(newPrice);
             } catch (WebsiteDataException e) {
                 e.printStackTrace();
