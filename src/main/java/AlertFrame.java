@@ -5,7 +5,7 @@ public class AlertFrame extends JFrame{
 
     public AlertFrame(String name, String message) {
         setName(name);
-        setSize(300, 100);
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setLayout(new FlowLayout());
@@ -21,6 +21,7 @@ public class AlertFrame extends JFrame{
         });
         add(okButton);
 
+        pack();
         setVisible(true);
     }
 

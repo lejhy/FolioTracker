@@ -8,7 +8,6 @@ public class BinaryDialogFrame extends JFrame {
     BinaryDialogFrame(String name, String message){
         setName(name);
 
-        setSize(400, 100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
@@ -28,6 +27,7 @@ public class BinaryDialogFrame extends JFrame {
 
         add(buttonPanel);
 
+        pack();
         setVisible(true);
     }
 

@@ -11,7 +11,6 @@ public class CreateFolioFrame extends JFrame {
     CreateFolioFrame(){
         setName("Create Folio");
 
-        setSize(300, 100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setLayout(new FlowLayout());
@@ -27,6 +26,7 @@ public class CreateFolioFrame extends JFrame {
         enterButton = new JButton("Enter");
         add(enterButton);
 
+        pack();
         setVisible(true);
     }
 
