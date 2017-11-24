@@ -4,19 +4,25 @@ public interface IStock extends Serializable {
 
     double getDifference();
 
-    public String getSymbol();
+     String getSymbol();
 
-    public String getName();
+     String getName();
 
-    public int getNumber();
+     int getNumber();
 
-    public double getPrice();
+     double getPrice();
 
-    public double getValue();
+     double getValue();
 
-    public void setName(String name);
+     void setName(String name);
 
-    public void setNumber(int number);
+     void setNumber(int number);
 
-    public void setPrice(double price);
+     void setPrice(double price);
+
+     double getStockHigh();
+
+     double getStockLow();
+
+
 }

@@ -34,4 +34,5 @@ public interface IFolio extends Serializable{
     boolean sellStocks(String name, int value);
 
     void delete();
+
 }

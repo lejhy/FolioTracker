@@ -5,12 +5,16 @@ public class Stock implements IStock {
     private int number;
     private double price;
     private double difference;
+    private double high;
+    private double low;
 
     public Stock(String symbol, String name, int number, double price) {
         this.symbol = symbol;
         this.name = name;
         this.number = number;
         this.price = price;
+        high=price;
+        low=price;
     }
 
     @Override
@@ -56,5 +60,20 @@ public class Stock implements IStock {
         if(price != this.price)
             difference = price - this.price;
         this.price = price;
+        if(price>high)
+            high=price;
+        else if(price<low)
+            low=price;
+
+    }
+
+    @Override
+    public double getStockHigh() {
+        return high;
+    }
+
+    @Override
+    public double getStockLow() {
+        return low;
     }
 }
