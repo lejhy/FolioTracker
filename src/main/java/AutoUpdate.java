@@ -8,6 +8,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
     private boolean isRunning;
     private Runnable action;
     private int delayMilis;
+    private Thread thread;
 
     public AutoUpdate(Runnable action, int delayMilis) {
         isRunning = false;
@@ -30,6 +31,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
     public boolean stop() {
         if (isRunning == true) {
             isRunning = false;
+            thread.interrupt();
             return true;
         } else {
             return false;
@@ -42,7 +44,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
     }
 
     private void startThread() {
-        Thread autoUpdate = new Thread(() -> {
+        thread = new Thread(() -> {
             while (isRunning) {
                 try {
                     System.out.println("Auto Updating");
@@ -53,7 +55,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
                 }
             }
         });
-        autoUpdate.start();
+        thread.start();
     }
 }
 
