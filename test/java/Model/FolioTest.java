@@ -1,5 +1,8 @@
-package Model;
+package java.Model;
 
+import Model.Folio;
+import Model.IFolio;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +30,7 @@ class FolioTest {
 
     @Test
     void checkTicker() {
-        assertEquals(IFolio.ticker.VALID, folio.checkTicker("ABC"));
+        Assertions.assertEquals(IFolio.ticker.VALID, folio.checkTicker("ABC"));
         folio.addStock("ABC", 1);
         assertEquals(IFolio.ticker.EXISTS, folio.checkTicker("ABC"));
         assertEquals(IFolio.ticker.INVALID, folio.checkTicker("123"));

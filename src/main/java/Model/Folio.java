@@ -116,7 +116,7 @@ public class Folio extends Observable implements IFolio {
         return false;
     }
 
-    private boolean alreadyExists(String ticker) {
+    public boolean alreadyExists(String ticker) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 return true;
