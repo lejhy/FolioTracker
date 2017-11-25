@@ -8,7 +8,7 @@ class TestServer implements IServer{
     @Override
     public String getLastValue(String ticker)
             throws WebsiteDataException, NoSuchTickerException{
-        if (ticker == null) throw new WebsiteDataException();
+        if (ticker.equals("data_error")) throw new WebsiteDataException();
         Random rng = new Random();
         for (String symbol : symbols) {
             if (ticker.equals(symbol))

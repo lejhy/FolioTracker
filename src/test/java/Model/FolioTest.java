@@ -37,7 +37,7 @@ class FolioTest {
         folioTest.addStock("ABC", 1);
         assertEquals(IFolio.ticker.EXISTS, folioTest.checkTicker("ABC"));
         assertEquals(IFolio.ticker.INVALID, folioTest.checkTicker("123"));
-        assertEquals(IFolio.ticker.ERROR, folioTest.checkTicker(null));
+        assertEquals(IFolio.ticker.ERROR, folioTest.checkTicker("data_error"));
     }
 
     @Test
