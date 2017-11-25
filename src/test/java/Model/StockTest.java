@@ -1,6 +1,5 @@
-package java.Model;
+package Model;
 
-import Model.Stock;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
