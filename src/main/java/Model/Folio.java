@@ -129,7 +129,7 @@ public class Folio extends Observable implements IFolio {
 
     @Override
     public boolean sellStock(String ticker, int value) {
-        assert(ticker!=null);
+        assert(ticker!=null && value>0);
         int i=stocks.size();
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
