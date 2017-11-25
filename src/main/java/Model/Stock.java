@@ -94,4 +94,25 @@ public class Stock implements IStock {
     public double getStockLow() {
         return low;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Stock) {
+                Stock stock = (Stock) o;
+                if (this.symbol.equals(stock.name) &&
+                        this.name.equals(stock.name) &&
+                        this.number == stock.number &&
+                        this.price == stock.price &&
+                        this.difference == stock.difference &&
+                        this.percentageChange == stock.percentageChange &&
+                        this.high == stock.high &&
+                        this.low == stock.low &&
+                        this.initialSpending == stock.initialSpending) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

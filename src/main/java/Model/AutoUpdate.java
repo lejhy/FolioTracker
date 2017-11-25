@@ -56,5 +56,20 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
         });
         thread.start();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof AutoUpdate) {
+                AutoUpdate autoUpdate = (AutoUpdate) o;
+                if (this.isRunning == autoUpdate.isRunning &&
+                        this.delayMilis == autoUpdate.delayMilis) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
 

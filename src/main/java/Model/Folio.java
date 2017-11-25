@@ -172,4 +172,17 @@ public class Folio extends Observable implements IFolio {
         autoUpdate = new AutoUpdate(this::refresh, 5000);
         if (in.readBoolean()) autoUpdate.start();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null) {
+            if (o instanceof Folio) {
+                Folio folio = (Folio) o;
+                if (this.name.equals(folio.name) && this.stocks.equals(folio.stocks) && this.autoUpdate.equals(folio.autoUpdate)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
