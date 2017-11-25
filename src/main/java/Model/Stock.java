@@ -79,7 +79,6 @@ public class Stock implements IStock {
             high = price;
         else if(price < low)
             low = price;
-
     }
 
     @Override
