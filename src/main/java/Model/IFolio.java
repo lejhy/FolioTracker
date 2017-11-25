@@ -1,7 +1,5 @@
 package Model;
 
-import javafx.beans.Observable;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Observer;

@@ -2,10 +2,13 @@ package Model;
 
 import java.util.Random;
 
-class TestServer implements IServer {
+class TestServer implements IServer{
     private static String[] symbols = {"ABC","DEF","HIJ"};
 
-    static String getLastValue(String ticker) throws NoSuchTickerException, WebsiteDataException {
+    @Override
+    public String getLastValue(String ticker)
+            throws WebsiteDataException, NoSuchTickerException{
+        if (ticker == null) throw new WebsiteDataException();
         Random rng = new Random();
         for (String symbol : symbols) {
             if (ticker.equals(symbol))

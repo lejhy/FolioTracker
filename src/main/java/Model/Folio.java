@@ -12,8 +12,17 @@ public class Folio extends Observable implements IFolio {
     private String name;
     private List<IStock> stocks;
     private IAutoUpdate autoUpdate;
+    private IServer server;
 
     public Folio(String name) {
+        this.server = new StrathQuoteServer();
+        this.name = name;
+        stocks = new ArrayList<>();
+        autoUpdate = new AutoUpdate(this::refresh, 5000);
+    }
+
+    public Folio(String name, IServer server) {
+        this.server = server;
         this.name = name;
         stocks = new ArrayList<>();
         autoUpdate = new AutoUpdate(this::refresh, 5000);
@@ -30,8 +39,7 @@ public class Folio extends Observable implements IFolio {
     }
 
     private double getSharePrice(String ticker) throws NoSuchTickerException, WebsiteDataException {
-        //return Double.parseDouble(TestServer.getLastValue(ticker));
-        return Double.parseDouble(Model.StrathQuoteServer.getLastValue(ticker));
+        return Double.parseDouble(server.getLastValue(ticker));
     }
 
     @Override
@@ -46,7 +54,7 @@ public class Folio extends Observable implements IFolio {
                 notifyObservers("Add");
                 return true;
             } catch (WebsiteDataException | NoSuchTickerException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
                 return false;
             }
         } else {
@@ -132,7 +140,7 @@ public class Folio extends Observable implements IFolio {
                 double newPrice = getSharePrice(stock.getSymbol());
                 stock.setPrice(newPrice);
             } catch (WebsiteDataException | NoSuchTickerException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
         setChanged();
@@ -149,7 +157,7 @@ public class Folio extends Observable implements IFolio {
         return totalStockValue;
     }
 
-
+    public boolean isAutoUpdating() { return autoUpdate.isRunning(); }
 
     public void autoRefreshStart() { autoUpdate.start(); }
 

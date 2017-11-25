@@ -4,89 +4,107 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FolioTest {
 
-    Folio folio;
+    Folio folioTest;
+    Folio folioStrath;
 
     @BeforeEach
     void setUp() {
-        folio = new Folio("folio");
+        folioTest = new Folio("folioTest", new TestServer());
+        folioStrath = new Folio("folioStrath");
+    }
+
+    @Test
+    void getName() {
+        assertEquals("folioTest", folioTest.getName());
     }
 
     @Test
     void addStock() {
-        assertFalse(folio.addStock("ABC",-1));
-        assertFalse(folio.addStock("ABC",0));
-        assertTrue(folio.addStock("ABC", 1));
-        assertFalse(folio.addStock("123", 1));
+        assertFalse(folioTest.addStock("ABC",-1));
+        assertFalse(folioTest.addStock("ABC",0));
+        assertTrue(folioTest.addStock("ABC", 1));
+        assertFalse(folioTest.addStock("123", 1));
     }
 
     @Test
     void checkTicker() {
-        assertEquals(IFolio.ticker.VALID, folio.checkTicker("ABC"));
-        folio.addStock("ABC", 1);
-        assertEquals(IFolio.ticker.EXISTS, folio.checkTicker("ABC"));
-        assertEquals(IFolio.ticker.INVALID, folio.checkTicker("123"));
-        screwUpProxy();
-        assertEquals(IFolio.ticker.ERROR, folio.checkTicker("123"));
-        restoreProxy();
+        assertEquals(IFolio.ticker.VALID, folioTest.checkTicker("ABC"));
+        folioTest.addStock("ABC", 1);
+        assertEquals(IFolio.ticker.EXISTS, folioTest.checkTicker("ABC"));
+        assertEquals(IFolio.ticker.INVALID, folioTest.checkTicker("123"));
+        assertEquals(IFolio.ticker.ERROR, folioTest.checkTicker(null));
     }
 
     @Test
     void buyStock() {
-        assertFalse(folio.buyStock("ABC", 1));
-        folio.addStock("ABC", 1);
-        assertTrue(folio.buyStock("ABC", 1));
+        assertFalse(folioTest.buyStock("ABC", 1));
+        folioTest.addStock("ABC", 1);
+        assertTrue(folioTest.buyStock("ABC", 1));
+        assertFalse(folioTest.buyStock("123", 1));
     }
 
     @Test
     void sellStock() {
-        assertFalse(folio.sellStock("ABC", 1));
-        folio.addStock("ABC", 2);
-        assertTrue(folio.sellStock("ABC", 1));
-        assertTrue(folio.sellStock("ABC", 1));
-        assertFalse(folio.sellStock("ABC", 1));
-    }
-
-    @Test
-    void alreadyExists() {
-        assertFalse(folio.alreadyExists("ABC"));
-        folio.addStock("ABC", 1);
-        assertTrue(folio.alreadyExists("ABC"));
+        assertFalse(folioTest.sellStock("ABC", 1));
+        folioTest.addStock("ABC", 2);
+        assertFalse(folioTest.sellStock("123", 1));
+        assertTrue(folioTest.sellStock("ABC", 1));
+        assertTrue(folioTest.sellStock("ABC", 1));
+        assertFalse(folioTest.sellStock("ABC", 1));
     }
 
     @Test
     void refresh() {
-        //TODO
+        folioTest.addStock("ABC", 1);
+        double initialPrice = folioTest.getStocks().get(0).getPrice();
+        folioTest.refresh();
+        assertNotEquals(initialPrice, folioTest.getStocks().get(0).getPrice());
+        folioTest.getStocks().add(new Stock("123", "123", 1, 1));
+        initialPrice = folioTest.getStocks().get(1).getPrice();
+        folioTest.refresh();
+        assertEquals(initialPrice, folioTest.getStocks().get(1).getPrice());
+    }
+
+    @Test
+    void autoRefresh() {
+        folioTest.autoRefreshStart();
+        assertTrue(folioTest.isAutoUpdating());
+        folioTest.autoRefreshStop();
+        assertFalse(folioTest.isAutoUpdating());
+    }
+
+    @Test
+    void delete() {
+        folioTest.autoRefreshStart();
+        folioTest.delete();
+        assertFalse(folioTest.isAutoUpdating());
     }
 
     @Test
     void getTotalStockValue() {
-        folio.addStock("ABC",1);
-        assertEquals(folio.getStocks().get(0).getValue(), folio.getTotalStockValue());
+        folioTest.addStock("ABC",1);
+        assertEquals(folioTest.getStocks().get(0).getValue(), folioTest.getTotalStockValue());
     }
+
+
 
     @Test
     void readWriteObject() throws ClassNotFoundException, IOException {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(byteOut);
-        out.writeObject(folio);
+        out.writeObject(folioTest);
         ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(byteOut.toByteArray()));
         Object result = in.readObject();
-        assertEquals(folio, result);
+        assertEquals(folioTest, result);
     }
 
-    void screwUpProxy() {
-        System.getProperties().put("proxySet", "true");
-        System.getProperties().put("proxyHost", "www.example.com");
-        System.getProperties().put("proxyPort", "123");
-    }
-
-    void restoreProxy() {
-        System.getProperties().put("proxySet", "false");
+    @Test
+    void equalsNull () {
+        assertFalse(folioTest.equals(null));
     }
 }

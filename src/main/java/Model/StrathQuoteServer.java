@@ -18,7 +18,7 @@ import java.io.*;
  * York Model.Stock Exchange (NYSE) or NASDAQ.
  */
 
-public class StrathQuoteServer implements IServer{
+public class StrathQuoteServer implements IServer {
 
     protected static final String _URL = "http://www.tickertech.com/cgi/?ticker=";
 
@@ -43,7 +43,9 @@ public class StrathQuoteServer implements IServer{
      *           The amount returned may contain commas, for example, "2,243.87"
      *           <br>
      */
-    public static String getLastValue(String tickerSymbol)
+
+    @Override
+    public String getLastValue(String tickerSymbol)
             throws WebsiteDataException, NoSuchTickerException {
         _TOKEN1 = _TOKEN1a + tickerSymbol.toUpperCase() + _TOKEN1b;
         String strURLStart = _URL;
@@ -100,6 +102,7 @@ public class StrathQuoteServer implements IServer{
 
         return strStockValue;
     }
+
 }
 
 class WebsiteDataException extends Exception {

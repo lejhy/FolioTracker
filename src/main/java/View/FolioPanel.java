@@ -133,7 +133,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             stockTableModel.setValueAt(stock.getName(), i, 1);
             stockTableModel.setValueAt(stock.getNumber(), i, 2);
             stockTableModel.setValueAt(stock.getPrice(), i, 3);
-            stockTableModel.setValueAt(stock.getValue(), i, 4);
+            stockTableModel.setValueAt(String.format("%.2f", stock.getValue()), i, 4);
             if(stock.getDifference() < 0) {
                 stockTableModel.setValueAt("<html><font color=\"red\">" + String.format("%.1f", stock.getPercentageChange()) + "%</font></html>", i, 5);
             } else if (stock.getDifference() > 0) {
@@ -143,7 +143,7 @@ public class FolioPanel extends JPanel implements IFolioPanel {
             }
             stockTableModel.setValueAt(stock.getStockHigh(), i , 6);
             stockTableModel.setValueAt(stock.getStockLow(), i , 7);
-            stockTableModel.setValueAt(stock.getValue() - stock.getInitialSpending(), i, 8);
+            stockTableModel.setValueAt(String.format("%.2f", stock.getValue() - stock.getInitialSpending()), i, 8);
 
         }
 
