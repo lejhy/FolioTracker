@@ -15,7 +15,7 @@ public class FolioPanelItemListener implements ItemListener{
     private Type type;
     private IFolio folio;
 
-    public FolioPanelItemListener (Type type, IFolio folio) {
+    FolioPanelItemListener(Type type, IFolio folio) {
         this.type = type;
         this.folio = folio;
     }

@@ -78,12 +78,14 @@ public class FolioPanelButtonListener implements ActionListener{
                 int numberOfShares = scan.nextInt();
                 if (scan.hasNext()) {
                     folioPanel.createAlert("Invalid Number", "The value entered for share amount is not a valid integer");
-                } else {
+                } else if(numberOfShares<=0) {
+                    folioPanel.createAlert("Invalid number", "You must enter a positive integer to add new stocks");
+                }
+                else
                     addTicker(tickerSymbol, numberOfShares);
                 }
             }
         }
-    }
 
     private void addTicker(String tickerSymbol, int numberOfShares) {
 

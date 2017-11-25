@@ -11,7 +11,7 @@ public class Stock implements IStock {
     private double low;
     private double initialSpending;
 
-    public Stock(String symbol, String name, int number, double price) {
+    Stock(String symbol, String name, int number, double price) {
         this.symbol = symbol;
         this.name = name;
         this.number = number;
@@ -79,7 +79,6 @@ public class Stock implements IStock {
             high = price;
         else if(price < low)
             low = price;
-
     }
 
     @Override
