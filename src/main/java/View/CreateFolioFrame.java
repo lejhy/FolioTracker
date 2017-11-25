@@ -11,7 +11,7 @@ public class CreateFolioFrame extends JFrame {
     private JButton enterButton;
 
     public CreateFolioFrame(){
-        setName("Create Model.Folio");
+        setName("Create Folio");
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

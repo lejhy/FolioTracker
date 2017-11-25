@@ -14,7 +14,7 @@ public class MainFrame extends JFrame implements IMainFrame {
 
     public MainFrame() {
 
-        setTitle("Model.Folio Tracker");
+        setTitle("Folio Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JMenuBar menuBar = new JMenuBar();

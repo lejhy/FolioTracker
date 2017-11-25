@@ -58,7 +58,7 @@ public class MainFrameButtonListener implements ActionListener {
         System.out.println("create portfolio");
         CreateFolioFrame createFolioFrame = new CreateFolioFrame();
         createFolioFrame.addConfirmationListener(a -> {
-            String folioName = "New Model.Folio";
+            String folioName = "New Folio";
             if (!createFolioFrame.getNameField().getText().isEmpty()){
                 folioName = createFolioFrame.getNameField().getText();
             }
@@ -71,7 +71,7 @@ public class MainFrameButtonListener implements ActionListener {
     private void openPortfolio() {
         System.out.println("open portfolio");
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Model.Folio files (*.fol)", "fol");
+        FileNameExtensionFilter folioExtension = new FileNameExtensionFilter("Folio files (*.fol)", "fol");
         fileChooser.addChoosableFileFilter(folioExtension);
         fileChooser.setFileFilter(folioExtension);
         int response = fileChooser.showOpenDialog((Component) mainFrame);

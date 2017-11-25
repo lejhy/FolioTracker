@@ -88,7 +88,7 @@ public interface IFolio extends Serializable{
               else if numberOfShares is less than the number of shares in stock
               reduce the number of shares by numberOfShares and return true
      */
-    boolean sellStocks(String tickerSymbol, int numberOfShares);
+    boolean sellStock(String tickerSymbol, int numberOfShares);
 
 
     /*
@@ -100,6 +100,7 @@ public interface IFolio extends Serializable{
     effects: triggers the auto refresh to end
      */
     void autoRefreshStop();
+
 
     /*
 
