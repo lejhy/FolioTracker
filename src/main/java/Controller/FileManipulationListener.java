@@ -20,7 +20,7 @@ public class FileManipulationListener implements ActionListener{
     private IMainFrame mainFrame;
     private IFolioPanel folioPanel;
 
-    public FileManipulationListener(Type actionType, IMainFrame mainFrame, IFolioPanel folioPanel) {
+    FileManipulationListener(Type actionType, IMainFrame mainFrame, IFolioPanel folioPanel) {
         this.actionType = actionType;
         this.mainFrame = mainFrame;
         this.folioPanel = folioPanel;
@@ -38,7 +38,7 @@ public class FileManipulationListener implements ActionListener{
         }
     }
 
-    public void closeFolio() {
+    private void closeFolio() {
         String folioName = folioPanel.getFolio().getName();
         String dialogName = "Close Folio " + folioName;
         String dialogMessage = "Would you like to save your work for folio " + folioName + "?";

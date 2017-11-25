@@ -17,7 +17,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
 
     @Override
     public boolean start() {
-        if (isRunning == false) {
+        if (!isRunning) {
             isRunning = true;
             startThread();
             return true;
@@ -28,7 +28,7 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
 
     @Override
     public boolean stop() {
-        if (isRunning == true) {
+        if (isRunning) {
             isRunning = false;
             thread.interrupt();
             return true;

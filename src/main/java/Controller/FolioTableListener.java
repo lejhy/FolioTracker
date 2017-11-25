@@ -11,7 +11,7 @@ public class FolioTableListener implements TableModelListener {
 
     private IFolioPanel folioPanel;
 
-    public FolioTableListener(IFolioPanel folioPanel) {
+    FolioTableListener(IFolioPanel folioPanel) {
         this.folioPanel = folioPanel;
     }
 

@@ -44,7 +44,7 @@ public class Folio extends Observable implements IFolio {
         if (number > 0) {
             try {
                 assert(ticker!=null);
-                List<IStock> clone= stocks.stream().collect(Collectors.toList());
+                List<IStock> clone= new ArrayList<>(stocks);
 
 
                 double price = getSharePrice(ticker);
