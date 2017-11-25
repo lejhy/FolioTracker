@@ -112,12 +112,11 @@ public class Folio extends Observable implements IFolio {
 
             }
         }
-        System.out.println("Shouldn't be here");
+        System.out.println("Shouldn't be here,must not be a valid ticker");
         return false;
     }
 
-    @Override
-    public boolean alreadyExists(String ticker) {
+    private boolean alreadyExists(String ticker) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 return true;
