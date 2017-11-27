@@ -14,7 +14,7 @@ import java.io.*;
 
 public class FileManipulationListener implements ActionListener{
 
-    enum Type {CLOSE_FOLIO, SAVE_FOLIO}
+    enum Type {CLOSE_FOLIO, SAVE_FOLIO, DELETE_FOLIO}
 
     private Type actionType;
     private IMainFrame mainFrame;
@@ -35,6 +35,9 @@ public class FileManipulationListener implements ActionListener{
             case SAVE_FOLIO:
                 saveFolio();
                 break;
+            case DELETE_FOLIO:
+                deleteFolio();
+                break;
         }
     }
 
@@ -45,11 +48,11 @@ public class FileManipulationListener implements ActionListener{
         BinaryDialogFrame closeDialog = new BinaryDialogFrame(dialogName, dialogMessage);
         closeDialog.addYesListener(a -> {
             closeDialog.dispose();
-            if (saveFolio()) deleteFolio();
+            if (saveFolio()) delete();
         });
         closeDialog.addNoListener(a -> {
             closeDialog.dispose();
-            deleteFolio();
+            delete();
         });
     }
 
@@ -82,6 +85,20 @@ public class FileManipulationListener implements ActionListener{
     }
 
     private void deleteFolio() {
+        System.out.println("Delete");
+        BinaryDialogFrame binaryDialogFrame = new BinaryDialogFrame("Delete", "Are you sure you want to delete this folio?");
+        binaryDialogFrame.addYesListener(a -> {
+            binaryDialogFrame.close();
+            delete();
+        });
+        binaryDialogFrame.addNoListener(a -> {
+            binaryDialogFrame.close();
+        });
+
+
+    }
+
+    private void delete() {
         mainFrame.removeFolioTab();
         folioPanel.getFolio().delete();
     }

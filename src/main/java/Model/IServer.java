@@ -1,6 +1,8 @@
 package Model;
 
-public interface IServer {
+import java.io.Serializable;
+
+public interface IServer extends Serializable {
 
     public String getLastValue(String ticker) throws WebsiteDataException, NoSuchTickerException;
 

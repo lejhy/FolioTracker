@@ -225,6 +225,7 @@ public class Folio extends Observable implements IFolio {
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.writeObject(name);
         out.writeObject(stocks);
+        out.writeObject(server);
         out.writeBoolean(autoUpdate.isRunning());
     }
 
@@ -232,6 +233,7 @@ public class Folio extends Observable implements IFolio {
         name = (String)in.readObject();
         stocks = (List<IStock>) in.readObject();
         autoUpdate = new AutoUpdate(this::refresh, 5000);
+        server = (IServer)in.readObject();
         if (in.readBoolean()) autoUpdate.start();
     }
 
