@@ -2,6 +2,7 @@ package Controller;
 
 import View.BinaryDialogFrame;
 import View.IFolioPanel;
+import View.IInputFrame;
 import View.InputFrame;
 
 import java.awt.event.ActionEvent;
@@ -45,7 +46,7 @@ public class FolioPanelButtonListener implements ActionListener{
             sendNotSelectedAlert("sell");
         } else {
             String tickerSymbol = folioPanel.getFolio().getStocks().get(i).getSymbol();
-            InputFrame inputFrame = new InputFrame("Sell", "Please enter the amount you wish to sell");
+            IInputFrame inputFrame = new InputFrame("Sell", "Please enter the amount you wish to sell");
             inputFrame.addConfirmationListener(new BuySellListener(false, folioPanel, inputFrame, tickerSymbol));
         }
 
@@ -57,7 +58,7 @@ public class FolioPanelButtonListener implements ActionListener{
             sendNotSelectedAlert("buy");
         } else {
             String tickerSymbol = folioPanel.getFolio().getStocks().get(i).getSymbol();
-            InputFrame inputFrame = new InputFrame("Buy", "Please enter the amount you wish to buy");
+            IInputFrame inputFrame = new InputFrame("Buy", "Please enter the amount you wish to buy");
             inputFrame.addConfirmationListener(new BuySellListener(true, folioPanel, inputFrame, tickerSymbol));
         }
     }

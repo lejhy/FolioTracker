@@ -41,7 +41,7 @@ public class MainFrameButtonListener implements ActionListener {
 
     private void createPortfolio() {
         System.out.println("create portfolio");
-        InputFrame inputFrame = new InputFrame("Create Folio", "Enter name of Portfolio ");
+        IInputFrame inputFrame = new InputFrame("Create Folio", "Enter name of Portfolio ");
         inputFrame.addConfirmationListener(a -> {
             String folioName = "New Folio";
             if (!inputFrame.getInputField().getText().isEmpty()){
@@ -49,7 +49,7 @@ public class MainFrameButtonListener implements ActionListener {
             }
             IFolio folio = new Folio(folioName);
             createFolioPanel(folio);
-            inputFrame.close();
+            inputFrame.dispose();
         });
     }
 
