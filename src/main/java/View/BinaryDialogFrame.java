@@ -3,8 +3,7 @@ package View;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class BinaryDialogFrame extends JFrame {
-    private JTextField nameField;
+public class BinaryDialogFrame extends JFrame implements IBinaryDialogFrame {
     private JButton yesButton, noButton;
 
     public BinaryDialogFrame(String name, String message){
@@ -33,16 +32,13 @@ public class BinaryDialogFrame extends JFrame {
         setVisible(true);
     }
 
+    @Override
     public void addYesListener(ActionListener a) {
         yesButton.addActionListener(a);
     }
+
+    @Override
     public void addNoListener(ActionListener a) {
         noButton.addActionListener(a);
     }
-
-    public JTextField getNameField() {
-        return nameField;
-    }
-
-    public void close(){dispose();}
 }

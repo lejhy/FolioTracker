@@ -1,9 +1,6 @@
 package Controller;
 
-import View.BinaryDialogFrame;
-import View.IFolioPanel;
-import View.IInputFrame;
-import View.InputFrame;
+import View.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -111,7 +108,7 @@ public class FolioPanelButtonListener implements ActionListener{
     }
 
     private void addExistingTicker (String tickerSymbol, int numberOfShares) {
-        BinaryDialogFrame binary = new BinaryDialogFrame("Already have stock", "You already have this" +
+        IBinaryDialogFrame binary = new BinaryDialogFrame("Already have stock", "You already have this" +
                 " in your folio, would you like to add these stocks to the ones you already have?");
         binary.addYesListener(e -> {
             folioPanel.getFolio().buyStock(tickerSymbol, numberOfShares);

@@ -1,9 +1,6 @@
 package Controller;
 
-import View.AlertFrame;
-import View.BinaryDialogFrame;
-import View.IFolioPanel;
-import View.IMainFrame;
+import View.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -45,7 +42,7 @@ public class FileManipulationListener implements ActionListener{
         String folioName = folioPanel.getFolio().getName();
         String dialogName = "Close Folio " + folioName;
         String dialogMessage = "Would you like to save your work for folio " + folioName + "?";
-        BinaryDialogFrame closeDialog = new BinaryDialogFrame(dialogName, dialogMessage);
+        IBinaryDialogFrame closeDialog = new BinaryDialogFrame(dialogName, dialogMessage);
         closeDialog.addYesListener(a -> {
             closeDialog.dispose();
             if (saveFolio()) delete();
@@ -86,13 +83,13 @@ public class FileManipulationListener implements ActionListener{
 
     private void deleteFolio() {
         System.out.println("Delete");
-        BinaryDialogFrame binaryDialogFrame = new BinaryDialogFrame("Delete", "Are you sure you want to delete this folio?");
+        IBinaryDialogFrame binaryDialogFrame = new BinaryDialogFrame("Delete", "Are you sure you want to delete this folio?");
         binaryDialogFrame.addYesListener(a -> {
-            binaryDialogFrame.close();
+            binaryDialogFrame.dispose();
             delete();
         });
         binaryDialogFrame.addNoListener(a -> {
-            binaryDialogFrame.close();
+            binaryDialogFrame.dispose();
         });
 
 

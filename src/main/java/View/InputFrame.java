@@ -31,13 +31,13 @@ public class InputFrame extends JFrame implements IInputFrame {
         setVisible(true);
     }
 
+    @Override
     public void addConfirmationListener(ActionListener a) {
         enterButton.addActionListener(a);
     }
 
+    @Override
     public JTextField getInputField() {
         return inputField;
     }
-
-    public void close(){dispose();}
 }
