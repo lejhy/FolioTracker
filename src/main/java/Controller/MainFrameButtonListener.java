@@ -41,15 +41,15 @@ public class MainFrameButtonListener implements ActionListener {
 
     private void createPortfolio() {
         System.out.println("create portfolio");
-        CreateFolioFrame createFolioFrame = new CreateFolioFrame();
-        createFolioFrame.addConfirmationListener(a -> {
+        InputFrame inputFrame = new InputFrame("Create Folio", "Enter name of Portfolio ");
+        inputFrame.addConfirmationListener(a -> {
             String folioName = "New Folio";
-            if (!createFolioFrame.getNameField().getText().isEmpty()){
-                folioName = createFolioFrame.getNameField().getText();
+            if (!inputFrame.getInputField().getText().isEmpty()){
+                folioName = inputFrame.getInputField().getText();
             }
             IFolio folio = new Folio(folioName);
             createFolioPanel(folio);
-            createFolioFrame.close();
+            inputFrame.close();
         });
     }
 

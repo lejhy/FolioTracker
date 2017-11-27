@@ -2,28 +2,27 @@ package View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CreateFolioFrame extends JFrame {
+public class InputFrame extends JFrame implements IInputFrame {
 
-    private JTextField nameField;
+    private JTextField inputField;
     private JButton enterButton;
 
-    public CreateFolioFrame(){
-        setName("Create Folio");
+    public InputFrame(String name, String message){
+        setName(name);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         setLayout(new FlowLayout());
 
-        JLabel label = new JLabel("Enter name of Portfolio ");
+        JLabel label = new JLabel(message);
 
         add(label);
 
-        nameField = new JTextField(15);
+        inputField = new JTextField(15);
 
-        add(nameField);
+        add(inputField);
 
         enterButton = new JButton("Enter");
         add(enterButton);
@@ -36,8 +35,8 @@ public class CreateFolioFrame extends JFrame {
         enterButton.addActionListener(a);
     }
 
-    public JTextField getNameField() {
-        return nameField;
+    public JTextField getInputField() {
+        return inputField;
     }
 
     public void close(){dispose();}
