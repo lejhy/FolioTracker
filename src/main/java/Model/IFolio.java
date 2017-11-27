@@ -90,7 +90,7 @@ public interface IFolio extends Serializable{
 
     /**
      *
-     * @requires: tickerSymbol != null
+     * @requires: tickerSymbol != null && numberOfShares > 0
      * @modifies: this
      * @effects: if tickerSymbol is not a symbol for one of the
      *           stocks owned in the folio then return false

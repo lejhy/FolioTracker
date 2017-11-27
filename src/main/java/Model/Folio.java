@@ -45,15 +45,13 @@ public class Folio extends Observable implements IFolio {
 
 
     /*
-    Assertion here for checking preconditions and checking list excluding new row is still the same
+    Assertion here to check precondition
      */
     @Override
     public boolean addStock(String ticker, int number) {
         if (number > 0) {
             try {
-                assert(ticker!=null);
-                List<IStock> clone= new ArrayList<>(stocks);
-
+                assert(ticker != null);
 
                 double price = getSharePrice(ticker);
                 IStock stock = new Stock(ticker, ticker, number, price);
@@ -61,7 +59,6 @@ public class Folio extends Observable implements IFolio {
                 stock.updateInitialSpending(price * number);
                 setChanged();
                 notifyObservers("Add");
-                assert(postCheck(clone));
                 return true;
             } catch (WebsiteDataException | NoSuchTickerException e) {
                 //e.printStackTrace();
@@ -72,22 +69,6 @@ public class Folio extends Observable implements IFolio {
         }
     }
 
-    /*
-    Assertion check for add
-     */
-    private boolean postCheck(List<IStock> clone) {
-        for(int i=0;i<clone.size();i++) {
-            if(clone.get(i)!=stocks.get(i)) {
-                return false;
-            }
-        }
-        if(clone.size()<stocks.size()) {
-            return true;
-        }
-        else
-            return false;
-    }
-
 
     /*
     Assertion here to check precondition
@@ -95,6 +76,7 @@ public class Folio extends Observable implements IFolio {
     @Override
     public IFolio.ticker checkTicker(String ticker) {
         assert(ticker!=null);
+
         if (alreadyExists(ticker)) {
             return IFolio.ticker.EXISTS;
         } else {
@@ -112,33 +94,39 @@ public class Folio extends Observable implements IFolio {
 
 
     /*
-    Assertion here to check that size of list doesn't change
+    Assertion here to check preconditions and that the size of list doesn't change
      */
     @Override
     public boolean buyStock(String ticker, int number) {
-        assert(ticker!=null && number>0);
-        int i = stocks.size();
+        assert(ticker != null && number > 0);
+        int initialSize = 0;
+        assert((initialSize = stocks.size()) >= 0);
+
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 s.setNumber( s.getNumber() + number );
                 s.updateInitialSpending(s.getPrice() * number);
                 setChanged();
                 notifyObservers("Buy");
-                assert(stocks.size()==i);
+
+                assert(stocks.size() == initialSize);
                 return true;
             }
         }
+        assert(stocks.size() == initialSize);
         return false;
     }
 
     /*
-    Assertion here to check that the list isn't altered incorrectly
+    Assertion here to check preconditions and that the list isn't altered incorrectly
      */
 
     @Override
     public boolean sellStock(String ticker, int value) {
-        assert(ticker!=null && value>0);
-        int i=stocks.size();
+        assert(ticker != null && value > 0);
+        int initialSize = 0;
+        assert((initialSize = stocks.size()) >= 0);
+
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 if(value>s.getNumber()) return false;
@@ -148,7 +136,8 @@ public class Folio extends Observable implements IFolio {
                         s.updateInitialSpending(- s.getPrice() * value);
                         setChanged();
                         notifyObservers("Manual");
-                        assert(checkSellPost(i,s));
+
+                        assert(stocks.size() < initialSize && !stocks.contains(s));
                         return true;
                     }
                     else {
@@ -156,7 +145,8 @@ public class Folio extends Observable implements IFolio {
                         s.updateInitialSpending(- s.getPrice() * value);
                         setChanged();
                         notifyObservers("Manual");
-                        assert(stocks.size()==i);
+
+                        assert(stocks.size() == initialSize && stocks.contains(s));
                         return true;
                     }
 
@@ -168,17 +158,8 @@ public class Folio extends Observable implements IFolio {
         return false;
     }
 
-    /*
-    Assertion check for sellStock
-     */
-    private boolean checkSellPost(int i, IStock s) {
-        if(stocks.size()>=i || stocks.contains(s))
-            return false;
-        else
-            return true;
-    }
 
-    public boolean alreadyExists(String ticker) {
+    private boolean alreadyExists(String ticker) {
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
                 return true;
