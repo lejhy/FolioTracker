@@ -99,8 +99,7 @@ public class Folio extends Observable implements IFolio {
     @Override
     public boolean buyStock(String ticker, int number) {
         assert(ticker != null && number > 0);
-        int initialSize = 0;
-        assert((initialSize = stocks.size()) >= 0);
+        int initialSize = stocks.size();
 
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
@@ -124,8 +123,7 @@ public class Folio extends Observable implements IFolio {
     @Override
     public boolean sellStock(String ticker, int value) {
         assert(ticker != null && value > 0);
-        int initialSize = 0;
-        assert((initialSize = stocks.size()) >= 0);
+        int initialSize = stocks.size();
 
         for(IStock s : stocks) {
             if(s.getSymbol().equals(ticker)) {
