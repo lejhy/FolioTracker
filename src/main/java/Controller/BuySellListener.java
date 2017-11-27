@@ -12,15 +12,15 @@ public class BuySellListener implements ActionListener {
     private boolean buy;
     private JTextField input;
     private IFolioPanel folioPanel;
-    private String name;
+    private String tickerSymbol;
     private int value;
     private IBuySellFrame frame;
 
-    public BuySellListener(boolean buy, JTextField input, IFolioPanel folioPanel, IBuySellFrame frame, String name) {
+    public BuySellListener(boolean buy, JTextField input, IFolioPanel folioPanel, IBuySellFrame frame, String tickerSymbol) {
         this.buy=buy;
         this.input=input;
         this.folioPanel =folioPanel;
-        this.name= name;
+        this.tickerSymbol = tickerSymbol;
         this.frame= frame;
         value = 0;
     }
@@ -70,7 +70,7 @@ public class BuySellListener implements ActionListener {
     }
 
     private void buyStocks() {
-        if(folioPanel.getFolio().buyStock(name, value)) frame.dispose();
+        if(folioPanel.getFolio().buyStock(tickerSymbol, value)) frame.dispose();
         else
             System.out.println("Shouldn't be here");
     }
@@ -78,7 +78,7 @@ public class BuySellListener implements ActionListener {
 
 
     private void sellStocks() {
-        if(folioPanel.getFolio().sellStock(name,value)) frame.dispose();
+        if(folioPanel.getFolio().sellStock(tickerSymbol,value)) frame.dispose();
         else
             folioPanel.createAlert("Too many stocks entered", "Cannot sell shares than the folio contains");
 

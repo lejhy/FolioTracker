@@ -34,7 +34,7 @@ public class BuySellFrame extends JFrame implements IBuySellFrame {
         JLabel message = new JLabel("Please enter the amount you wish to " + buyOrSell);
         JTextField input = new JTextField(10);
         JButton enter = new JButton("Enter");
-        ActionListener l = new BuySellListener(buy, input, folio, this, folio.getFolio().getStocks().get(index).getName());
+        ActionListener l = new BuySellListener(buy, input, folio, this, folio.getFolio().getStocks().get(index).getSymbol());
         enter.addActionListener(l);
 
         panel.add(message);
