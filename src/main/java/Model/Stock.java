@@ -1,7 +1,5 @@
 package Model;
 
-import sun.jvm.hotspot.utilities.Assert;
-
 public class Stock implements IStock {
     private String symbol;
     private String name;
@@ -106,10 +104,7 @@ public class Stock implements IStock {
     public double getStockLow() {
         return low;
     }
-
-    /*
-    Assertion checking for reflective equals contract
-     */
+    
     @Override
     public boolean equals(Object o) {
         if (o != null) {
@@ -124,8 +119,6 @@ public class Stock implements IStock {
                         this.high == stock.high &&
                         this.low == stock.low &&
                         this.initialSpending == stock.initialSpending) {
-
-                    assert o.equals(this): "this: " + this + " o: " + o;
                     return true;
                 }
             }
