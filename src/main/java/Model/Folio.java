@@ -98,7 +98,9 @@ public class Folio extends Observable implements IFolio {
      */
     @Override
     public boolean buyStock(String ticker, int number) {
-        assert(ticker != null && number > 0);
+        assert(ticker != null);
+        assert(number > 0): number;
+
         int initialSize = stocks.size();
 
         for(IStock s : stocks) {
@@ -108,21 +110,22 @@ public class Folio extends Observable implements IFolio {
                 setChanged();
                 notifyObservers("Buy");
 
-                assert(stocks.size() == initialSize);
+                assert(stocks.size() == initialSize): "initialSize: " + initialSize + " size: " + stocks.size();
                 return true;
             }
         }
-        assert(stocks.size() == initialSize);
+        assert(stocks.size() == initialSize): "initialSize: " + initialSize + " size: " + stocks.size();
         return false;
     }
 
     /*
     Assertion here to check preconditions and that the list isn't altered incorrectly
      */
-
     @Override
     public boolean sellStock(String ticker, int value) {
-        assert(ticker != null && value > 0);
+        assert(ticker != null);
+        assert (value > 0): value;
+
         int initialSize = stocks.size();
 
         for(IStock s : stocks) {
@@ -135,7 +138,8 @@ public class Folio extends Observable implements IFolio {
                         setChanged();
                         notifyObservers("Manual");
 
-                        assert(stocks.size() < initialSize && !stocks.contains(s));
+                        assert(stocks.size() < initialSize): "initialSize: " + initialSize + " size: " + stocks.size();
+                        assert(!stocks.contains(s)): "stocks: " + stocks + " s: " + s;
                         return true;
                     }
                     else {
@@ -144,7 +148,8 @@ public class Folio extends Observable implements IFolio {
                         setChanged();
                         notifyObservers("Manual");
 
-                        assert(stocks.size() == initialSize && stocks.contains(s));
+                        assert(stocks.size() == initialSize): "initialSize: " + initialSize + " size: " + stocks.size();
+                        assert (stocks.contains(s)): "stocks: " + stocks + " s: " + s;
                         return true;
                     }
 

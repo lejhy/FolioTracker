@@ -82,7 +82,7 @@ public interface IStock extends Serializable {
 
     /**
      *
-     * @requires: name!=null
+     * @requires: name != null
      * @modifies: this
      * @effects: set the name of the stock to x
      *
@@ -92,7 +92,7 @@ public interface IStock extends Serializable {
 
     /**
      *
-     * @requires: number>0
+     * @requires: number > 0
      * @modifies: this
      * @effects: sets the amount of shares in the stock to number
      *
@@ -102,7 +102,7 @@ public interface IStock extends Serializable {
 
     /**
      *
-     * @requires: price!=null
+     * @requires: price > 0
      * @modifies: this
      * @effects: sets the price per share of the stock to v
      *

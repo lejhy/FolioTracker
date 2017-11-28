@@ -1,5 +1,7 @@
 package Model;
 
+import sun.jvm.hotspot.utilities.Assert;
+
 public class Stock implements IStock {
     private String symbol;
     private String name;
@@ -11,7 +13,13 @@ public class Stock implements IStock {
     private double low;
     private double initialSpending;
 
+    /*
+    Assertion checking for precondition
+     */
     Stock(String symbol, String name, int number, double price) {
+        assert(symbol != null);
+        assert(name != null);
+
         this.symbol = symbol;
         this.name = name;
         this.number = number;
@@ -68,8 +76,13 @@ public class Stock implements IStock {
         this.number = number;
     }
 
+    /*
+    Assertion checking that price is positive
+     */
     @Override
     public void setPrice(double price) {
+        assert (price > 0) : price;
+
         if(price != this.price) {
             difference = price - this.price;
             percentageChange = difference / this.price * 100;
@@ -94,6 +107,9 @@ public class Stock implements IStock {
         return low;
     }
 
+    /*
+    Assertion checking for reflective equals contract
+     */
     @Override
     public boolean equals(Object o) {
         if (o != null) {
@@ -108,6 +124,8 @@ public class Stock implements IStock {
                         this.high == stock.high &&
                         this.low == stock.low &&
                         this.initialSpending == stock.initialSpending) {
+
+                    assert o.equals(this): "this: " + this + " o: " + o;
                     return true;
                 }
             }

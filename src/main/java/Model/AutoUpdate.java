@@ -42,7 +42,12 @@ public class AutoUpdate extends Observable implements IAutoUpdate {
         return isRunning;
     }
 
+    /*
+    Assertion checking for precondition
+     */
     private void startThread() {
+        assert(isRunning);
+
         thread = new Thread(() -> {
             while (isRunning) {
                 try {
