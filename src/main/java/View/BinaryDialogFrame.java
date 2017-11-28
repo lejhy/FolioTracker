@@ -1,6 +1,7 @@
 package View;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class BinaryDialogFrame extends JFrame implements IBinaryDialogFrame {
@@ -8,16 +9,15 @@ public class BinaryDialogFrame extends JFrame implements IBinaryDialogFrame {
 
     public BinaryDialogFrame(String name, String message){
         setName(name);
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Container container = getContentPane();
 
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.PAGE_AXIS));
+        setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
 
         JLabel messageLabel = new JLabel(message);
+        messageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JPanel messagePanel = new JPanel();
-        messagePanel.add(messageLabel);
-        add(messagePanel);
+        container.add(messageLabel);
 
         JPanel buttonPanel = new JPanel();
         yesButton = new JButton("Yes");
@@ -26,7 +26,7 @@ public class BinaryDialogFrame extends JFrame implements IBinaryDialogFrame {
         buttonPanel.add(yesButton);
         buttonPanel.add(noButton);
 
-        add(buttonPanel);
+        container.add(buttonPanel);
 
         pack();
         setVisible(true);

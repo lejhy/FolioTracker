@@ -11,21 +11,25 @@ public class InputFrame extends JFrame implements IInputFrame {
 
     public InputFrame(String name, String message){
         setName(name);
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        Container container = getContentPane();
 
-        setLayout(new FlowLayout());
+        setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
 
         JLabel label = new JLabel(message);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        add(label);
+        container.add(label);
+
+        JPanel inputPanel = new JPanel();
 
         inputField = new JTextField(15);
-
-        add(inputField);
-
         enterButton = new JButton("Enter");
-        add(enterButton);
+
+        inputPanel.add(inputField);
+        inputPanel.add(enterButton);
+
+        container.add(inputPanel);
 
         pack();
         setVisible(true);
